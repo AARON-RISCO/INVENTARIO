@@ -21,4 +21,56 @@ if($opcion=="agregar"){
         echo "Unidad de Medida registrada correctamente";
 }
 
+//Listar categorias
+if($opcion=="listar"){
+        $con_listar="SELECT* FROM unidad_medida"; 
+    
+            if(isset($_GET['nombre'])){
+                $nombre=$_GET['nombre'];
+                $con_listar="SELECT * FROM unidad_medida
+                WHERE nom_uni LIKE CONCAT('$nombre','%')";
+            }
+            
+            
+        $res=mysqli_query($cnn,$con_listar);
+        $num=mysqli_num_rows($res);
+        if($num>=1){
+            while($f=mysqli_fetch_array($res)){
+                $json[]=array(
+                    "cod"=>$f['id_uni'],
+                    "nom"=>$f['tipo_uni'],
+                    "estado"=>$f['estado']
+                );}
+            $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
+        }else{
+            $jsonresponse="vacio";
+        }
+        echo $jsonresponse;
+}
+    
+//buscar unidad_medida a modificar
+if($opcion=="buscar"){
+    $cod=$_GET['cod'];
+    $buscar="SELECT* FROM unidad_medida WHERE id_uni='$cod'";
+    $res=mysqli_query($cnn,$buscar);
+    $num=mysqli_num_rows($res);
+    while($f=mysqli_fetch_array($res)){
+            $json[]=array(
+                "cod"=>$f['id_uni'],
+                "nom"=>$f['tipo_uni']
+            );}
+    $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
+    echo $jsonresponse;
+}
+    
+    
+    //Actualizar unidad_medida
+    if($opcion=="actualizar"){
+        $cod=$_GET['cod'];
+        $nom=$_GET['nom'];
+        $modificar="update unidad_medida set tipo_uni='$nom' where id_uni='$cod'";
+        mysqli_query($cnn,$modificar)or die("Error en modificar Unidad de Medida");
+        echo "Unidad de Medida Actualizada";
+    }
+
 ?>

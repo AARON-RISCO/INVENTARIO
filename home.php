@@ -71,7 +71,7 @@ if (empty($_SESSION['dni'])){
                     </li>
 
                     <li class="list_inside">
-                        <label class="nav_link nav_link--inside">Unidad de Medida</label >
+                        <label id="muni" class="nav_link nav_link--inside">Unidad de Medida</label >
                     </li>
                 </ul>
             </li>

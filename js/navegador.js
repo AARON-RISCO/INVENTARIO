@@ -22,4 +22,9 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
+    $('#muni').click(function(){
+        $('.contenedor').load("unidades_medida.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
 });
