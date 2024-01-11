@@ -202,7 +202,8 @@ if (empty($_SESSION['dni'])){
        <div class="tarjetas"></div>
        <div class="tarjetas"></div>
     </div>
-
+    
+    <!-- Script-->
     <script src="js/menu.js"></script>
 </body>
 </html>
