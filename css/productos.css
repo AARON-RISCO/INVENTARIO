@@ -163,7 +163,7 @@ display: none;
     position: fixed; 
     display:none;
 }
-.modal{
+.modal, .modal_uni{
     position: absolute;
     background-color: #EAEBEF;
     height: 200px;
@@ -174,7 +174,7 @@ display: none;
     margin-top: -90%;
     transition: 0.5s;
 }
-#tnom_cat{
+#tnom_cat, #tnom_uni{
     margin: 20px 20px 20px 20px;
     padding: 5px 10px 5px 10px;
     width: 85%;
@@ -183,7 +183,7 @@ display: none;
     text-align: center;
     
 }
-#bguardar_cat{
+#bguardar_cat, #bguardar_uni{
     background-color: green;
     color: white;
     border: 0;
@@ -193,6 +193,12 @@ display: none;
 .cerrar_modal{
     position: absolute;
     margin-left: 69%;
+    top: 5px;
+    cursor: pointer;
+}
+.cerrar_modal_uni{
+    position: absolute;
+    margin-left: 78%;
     top: 5px;
     cursor: pointer;
 }

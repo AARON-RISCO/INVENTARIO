@@ -68,5 +68,11 @@
         <input type="text" name="tnom_cat" id="tnom_cat" placeholder="Ingrese Nombre de categoria"><br>
         <input type="button" value="Guardar" id="bguardar_cat">
     </div>
+    <div class="modal_uni">
+        <img src="img/cerrar2.svg" alt="" class="cerrar_modal_uni">
+        <label>Agregar nueva Unidad de Medida</label><br>
+        <input type="text" name="tnom_uni" id="tnom_uni" placeholder="Ingrese Nombre de Unidad"><br>
+        <input type="button" value="Guardar" id="bguardar_uni">
+    </div>
 </body>
 </html>

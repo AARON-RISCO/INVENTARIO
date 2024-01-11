@@ -143,19 +143,23 @@ $(document).ready(function(){
     })
     //bloqueo de cajas en mantenimiento
     function BloquearCajas(){
-        $('#tcat').prop('disabled', true);
+        $('#tcat').css('pointer-events', 'none');
+        $('.ir_cat').prop('disabled', true);
         $('#tnom_pro').prop('disabled', true);
         $('#tsabor').prop('disabled', true);
-        $('#tuni').prop('disabled', true);
+        $('#tuni').css('pointer-events', 'none');
+        $('.ir_uni').prop('disabled', true);
         $('#tpre').prop('disabled', true);
         $('#tstock_min').prop('disabled', true);
         $('#tstock').prop('disabled', true);
     }
     function DesbloquearCajas(){
-        $('#tcat').prop('disabled', false);
+        $('#tcat').css('pointer-events', 'auto');
+        $('.ir_cat').prop('disabled', false);
         $('#tnom_pro').prop('disabled', false);
         $('#tsabor').prop('disabled', false);
-        $('#tuni').prop('disabled', false);
+        $('#tuni').css('pointer-events', 'auto');
+        $('.ir_uni').prop('disabled', false);
         $('#tpre').prop('disabled', false);
         $('#tstock_min').prop('disabled', false);
         $('#tstock').prop('disabled', false);
@@ -190,6 +194,7 @@ $(document).ready(function(){
 
     //Agregar producto nuevo
     $(document).on('click', '#bguardar_pro', function() {
+
         // Obtener los valores de las cajas de texto
         const cat = $('#tcat').val().trim();
         const nom = $('#tnom_pro').val().trim();
@@ -200,8 +205,49 @@ $(document).ready(function(){
         const actual= $('#tstock').val().trim();
         
         //Validaciones
+        if (cat==0) {
+            alert('Seleccione Categoria!');
+            $('#tcat').focus();
+            return;
+        }
 
+        if (nom==="") {
+            alert('Ingrese Nombre del Producto!');
+            $('#tnom_pro').focus();
+            return;
+        }
+
+        if (sabor==="") {
+            alert('Ingrese sabor del Producto!');
+            $('#tsabor').focus();
+            return;
+        }
+
+        if (uni==0) {
+            alert('Seleccione Unidad de Medida!');
+            $('#tuni').focus();
+            return;
+        }
+
+        if (pre==="") {
+            alert('Ingrese Precio del Producto!');
+            $('#tpre').focus();
+            return;
+        }
+
+        if (minimo==="") {
+            alert('Ingrese Stock Minimo del Producto!');
+            $('#tstock_min').focus();
+            return;
+        }
+
+        if (actual==="") {
+            alert('Ingrese Stock Actual del Producto!');
+            $('#tstock').focus();
+            return;
+        }
         
+            
         // Crear el objeto de datos para enviar la solicitud
         const datos = {
             cat: cat,
@@ -264,7 +310,48 @@ $(document).ready(function(){
         const minimo = $('#tstock_min').val().trim();
         const actual= $('#tstock').val().trim();
         //Validaciones
+        //Validaciones
+        if (cat==0) {
+            alert('Seleccione Categoria!');
+            $('#tcat').focus();
+            return;
+        }
 
+        if (nom==="") {
+            alert('Ingrese Nombre del Producto!');
+            $('#tnom_pro').focus();
+            return;
+        }
+
+        if (sabor==="") {
+            alert('Ingrese sabor del Producto!');
+            $('#tsabor').focus();
+            return;
+        }
+
+        if (uni==0) {
+            alert('Seleccione Unidad de Medida!');
+            $('#tuni').focus();
+            return;
+        }
+
+        if (pre==="") {
+            alert('Ingrese Precio del Producto!');
+            $('#tpre').focus();
+            return;
+        }
+
+        if (minimo==="") {
+            alert('Ingrese Stock Minimo del Producto!');
+            $('#tstock_min').focus();
+            return;
+        }
+
+        if (actual==="") {
+            alert('Ingrese Stock Actual del Producto!');
+            $('#tstock').focus();
+            return;
+        }
         
         // Crear el objeto de datos para enviar la solicitud
         const datos = {
@@ -296,7 +383,7 @@ $(document).ready(function(){
         $('.fondo').css('display','block');
         $('.modal').css('margin-top','0%');
     })
-    //Abrir modal de agregar categorias
+    //Cerrar modal de agregar categorias
     $(document).on('click', '.cerrar_modal', function() {
         $('.modal').css('margin-top','-90%');
         $('.fondo').css('display','none');
@@ -305,5 +392,11 @@ $(document).ready(function(){
     //Abrir modal de agregar unidades de medidas
     $(document).on('click', '#ir_uni', function() {
         $('.fondo').css('display','block');
+        $('.modal_uni').css('margin-top','0%');
+    })
+    //Cerrar modal de agregar unidades de medidas
+    $(document).on('click', '.cerrar_modal_uni', function() {
+        $('.modal_uni').css('margin-top','-90%');
+        $('.fondo').css('display','none');
     })
 })
