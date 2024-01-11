@@ -47,5 +47,14 @@
                 
        </div> 
     </div>
+    <div id="sombra_modal_cat" class="sombra_modal_cat">
+        
+    </div>
+    <div id="caja_modal_cat" class="caja_modal_cat">
+        <p id="namcamo" class="msjmod"> </p>
+        <button id="bamo" class="botomo bos"> ACEPTAR</button>   
+        <button id="bcamo"class="botomo2 bos"> CANCELAR</button>
+        <input type="hidden" name="" id="idce">
+    </div>
 </body>
 </html>

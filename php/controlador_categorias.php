@@ -71,5 +71,12 @@ if($opcion=="buscar"){
         mysqli_query($cnn,$modificar)or die("Error en modificar categoria");
         echo "Categoria Actualizado";
     }
+    if($opcion=="deshabilitar"){
+        $code=$_GET['code'];
+        
+        $modificarc="update categoria set estado=1 where id_cat='$code'";
+        mysqli_query($cnn,$modificarc)or die("Error en modificar categoria");
+        echo "CATEGORIA DEHABILITADA CORRECTAMENTE";
+    }
 
 ?>

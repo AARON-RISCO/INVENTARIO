@@ -7,10 +7,12 @@ $(document).ready(function(){
     $('.cerrar').click(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
+        $('.fil').css("background-color","white");
     });
     $('#mostrar_menu').click(function(){
         $('#nav').css("margin-left","0%");
         $('#opacar2').css("display","block");
+        $('.fil').css("background-color","transparent");
     });
     $('#mpro').click(function(){
         $('.contenedor').load("productos.php");

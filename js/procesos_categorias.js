@@ -80,7 +80,10 @@ $(document).ready(function(){
         // Obtener los valores de las cajas de texto
         const cat = $('#tnom_cat').val();
         //Validaciones
-
+        if($('#tnom_cat').val()==""){
+            alert("caja vacia");
+            return;
+        }
         
         // Crear el objeto de datos para enviar la solicitud
         const datos = {
@@ -149,4 +152,52 @@ $(document).ready(function(){
             $('#bnuevo_cat').css('display','block');
           });
     })
+
+    $(document).on('click','#bir',function(){
+        $('#sombra_modal_cat').css("display","block");
+        $('#caja_modal_cat').css("display","block");
+        const codi = $(this).data('cod');
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_categorias.php",
+            data:{
+                cod:codi,
+                opcion:"buscar"
+            },
+            success:function(respuesta){
+                console.log(respuesta);
+                var registros=JSON.parse(respuesta);
+                $('#namcamo').html("¿ESTA SEGURO DE DESHABILITAR LA CATEGORIA "+registros[0].nom+" ?");
+                $('#idce').val(registros[0].cod);
+            }
+        })
+    })
+
+    $(document).on('click','#bcamo',function(){
+        $('#sombra_modal_cat').css("display","none");
+        $('#caja_modal_cat').css("display","none    ");
+    })
+    $(document).on('click','#bamo',function(){
+        // const codi = $(this).data('cod');
+        let codeli=$('#idce').val();
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_categorias.php",
+            data:{
+                code:codeli,
+                opcion:"deshabilitar"
+            },
+            success:function(respuestas){
+                alert(respuestas);
+                listar_categorias();
+            }
+        })
+        
+        $('#sombra_modal_cat').css("display","block");
+        $('#caja_modal_cat').css("display","block");
+    })
+
+
 })
