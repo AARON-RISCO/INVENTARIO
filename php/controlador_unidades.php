@@ -28,7 +28,7 @@ if($opcion=="listar"){
             if(isset($_GET['nombre'])){
                 $nombre=$_GET['nombre'];
                 $con_listar="SELECT * FROM unidad_medida
-                WHERE nom_uni LIKE CONCAT('$nombre','%')";
+                WHERE tipo_uni LIKE CONCAT('$nombre','%')";
             }
             
             
