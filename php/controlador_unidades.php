@@ -12,5 +12,13 @@ if ($opcion=="listar_unidades") {
            echo "<option value='".$cod."'>".$nom."</option>";
         }
 }
+//agregar nueva Unidad
+if($opcion=="agregar"){
+        $nom=$_GET['nom'];
+        $agregar="insert into unidad_medida
+        values(' ', '$nom',' ')";
+        mysqli_query($cnn,$agregar)or die("Error en registrar Unidad de Medida");
+        echo "Unidad de Medida registrada correctamente";
+}
 
 ?>

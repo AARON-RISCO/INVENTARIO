@@ -399,4 +399,53 @@ $(document).ready(function(){
         $('.modal_uni').css('margin-top','-90%');
         $('.fondo').css('display','none');
     })
+
+    //Agregar neuva categoria  
+    $(document).on('click', '#bguardar_cat', function() {
+        const nom=$('#tnom_cat').val().trim();
+        //Validar
+        if (nom==="") {
+            alert("Ingrese Nombre de Categoria");
+            $('#tnom_cat').focus();
+            return;
+        }
+        //Crear objeto de datos para enviar la solicitud
+        const datos ={
+            nom:nom,
+            opcion:'agregar'
+        };
+        //Enviar la solicitud a ajax
+        $.get('php/controlador_categorias.php',datos,function(response){
+            alert(response);
+            $('#tnom_cat').val("");
+            $('.modal').css('margin-top','-90%');
+            $('.fondo').css('display','none');
+            llenar_categorias();
+        })
+    })
+
+    //Agregar nueva unidad de medida
+    $(document).on('click', '#bguardar_uni', function() {
+        const nom=$('#tnom_uni').val().trim();
+        //Validar
+        if (nom==="") {
+            alert("Ingrese Nombre de Unidad de Medida");
+            $('#tnom_uni').focus();
+            return;
+        }
+        //Crear objeto de datos para enviar la solicitud
+        const datos ={
+            nom:nom,
+            opcion:'agregar'
+        };
+        //Enviar la solicitud a ajax
+        $.get('php/controlador_unidades.php',datos,function(response){
+            alert(response);
+            $('#tnom_uni').val("");
+            $('.modal_uni').css('margin-top','-90%');
+            $('.fondo').css('display','none');
+            llenar_unidades();
+        })
+    })
+
 })
