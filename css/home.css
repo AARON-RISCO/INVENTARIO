@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background:#EAEBEF;
+    font-family: 'Poppins', sans-serif;
+}
+.nav{
+    width: 300px;
+    position: absolute;
+    margin-left: -90%;
+    height: 100%;
+   transition: .5s;
+   border-right: 1px solid #EAEBEF;
+   overflow: auto ;
+   background-color: #fff;
+   box-shadow: 5px 5px 10px 5px rgba(97, 96, 96, 0.263);
+}
+::-webkit-scrollbar {
+    width: 2px;
+}
+::-webkit-scrollbar-track {
+    background-color:transparent;
+} 
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+} 
+.nav_link--inside:hover{
+  color: #ffffff;
+}
+.nav_link{
+    color: #303440;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+}
+.nav_link--inside{
+    border-radius: 6px;
+    padding-left: 20px;
+    text-align: left;
+}
+.list{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+    background-color: #fff;
+}
+.list_item{
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+.list_item:hover{
+    background-color: #30344030;
+}
+.list__item--click{
+    cursor: pointer;
+
+}
+.list__button{
+display: flex;
+align-items: center;
+gap: 1em;
+width: 70%;
+margin: 0 auto;
+}
+.arrow .list_arrow{
+    transform: rotate(90deg);
+}
+.list_arrow{
+    margin-left:auto ;
+    transition: transform .3s;
+}
+.list_show{
+    width: 80%;
+    margin-left: auto;
+    border-left: 2px solid #303440;
+    list-style: none;
+    transition: height .4s;
+    height: 0;
+}
+.cerrar{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+}
+#mostrar_menu{
+    cursor: pointer;
+    height: 30px;
+    margin: 30px;
+}
+
+.cabecera{
+    display: flex;
+    width: 100%;
+    background: green;
+    height: 65px;
+    color: white;
+}
+.navegacion{
+    display: flex;
+    align-content: center;
+    align-items: center ;
+}
+.usuario{
+    display: flex;
+    background-color: white;
+    align-content: center;
+    align-items: center ;
+    width: 40%;
+    height: 30px;
+    margin: auto;
+    margin-right: -100%;
+    border-radius: 3px 0 0 3px;
+    transition: 1s;
+    font-size: 15px;
+}
+
+.usuario label{
+    color: green;
+    
+}
+.user{
+    margin-right: 130px;
+}
+#opacar{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.478);
+    position: fixed; 
+    display:block;
+}
+#opacar2{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.478);
+    position: fixed; 
+    display:none;
+}
+.caja{
+    position: absolute;
+    margin: auto;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left:35%;
+    width: 30%;
+    height: 30% ;
+    margin-top: 10%;
+    transition: 1s;
+}
+.input_caja{    
+    width: 100%;
+margin: 15px 0 15px 0;
+padding: 5px 40px 5px 40px;
+border: 0;
+border-radius: 2px;
+border-bottom: 1px solid black;
+text-align: center;
+}
+.caja label{
+    color: green;
+}
+button{
+    background-color: green;
+    color: white;
+    padding:5px 95px 5px 95px ;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 0;
+    margin-top: 10px;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #EAEBEF;
+}
+.logo img{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+.contenedor{
+    margin: 20px;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 32.2% 32.2% 32.2%;
+   gap: 25px;
+}
+.contenedor .tarjetas{
+    background-color: rgb(250, 250, 248);
+    border-radius: 2px;
+    box-shadow:  3px 3px 3px 3px rgb(251, 250, 250) ;
+}

@@ -1,0 +1,25 @@
+$(document).ready(function(){
+    $(document).off("click","**");
+    $('#continuar').click(function(){
+        $('#opacar').css("display","none");
+        $('#caja').css("margin-top","-100%");
+    });
+    $('.cerrar').click(function(){
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
+    $('#mostrar_menu').click(function(){
+        $('#nav').css("margin-left","0%");
+        $('#opacar2').css("display","block");
+    });
+    $('#mpro').click(function(){
+        $('.contenedor').load("productos.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
+    $('#mcat').click(function(){
+        $('.contenedor').load("categorias.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
+});
