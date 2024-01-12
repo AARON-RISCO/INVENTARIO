@@ -29,4 +29,14 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
+    $('#mrven').click(function(){
+        $('.contenedor').load("registrar_ventas.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
+    $('#mvven').click(function(){
+        $('.contenedor').load("ver_ventas.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
 });

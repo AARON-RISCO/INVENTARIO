@@ -84,11 +84,11 @@ if (empty($_SESSION['dni'])){
                 </div>
                 <ul class="list_show">
                     <li class="list_inside">
-                        <label class="nav_link nav_link--inside">Registrar venta</label >
+                        <label id="mrven" class="nav_link nav_link--inside">Registrar venta</label >
                     </li>
 
                     <li class="list_inside">
-                        <label class="nav_link nav_link--inside">Ver ventas</label >
+                        <label id="mvven" class="nav_link nav_link--inside">Ver ventas</label >
                     </li>
                 </ul>
             </li>
