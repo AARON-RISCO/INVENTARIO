@@ -10,6 +10,7 @@ if (empty($_SESSION['dni'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/registrar_ventas.css">
+    <script src="js/procesos_reg_ven.js"></script>
     <title>Document</title>
 </head>
 <body>
