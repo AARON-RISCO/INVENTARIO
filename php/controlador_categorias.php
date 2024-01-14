@@ -56,7 +56,8 @@ if($opcion=="buscar"){
     while($f=mysqli_fetch_array($res)){
             $json[]=array(
                 "cod"=>$f['id_cat'],
-                "nom"=>$f['nom_cat']
+                "nom"=>$f['nom_cat'],
+                "esc"=>$f['estado']
             );}
     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
     echo $jsonresponse;
@@ -73,10 +74,17 @@ if($opcion=="buscar"){
     }
     if($opcion=="deshabilitar"){
         $code=$_GET['code'];
-        
-        $modificarc="update categoria set estado=1 where id_cat='$code'";
+        $esta=$_GET['esta'];
+        if($esta==1){
+            $modificarc="update categoria set estado=0 where id_cat='$code'";
+            $msj="CATEGORIA HABILITADA CORRECTAMENTE";
+        }elseif($esta==0){
+            $modificarc="update categoria set estado=1 where id_cat='$code'";
+            $msj="CATEGORIA DESHABILITADA CORRECTAMENTE";
+        }
+
         mysqli_query($cnn,$modificarc)or die("Error en modificar categoria");
-        echo "CATEGORIA DEHABILITADA CORRECTAMENTE";
+        echo $msj;
     }
 
 ?>

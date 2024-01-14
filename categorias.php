@@ -55,6 +55,7 @@
         <button id="bamo" class="botomo bos"> ACEPTAR</button>   
         <button id="bcamo"class="botomo2 bos"> CANCELAR</button>
         <input type="hidden" name="" id="idce">
+        <input type="hidden" name="" id="estadocategoriamo">
     </div>
 </body>
 </html>
