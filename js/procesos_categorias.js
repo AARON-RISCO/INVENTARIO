@@ -162,7 +162,7 @@ $(document).ready(function(){
     // boton para eliminar una categoria 
     $(document).on('click','#bir',function(){
         $('#sombra_modal_cat').css("display","block");
-        $('#caja_modal_cat').css("display","block");
+        $('#caja_modal_cat').css("margin-top","-30%");
         const codi = $(this).data('cod');
         $.ajax({
             async:true,
@@ -184,7 +184,7 @@ $(document).ready(function(){
     // boton para cancelar la habilitacion o la deshabilitacion de una categoria
     $(document).on('click','#bcamo',function(){
         $('#sombra_modal_cat').css("display","none");
-        $('#caja_modal_cat').css("display","none");
+        $('#caja_modal_cat').css("margin-top","-90%");
     })
 
     // boton para aceptar la habilitacion o la deshabilitacion de una categoria
@@ -208,7 +208,7 @@ $(document).ready(function(){
             success:function(respuestas){
                 alert(respuestas);
                 $('#sombra_modal_cat').css("display","none");
-                $('#caja_modal_cat').css("display","none");
+                $('#caja_modal_cat').css("margin-top","-90%");
                 listar_categorias();
                 
             }
@@ -219,7 +219,7 @@ $(document).ready(function(){
     // boton para activar una categoria 
     $(document).on('click','#bact',function(){
         $('#sombra_modal_cat').css("display","block");
-        $('#caja_modal_cat').css("display","block");
+        $('#caja_modal_cat').css("margin-top","-30%");
         const codi = $(this).data('cod');
         $.ajax({
             async:true,

@@ -381,7 +381,7 @@ $(document).ready(function(){
      //Abrir modal de agregar categorias
      $(document).on('click', '#ir_cat', function() {
         $('.fondo').css('display','block');
-        $('.modal').css('margin-top','0%');
+        $('.modal').css('margin-top','-30%');
     })
     //Cerrar modal de agregar categorias
     $(document).on('click', '.cerrar_modal', function() {
@@ -392,7 +392,7 @@ $(document).ready(function(){
     //Abrir modal de agregar unidades de medidas
     $(document).on('click', '#ir_uni', function() {
         $('.fondo').css('display','block');
-        $('.modal_uni').css('margin-top','0%');
+        $('.modal_uni').css('margin-top','-30%');
     })
     //Cerrar modal de agregar unidades de medidas
     $(document).on('click', '.cerrar_modal_uni', function() {
