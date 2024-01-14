@@ -37,5 +37,28 @@ if($opcion=="Buscar_ClienteGeneral"){
     }
     echo $jsonresponse;
 }
+if ($opcion=="deudorGeneral") {
+    $listar="SELECT * fROM deudores WHERE id_deudor=1";
+    $resultado=mysqli_query($cnn,$listar) or die("Error en listar");    
+    while ($fila=mysqli_fetch_array($resultado)) {
+       $cod=$fila['id_deudor'];    
+       $nom=$fila['nom_deudor'];
+       $ape=$fila['apellidos_deudor'];
+       echo "<option value='".$cod."'>".$nom." ".$ape."</option>";
+    }
+}
+
+if ($opcion=="deudores") {
+    $listar="SELECT * fROM deudores WHERE estado=0 ORDER BY apellidos_deudor";
+    $resultado=mysqli_query($cnn,$listar) or die("Error en listar"); 
+    echo "<option value='0'> SELECCIONE DEUDOR</option>";   
+    while ($fila=mysqli_fetch_array($resultado)) {
+       $cod=$fila['id_deudor'];    
+       $nom=$fila['nom_deudor'];
+       $ape=$fila['apellidos_deudor'];
+       echo "<option value='".$cod."'>".$nom." ".$ape."</option>";
+    }
+}
+
 
 ?>

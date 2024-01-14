@@ -21,14 +21,22 @@ if (empty($_SESSION['dni'])){
             <input type="text" class="cajas_ven bloquear" value="<?php echo date('Y-m-d') ?>" id="fecha" >
             <input type="text" class="oculto" value="<?php echo $_SESSION['dni']; ?>">
             <input type="text" class="cajas_ven bloquear" value="<?php echo $_SESSION['nom'].' '.$_SESSION['ape'] ?>">
-            <input type="text" class="cajas_ven bloquear" placeholder="Ingrese DNI del cliente" value="11111111" id="dni">
+            <input type="text" class="oculto" placeholder="Ingrese DNI del cliente" value="11111111" id="dni">
             <input type="text" class="cajas_ven bloquear" placeholder="Cliente" id="cliente">
-            <select name="" id="ttipo_pago">
+            <select name="" id="est_pago">
                 <option value="0">SELECCCIONE ESTADO DE VENTA</option>
                 <option value="1">PAGADA</option>
                 <option value="2">PENDIENTE</option>
             </select>
+            <select name="" id="ttipo_pago" class="cajas_ven">
+                <option value="0">SELECCCIONE TIPO DE PAGO</option>
+                <option value="1">EFECTIVO</option>
+                <option value="2">YAPE</option>
+                <option value="3">PENDIENTE</option>
+            </select>
+            <div class="debe">
             <select name="" id="tdeudores"></select><img src="img/agregar.png" class="reg_deudores"> 
+            </div>
             <input type="text" class="cajas_ven" placeholder="Neto a pagar">
             
             <div class="botones">
@@ -79,6 +87,16 @@ if (empty($_SESSION['dni'])){
                     </table>
                 </div>
         </div>
+    </div>
+    <!-- Registrar nuevo deudor -->
+    <div class="fondo"></div>
+    <!--Ventana modal de agregar nuevo deudor-->
+    <div class="modal">
+        <img src="img/cerrar2.svg" alt="" class="cerrar_modal">
+        <label>Agregar nuevo deudor</label><br>
+        <input type="text" name="tnom_cat" id="tnom_cat" class="cajas_modal" placeholder="Ingrese Nombres"><br>
+        <input type="text" name="tnom_cat" id="tnom_cat" class="cajas_modal" placeholder="Ingrese Apellidos"><br>
+        <input type="button" value="Guardar" id="bguardar_deudor">
     </div>
 </body>
 </html>
