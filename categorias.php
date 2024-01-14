@@ -14,7 +14,7 @@
                     <label for="">Todas las categorias</label>
                     <div class="filtros">
                         <label for="" class="fil">Filtros</label>   
-                        <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus" placeholder="Buscar por Nombre"></div>
+                        <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MT" placeholder="Buscar por Nombre"></div>
                     </div>
                     <div id="listado"> 
                     <table >
@@ -35,7 +35,7 @@
        <div class="mantenimiento">
                 <label>Mantenimiento Categorias</label><br>
                 <input type="text" id="tcod">
-                <img src="" alt=""  class="da-cat"><input type="text" name="tnom_cat" id="tnom_cat" class="cajas-cat" placeholder="Ingrese Nombre de categoria">
+                <img src="" alt=""  class="da-cat"><input type="text" name="tnom_cat" id="tnom_cat" class="cajas-cat MT" placeholder="Ingrese Nombre de categoria">
                 
                 <!--Botones-->
                 <div class="botones">

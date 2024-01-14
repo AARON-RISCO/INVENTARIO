@@ -240,6 +240,27 @@ $(document).ready(function(){
         })
     })
 
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
+    $('.MT').on('input', function() {
+        let currentValue = $(this).val();
+        let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ]/g, '');
+        $(this).val(newValue.toUpperCase());
+    });
+
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR INGRESO DE SOLO NUMEROS
+    $('.MT').on('input', function() {
+        // Obtener el valor actual del campo de entrada
+        var inputValue = $(this).val();
+
+        // Validar si el valor contiene números
+        if (/^\d+$/.test(inputValue)) {
+          // Si contiene números, mostrar un mensaje de error y eliminar los números
+          alert('No se permiten números en este campo.');
+          $(this).val(inputValue.replace(/\d/g, ''));
+        }
+      });
+
+
 
    
 
