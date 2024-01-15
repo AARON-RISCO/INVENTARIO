@@ -17,6 +17,7 @@ if (empty($_SESSION['dni'])){
     <div class="conteiner">
         <div class="datos_ventas">
             <label for="">Registrar Nueva Venta</label><br>
+            <input type="text" class="oculto" id="cod_ven">
             <input type="text" class="cajas_ven bloquear" placeholder="" id="id_cod">
             <input type="text" class="cajas_ven bloquear" value="<?php echo date('Y-m-d') ?>" id="fecha" >
             <input type="text" class="oculto" value="<?php echo $_SESSION['dni']; ?>">
@@ -37,7 +38,7 @@ if (empty($_SESSION['dni'])){
             <div class="debe">
             <select name="" id="tdeudores"></select><img src="img/agregar.png" class="reg_deudores"> 
             </div>
-            <input type="text" class="cajas_ven" placeholder="Neto a pagar">
+            <input type="text" class="cajas_ven" placeholder="Neto a pagar" id="ttot">
             
             <div class="botones">
                 <input type="button" value="Nueva Venta" class="btn-nueva btn" id="bnueva_ven"> 
