@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2024-01-10 18:46:06
+Date: 2024-01-15 14:09:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,7 +42,7 @@ CREATE TABLE `categoria` (
   `nom_cat` varchar(30) DEFAULT NULL,
   `estado` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`id_cat`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of categoria
@@ -51,6 +51,8 @@ INSERT INTO `categoria` VALUES ('1', 'GALLETAS', '0');
 INSERT INTO `categoria` VALUES ('2', 'SNACKS', '0');
 INSERT INTO `categoria` VALUES ('3', 'DULCES', '0');
 INSERT INTO `categoria` VALUES ('4', 'BEBIDAS', '0');
+INSERT INTO `categoria` VALUES ('5', 'UTILES', '0');
+INSERT INTO `categoria` VALUES ('6', 'ABARROTES', '0');
 
 -- ----------------------------
 -- Table structure for `cliente`
@@ -67,6 +69,7 @@ CREATE TABLE `cliente` (
 -- ----------------------------
 -- Records of cliente
 -- ----------------------------
+INSERT INTO `cliente` VALUES ('11111111', 'GENERAL', 'CLIENTE', '999999999');
 
 -- ----------------------------
 -- Table structure for `compra`
@@ -145,21 +148,25 @@ CREATE TABLE `detalle_venta` (
 -- ----------------------------
 -- Records of detalle_venta
 -- ----------------------------
+INSERT INTO `detalle_venta` VALUES ('1', '54', '5', '1', '5');
 
 -- ----------------------------
 -- Table structure for `deudores`
 -- ----------------------------
 DROP TABLE IF EXISTS `deudores`;
 CREATE TABLE `deudores` (
-  `id_deudor` int(11) NOT NULL,
+  `id_deudor` int(11) NOT NULL AUTO_INCREMENT,
   `nom_deudor` varchar(25) DEFAULT NULL,
   `apellidos_deudor` varchar(25) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`id_deudor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- ----------------------------
 -- Records of deudores
 -- ----------------------------
+INSERT INTO `deudores` VALUES ('1', 'DEUDOR', 'GENERAL', '1');
+INSERT INTO `deudores` VALUES ('2', 'JUAN', 'SOSA', '0');
 
 -- ----------------------------
 -- Table structure for `personal`
@@ -200,37 +207,67 @@ CREATE TABLE `producto` (
   KEY `pro_uni` (`id_uni`),
   CONSTRAINT `pro_cat` FOREIGN KEY (`id_cat`) REFERENCES `categoria` (`id_cat`),
   CONSTRAINT `pro_uni` FOREIGN KEY (`id_uni`) REFERENCES `unidad_medida` (`id_uni`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of producto
 -- ----------------------------
 INSERT INTO `producto` VALUES ('53', 'RELLENITAS', 'CHOCOLATE', '1', '1', '0.8', '10', '50', '0');
+INSERT INTO `producto` VALUES ('54', 'TENTACION', 'CHOCOLATE', '1', '1', '1', '10', '50', '0');
+
+-- ----------------------------
+-- Table structure for `temporal_venta`
+-- ----------------------------
+DROP TABLE IF EXISTS `temporal_venta`;
+CREATE TABLE `temporal_venta` (
+  `id_venta` int(11) DEFAULT NULL,
+  `id_pro` int(11) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `precio` float DEFAULT NULL,
+  `total_venta` float DEFAULT NULL,
+  KEY `det_ven` (`id_venta`) USING BTREE,
+  KEY `det_ven_pro` (`id_pro`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of temporal_venta
+-- ----------------------------
+INSERT INTO `temporal_venta` VALUES ('2', '53', '4', '0.8', '3.2');
+INSERT INTO `temporal_venta` VALUES ('2', '53', '10', '0.8', '8');
+INSERT INTO `temporal_venta` VALUES ('2', '53', '3', '0.8', '2.4');
+INSERT INTO `temporal_venta` VALUES ('2', '53', '4', '0.8', '3.2');
+INSERT INTO `temporal_venta` VALUES ('2', '53', '4', '0.8', '3.2');
+INSERT INTO `temporal_venta` VALUES ('2', '53', '4', '0.8', '3.2');
+INSERT INTO `temporal_venta` VALUES ('2', '53', '4', '0.8', '3.2');
+INSERT INTO `temporal_venta` VALUES ('2', '53', '6', '0.8', '4.8');
 
 -- ----------------------------
 -- Table structure for `unidad_medida`
 -- ----------------------------
 DROP TABLE IF EXISTS `unidad_medida`;
 CREATE TABLE `unidad_medida` (
-  `id_uni` int(11) NOT NULL,
+  `id_uni` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_uni` varchar(30) DEFAULT NULL,
+  `estado` tinyint(4) DEFAULT 0,
   PRIMARY KEY (`id_uni`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of unidad_medida
 -- ----------------------------
-INSERT INTO `unidad_medida` VALUES ('1', 'UNIDAD');
+INSERT INTO `unidad_medida` VALUES ('1', 'UNIDAD', '0');
+INSERT INTO `unidad_medida` VALUES ('2', '4 (UNIDADES)', '0');
 
 -- ----------------------------
 -- Table structure for `venta`
 -- ----------------------------
 DROP TABLE IF EXISTS `venta`;
 CREATE TABLE `venta` (
-  `id_venta` int(11) NOT NULL,
+  `id_venta` int(11) NOT NULL AUTO_INCREMENT,
   `fecha_venta` date DEFAULT NULL,
   `dni_cli` char(8) DEFAULT NULL,
   `dni_per` char(8) DEFAULT NULL,
+  `estado` varchar(20) DEFAULT NULL,
   `id_deudor` int(11) DEFAULT NULL,
   `neto` float DEFAULT NULL,
   PRIMARY KEY (`id_venta`) USING BTREE,
@@ -240,11 +277,26 @@ CREATE TABLE `venta` (
   CONSTRAINT `ven_cli` FOREIGN KEY (`dni_cli`) REFERENCES `cliente` (`dni_cli`),
   CONSTRAINT `ven_deu` FOREIGN KEY (`id_deudor`) REFERENCES `deudores` (`id_deudor`),
   CONSTRAINT `ven_per` FOREIGN KEY (`dni_per`) REFERENCES `personal` (`dni_per`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of venta
 -- ----------------------------
+INSERT INTO `venta` VALUES ('1', '2024-01-12', '11111111', '10101010', 'PAGADO', '1', '5');
+
+-- ----------------------------
+-- Procedure structure for `ccc`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `ccc`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ccc`()
+BEGIN
+	SELECT CONCAT(nom_cli," ",ape_cli) as cliente
+                    FROM cliente
+                    WHERE dni_cli='11111111';
+END
+;;
+DELIMITER ;
 
 -- ----------------------------
 -- Procedure structure for `filtrar por categorias`
@@ -258,6 +310,19 @@ BEGIN
     WHERE t1.id_cat = 1 AND
     t1.estado=0 AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni;
 
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `xx`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `xx`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `xx`()
+BEGIN
+	INSERT INTO producto
+	VALUES (' ', 'leche',' chocolate', 1, 1,1, 10,50,' ');
 END
 ;;
 DELIMITER ;
