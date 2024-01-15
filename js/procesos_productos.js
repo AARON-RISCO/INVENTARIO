@@ -448,4 +448,12 @@ $(document).ready(function(){
         })
     })
 
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
+    $('.cajas-pro').on('input', function() {
+        let currentValue = $(this).val();
+        let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ]/g, '');
+        $(this).val(newValue.toUpperCase());
+    });
+
+
 })

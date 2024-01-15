@@ -149,4 +149,12 @@ $(document).ready(function(){
             $('#bnuevo_uni').css('display','block');
           });
     })
+
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
+    $('.cajas-uni').on('input', function() {
+        let currentValue = $(this).val();
+        let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ]/g, '');
+        $(this).val(newValue.toUpperCase());
+    });
+
 })
