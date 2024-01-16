@@ -105,7 +105,7 @@ if($opcion=="agregar_temporal"){
 }
 
 if($opcion=="listar_temporal"){
-    $con_listar="SELECT t1.*, t2.nom_pro, t2.sabores
+    $con_listar="SELECT t1.*, t2.id_pro ,t2.nom_pro, t2.sabores
     FROM temporal_venta t1, producto t2  
     WHERE t1.id_pro=t2.id_pro ";          
     $res=mysqli_query($cnn,$con_listar);
@@ -113,6 +113,7 @@ if($opcion=="listar_temporal"){
     if($num>=1){
         while($f=mysqli_fetch_array($res)){
             $json[]=array(
+                "cod"=>$f['id_pro'],
                 "nom"=>$f['nom_pro'],
                 "sabor"=>$f['sabores'],
                 "can"=>$f['cantidad'],
@@ -125,6 +126,58 @@ if($opcion=="listar_temporal"){
         $jsonresponse="vacio";
     }  
     echo $jsonresponse;
+}
+if($opcion=="listar_temporal_cod"){
+    $cod=$_GET['cod'];
+    $con_listar="SELECT t2.id_pro, t1.extra
+    FROM temporal_venta t1, producto t2  
+    WHERE t2.id_pro=$cod AND t1.id_pro=t2.id_pro ";          
+    $res=mysqli_query($cnn,$con_listar);
+    $num=mysqli_num_rows($res);
+    if($num>=1){
+        while($f=mysqli_fetch_array($res)){
+            $json[]=array(
+                "cod"=>$f['id_pro'],
+                "ex"=>$f['extra']
+            );}
+        $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
+    }else{
+        $jsonresponse="vacio";
+    }  
+    echo $jsonresponse;
+}
+
+//EXTRA
+if($opcion=="extra"){
+$cod=$_GET['cod'];
+$ex=$_GET['ex'];
+// $modificar="UPDATE temporal_venta SET extra=$ex, total_venta=total_venta+$ex WHERE id_pro='$cod'";
+// mysqli_query($cnn,$modificar)or die("Error en modificar producto");
+// echo "Producto Actualizado";
+$recorre="SELECT* FROM temporal_venta WHERE id_pro='$cod'";
+            $rre=mysqli_query($cnn,$recorre)or die("Error en recorrido");
+            while($f=mysqli_fetch_array($rre)) {
+                $cod_pro=$f['id_pro'];
+                $can=$f['cantidad'];
+                $total_extra=$can*$ex;
+                $actualizar="UPDATE temporal_venta SET extra=$total_extra, total_venta=total_venta+$total_extra WHERE id_pro='$cod'";
+                mysqli_query($cnn,$actualizar)or die("Error en act. producto");
+            }
+}
+
+//MENOS EXTRA
+if($opcion=="menos_extra"){
+    $cod=$_GET['cod'];
+    $ex=$_GET['ex'];
+    $recorre="SELECT* FROM temporal_venta WHERE id_pro='$cod'";
+            $rre=mysqli_query($cnn,$recorre)or die("Error en recorrido");
+            while($f=mysqli_fetch_array($rre)) {
+                $cod_pro=$f['id_pro'];
+                $can=$f['cantidad'];
+                $total_extra=$can*$ex;
+                $actualizar="UPDATE temporal_venta SET extra=$total_extra-$total_extra, total_venta=total_venta-$total_extra WHERE id_pro='$cod'";
+                mysqli_query($cnn,$actualizar)or die("Error en act. producto");
+            }
 }
 
 // //cancelar ventas
@@ -174,12 +227,12 @@ if($opcion=="listar_temporal"){
 //     mysqli_query($conexion,$eliminar)or die("Error en limiar");
 // }
 
-// //eliminar producto de temporal
-// if($opcion=="eliminar"){
-//     $cod=$_GET['cod'];
-//     $eliminar="delete from temporal where cod_pro='$cod'";
-//     mysqli_query($conexion,$eliminar)or die("Error en eliminar producto");
-//     echo ("Producto eliminado correctamente");
-// }
+//eliminar producto de temporal
+if($opcion=="eliminar"){
+    $cod=$_GET['cod'];
+    $eliminar="delete from temporal_venta where id_pro='$cod'";
+    mysqli_query($cnn,$eliminar)or die("Error en eliminar producto");
+    echo ("PRODUCTO ELIMINADO CORRECTAMENTE");
+}
 
 ?>

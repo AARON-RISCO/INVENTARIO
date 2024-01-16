@@ -77,8 +77,8 @@ if (empty($_SESSION['dni'])){
                                 <th>Sabor</th>
                                 <th>Precio</th>
                                 <th>Cantidad</th>
-                                <th>Total</th>
                                 <th>Extra</th>
+                                <th>Total</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>

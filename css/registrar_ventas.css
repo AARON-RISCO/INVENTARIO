@@ -194,12 +194,12 @@ td{
     cursor: pointer;
 }
 
-#bhelado{
+/* #bhelado{
     background-color: rgba(0, 255, 255, 0.314); 
-}
-#bhelado:hover{
+} */
+/* #bhelado:hover{
     background-color: rgb(0, 255, 255); 
-}
+} */
 #bir{ 
     background-color: rgba(255, 0, 0, 0.31);  
 }

@@ -91,7 +91,7 @@ function listar_productos(parametro){
             }else{
                 var registro=JSON.parse(response);
                 var template='';
-                for(z in registro){
+                for(z in registro){ 
                     cod=registro[z].cod;
                     template+=
                     '<tr><td>'+registro[z].nom+
@@ -101,6 +101,7 @@ function listar_productos(parametro){
                     '</td><td>'+registro[z].actual+
                     '</td><td id="icon"><img src="img/añadiralcarrito.svg" width="40" id="bcarrito" data-cod="'+registro[z].cod+'"></td></tr>';
                 }
+                
                 $('#cuerpo_tabla_productos').html(template);
 
             }
@@ -138,22 +139,30 @@ function listar_temporal() {
                 for (z in registro) {
                     totven = totven + parseFloat(registro[z].tot);
                     cod_pro=registro[z].cod;
+                    extra=registro[z].ex ;
+                    let fondo="";
+
+                    if(extra>0){ fondo="rgb(0, 255, 255)";  }
+                    if(extra==0){ fondo="rgba(0, 0, 0, 0)";}
+            
                     template +=
                         '<tr><td>' + registro[z].nom+
                         '</td><td>' + registro[z].sabor +
                         '</td><td>' + registro[z].pre +
                         '</td><td>' + registro[z].can +
-                        '</td><td>' + registro[z].tot +
                         '</td><td>' + registro[z].ex +
-                        '</td><td id="icon"><img src="img/helado.svg" width="40" id="bhelado" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
-                }
+                        '</td><td>' + registro[z].tot +
+                        '</td><td id="icon"><img src="img/helado.svg" width="40" id="'+registro[z].cod+'" class="color frio" data-cod="'+registro[z].cod+'" style="background-color:'+fondo+';"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                        $('#ttot').val(totven);  
+                    }
+                    
                 $('#cuerpo_tabla_temporal').html(template);
-                $('#ttot').val(totven);
+                
             }
         }
     });
 }
-
+//let toque='rgba(0,255,255,0.314)';
 //AÑADIR AL CARRITO
 $(document).on('click', '#bcarrito', function() {
     const cod = $(this).data('cod');
@@ -194,8 +203,56 @@ $(document).on('click', '#bcarrito', function() {
         $.get('php/controlador_reg_ven.php', datos2, function(response) {
             alert(response);
             listar_temporal();
+            //toque=true;
         });
     });
+});
+
+//Eliminar producto de la temporal
+$(document).on('click', '#bir', function() {
+    const cod = $(this).data('cod');
+    const datos={
+        cod:cod,
+        opcion:'eliminar'
+    }
+    $.get('php/controlador_reg_ven.php', datos, function(response) {
+        alert(response);
+        listar_temporal();
+    });
+})
+
+//añadir extra
+
+$(document).on('click', '.frio', function() {
+    var codigoh=$(event.target).attr('id');
+    // var color = $('#'+codigoh).css('background-color');
+    // alert(color);
+    const codigop = $(this).data('cod');
+    const ex = 0.2;
+
+    if ($('#'+codigoh).css('background-color') === 'rgba(0, 0, 0, 0)') {
+        $('#'+codigoh).css('background-color', 'rgb(0, 255, 255)');
+        const datos = {
+            cod: codigop,
+            ex: ex,
+            opcion: 'extra'
+        };
+
+        $.get('php/controlador_reg_ven.php', datos, function(response) {
+            listar_temporal();
+        });
+    } else if ($('#'+codigoh).css('background-color') === 'rgb(0, 255, 255)') {
+        $('#'+codigoh).css('background-color', 'rgba(0, 0, 0, 0)');
+        const datos = {
+            cod: codigop,
+            ex: ex,
+            opcion: 'menos_extra'
+        };
+
+        $.get('php/controlador_reg_ven.php', datos, function(response) {
+            listar_temporal();
+        });
+    }
 });
 
 //registrar venta
@@ -222,7 +279,6 @@ $(document).on('click', '#bguardar_ven', function () {
         alert('NO SE PUEDE REGISTRAR LA VENTA SIN PRODUCTOS');
         return;
     }
-
 
     const datos = {
         cod: $('#cod_ven').val(),
