@@ -97,7 +97,7 @@ if($opcion=="agregar_temporal"){
         return;
     } else {
     $agregar="insert temporal_venta
-    values('$cod_ven',$cod,$can,$pre,$tot)";
+    values('$cod_ven',$cod,$can,$pre,' ',$tot)";
     mysqli_query($cnn,$agregar)or die("Error en registrar producto");
     echo("Producto agregado correctamente");
     }
@@ -117,6 +117,7 @@ if($opcion=="listar_temporal"){
                 "sabor"=>$f['sabores'],
                 "can"=>$f['cantidad'],
                 "pre"=>$f['precio'],
+                "ex"=>$f['extra'],
                 "tot"=>$f['total_venta'],
             );}
         $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
@@ -125,4 +126,60 @@ if($opcion=="listar_temporal"){
     }  
     echo $jsonresponse;
 }
+
+// //cancelar ventas
+// if($opcion=="cancelar"){
+//     $eliminar="delete from temporal";
+//     mysqli_query($conexion,$eliminar)or die("Error en cancelar");
+//     echo "La venta fue cancelada";
+// }
+
+// //Registrar venta
+// if($opcion=="agregar_venta"){
+//     $idven=$_GET['cod_ven'];
+//     $fech=$_GET['fecha_ven'];
+//     $idcli=$_GET['dni_cli'];
+//     $idusu=$_GET['dni_usu'];
+//     $subtot=$_GET['subtot'];
+//     $igv=$_GET['igv'];
+//     $neto=$_GET['tot'];
+//     //validacion
+//     /*if(empty($dni)||empty($ape)||empty($nom)||empty($tel)||empty($dir)){
+//         echo "Debe completar todos los campos";
+//     }else{*/
+//     $agregar="insert into venta 
+//     values('$idven','$fech','$idcli','$idusu',$subtot,$igv,$neto)";
+//     mysqli_query($conexion,$agregar)or die("Error en agregar Venta");
+//     echo "Venta registrada correctamente";
+//     /*}*/
+//     //pasar temporal a detalle
+//     $pasar="insert into detalle_venta 
+//     select* from temporal
+//     where id_vent='$idven'";
+//     mysqli_query($conexion,$pasar)or die("Error en pasar temporal a detalle");
+//   //PARA ACTUALIZAR EL STOCK
+//     $recorre="select* from temporal where id_vent='$idven'";
+//     $rre=mysqli_query($conexion,$recorre)or die("Error en recorrido");
+//     while($f=mysqli_fetch_array($rre)) {
+//         $cod_pro=$f['cod_pro'];
+//         $can_pro=$f['cantidad'];
+//         $actualizar="update producto set stock_pro=stock_pro-$can_pro where cod_pro='$cod_pro'";
+//         mysqli_query($conexion,$actualizar)or die("Error en act. stock");
+//     }
+// }
+
+// //eliminar temporal
+// if($opcion=="limpiar"){
+//     $eliminar="delete from temporal";
+//     mysqli_query($conexion,$eliminar)or die("Error en limiar");
+// }
+
+// //eliminar producto de temporal
+// if($opcion=="eliminar"){
+//     $cod=$_GET['cod'];
+//     $eliminar="delete from temporal where cod_pro='$cod'";
+//     mysqli_query($conexion,$eliminar)or die("Error en eliminar producto");
+//     echo ("Producto eliminado correctamente");
+// }
+
 ?>

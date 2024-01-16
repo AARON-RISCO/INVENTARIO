@@ -20,7 +20,7 @@ if (empty($_SESSION['dni'])){
             <input type="text" class="oculto" id="cod_ven">
             <input type="text" class="cajas_ven bloquear" placeholder="" id="id_cod">
             <input type="text" class="cajas_ven bloquear" value="<?php echo date('Y-m-d') ?>" id="fecha" >
-            <input type="text" class="oculto" value="<?php echo $_SESSION['dni']; ?>">
+            <input type="text" class="oculto" value="<?php echo $_SESSION['dni']; ?>" id="dni_per">
             <input type="text" class="cajas_ven bloquear" value="<?php echo $_SESSION['nom'].' '.$_SESSION['ape'] ?>">
             <input type="text" class="oculto" placeholder="Ingrese DNI del cliente" value="11111111" id="dni">
             <input type="text" class="cajas_ven bloquear" placeholder="Cliente" id="cliente">
@@ -41,7 +41,6 @@ if (empty($_SESSION['dni'])){
             <input type="text" class="cajas_ven" placeholder="Neto a pagar" id="ttot">
             
             <div class="botones">
-                <input type="button" value="Nueva Venta" class="btn-nueva btn" id="bnueva_ven"> 
                 <input type="button" value="Registrar Venta" class="btn-guardar btn" id="bguardar_ven"> 
                 <input type="button" value="Cancelar" class="btn-cancelar btn" id="bcancelar_ven">
             </div>
@@ -79,7 +78,8 @@ if (empty($_SESSION['dni'])){
                                 <th>Precio</th>
                                 <th>Cantidad</th>
                                 <th>Total</th>
-                                <th>Remover</th>
+                                <th>Extra</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody id="cuerpo_tabla_temporal">

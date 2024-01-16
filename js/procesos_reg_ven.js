@@ -99,7 +99,7 @@ function listar_productos(parametro){
                     '</td><td>'+registro[z].uni+
                     '</td><td>'+registro[z].pre+
                     '</td><td>'+registro[z].actual+
-                    '</td><td id="icon"><img src="img/añadiralcarrito.svg" width="40" id="bcarrito" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                    '</td><td id="icon"><img src="img/añadiralcarrito.svg" width="40" id="bcarrito" data-cod="'+registro[z].cod+'"></td></tr>';
                 }
                 $('#cuerpo_tabla_productos').html(template);
 
@@ -144,7 +144,8 @@ function listar_temporal() {
                         '</td><td>' + registro[z].pre +
                         '</td><td>' + registro[z].can +
                         '</td><td>' + registro[z].tot +
-                        '</td><td id="icon"><img src="img/eliminar.svg" width="30" id="beli" data-cod="' + registro[z].cod + '"></td></tr>';
+                        '</td><td>' + registro[z].ex +
+                        '</td><td id="icon"><img src="img/helado.svg" width="40" id="bhelado" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                 }
                 $('#cuerpo_tabla_temporal').html(template);
                 $('#ttot').val(totven);
@@ -196,5 +197,64 @@ $(document).on('click', '#bcarrito', function() {
         });
     });
 });
+
+//registrar venta
+$(document).on('click', '#bguardar_ven', function () {
+    var neto = parseFloat($('#ttot').val());
+    const estado = $('#est_pago').val();
+    const tipo = $('#ttipo_pago').val();
+    const deudores = $('#tdeudores').val();
+
+    if (estado==0) {
+        alert('SELECCIONE ESTADO DE LA VENTA');
+        return;
+    }
+    if (estado==1 & tipo==0) {
+        alert('SELECCIONE TIPO DE PAGO');
+        return;
+    }else if (estado==2 & deudores==0) {
+        alert('SELECCIONE UN DEUDOR');
+        return;
+    }
+
+    // Validar si hay productos en la tabla temporal
+    if ($('#cuerpo_tabla_temporal tr').length === 0) {
+        alert('NO SE PUEDE REGISTRAR LA VENTA SIN PRODUCTOS');
+        return;
+    }
+
+
+    const datos = {
+        cod: $('#cod_ven').val(),
+        fecha: $('#fecha').val(),
+        dni_per: $('#dni_per').val(),
+        dni_cli: $('#dni').val(),
+        estado: estado,
+        deudor: deudores,
+        neto: neto,
+        opcion: 'agregar_venta'
+    };
+
+    // $.get('controlador/controlador_ventas.php', datos, function (response) {
+    //     alert(response);
+    //     $('#tdni').val('');
+    //     $('#tcli').val('');
+    //     $('#ttot').val('');
+    //     $('#tbus').val('');
+    //     $("#cancelar").css("display", "none");
+    //     const datos = {
+    //         opcion: 'limpiar'
+    //     };
+    //     $.get('controlador/controlador_ventas.php', datos, function (response) {
+    //         cod_venta = $('#t_nro').val();
+    //         listar_temporal();
+    //         nfactura();
+    //         $('#cuerpo_tabla_detalle').html('');
+    //         window.open('factura.php?codigo=' + cod_venta);
+    //     });
+
+    // });
+});
+
 
 })
