@@ -247,16 +247,15 @@ $(document).ready(function(){
         $(this).val(newValue.toUpperCase());
     });
 
-    // ---------------------------------------------------------------- CODIGO PARA VALIDAR INGRESO DE SOLO NUMEROS
-    $('.MT').on('input', function() {
-        // Obtener el valor actual del campo de entrada
-        var inputValue = $(this).val();
-
-        // Validar si el valor contiene números
-        if (/^\d+$/.test(inputValue)) {
-          // Si contiene números, mostrar un mensaje de error y eliminar los números
-          alert('No se permiten números en este campo.');
-          $(this).val(inputValue.replace(/\d/g, ''));
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR EL NO INGRESO DE NUMEROS
+    $('.MTU').on('keydown', function(event) {
+        // Obtener el código de la tecla presionada
+        var keyCode = event.which;
+    
+        // Validar si la tecla presionada es un número
+        if (keyCode >= 48 && keyCode <= 57) {
+          // Prevenir la acción predeterminada (no permitir que se escriba el número)
+          event.preventDefault();
         }
       });
 

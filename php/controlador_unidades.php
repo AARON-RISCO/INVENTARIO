@@ -70,7 +70,22 @@ if($opcion=="buscar"){
         $nom=$_GET['nom'];
         $modificar="update unidad_medida set tipo_uni='$nom' where id_uni='$cod'";
         mysqli_query($cnn,$modificar)or die("Error en modificar Unidad de Medida");
-        echo "Unidad de Medida Actualizada";
+        echo "UNIDAD DE MEDIDA ACTUALIZADA";
     }
+
+    if($opcion=="deshabilitar"){
+        $code=$_GET['code'];
+        $esta=$_GET['esta'];
+        if($esta==1){
+            $modificarc="update unidad_medida set estado=0 where id_cat='$code'";
+            $msj="UNIDAD HABILITADA CORRECTAMENTE";
+        }elseif($esta==0){
+            $modificarc="update unidad_medida set estado=1 where id_cat='$code'";
+            $msj="UNIDAD DESHABILITADA CORRECTAMENTE";
+        }
+
+        mysqli_query($cnn,$modificarc)or die("Error en modificar UNIDAD");
+        echo $msj;
+    }   
 
 ?>

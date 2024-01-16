@@ -14,7 +14,7 @@
                     <label for="">Todas las Unidades de Medidas</label>
                     <div class="filtros">
                         <label for="" class="fil">Filtros</label>   
-                        <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus" placeholder="Buscar por Nombre"></div>
+                        <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MTU" placeholder="Buscar por Nombre"></div>
                     </div>
                     <div id="listado"> 
                     <table >
@@ -35,7 +35,7 @@
        <div class="mantenimiento">
                 <label>Mantenimiento Unidades</label><br>
                 <input type="text" id="tcod">
-                <img src="" alt=""  class="da-cat"><input type="text" name="tnom_uni" id="tnom_uni" class="cajas-uni" placeholder="Ingrese Nombre de Unidad">
+                <img src="" alt=""  class="da-cat"><input type="text" name="tnom_uni" id="tnom_uni" class="cajas-uni MTU" placeholder="Ingrese Nombre de Unidad">
                 
                 <!--Botones-->
                 <div class="botones">
@@ -47,5 +47,16 @@
                 
        </div> 
     </div>
+    <div id="sombra_modal_uni" class="sombra_modal_uni">
+        
+    </div>
+    <div id="caja_modal_uni" class="caja_modal_uni">
+        <p id="namuni" class="msjmuni"> </p>
+        <button id="bacun" class="botoun bosu"> ACEPTAR</button>   
+        <button id="bcaun"class="botoun2 bosu"> CANCELAR</button>
+        <input type="hidden" name="" id="idunim">
+        <input type="hidden" name="" id="estunimod">
+    </div>
+    
 </body>
 </html>

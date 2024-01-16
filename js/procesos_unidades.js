@@ -16,17 +16,17 @@ $(document).ready(function(){
                     var registro=JSON.parse(response);
                     var template='';
                     for(z in registro){
-                        cod=registro[z].cod;
-                        est=registro[z].estado;
-                        if (est==0) {
-                            esta="HABILITADO";
-                        } else {
-                            esta="DESHABILITADO";
-                        }
+                        // var cod=registro[z].cod;
+                        var est=registro[z].estado;
+                        var el=""; var ac="";
+
+                        if(est==0){ var esta="HABILITADO"; el="block";  ac="none"; }
+                        if(est==1){ var esta="DESHABILITADO";el="none"; ac="block";}
+
                         template+=
                         '<tr><td>'+registro[z].nom+
                         '</td><td>'+esta+
-                        '</td><td id="icon"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                        '</td><td id="icon" style="display:flex; justify-content: center;"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" style="display:'+el+';" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"><img src="img/activar.svg" style="display:'+ac+';" width="40" id="bact" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
                     $('#cuerpo_tabla_unidades').html(template);
 
@@ -150,11 +150,109 @@ $(document).ready(function(){
           });
     })
 
+    // boton para eliminar una categoria 
+    $(document).on('click','#bir',function(){
+        $('#sombra_modal_uni').css("display","block");
+        $('#caja_modal_uni').css("margin-top","-30%");
+        const codi = $(this).data('cod');
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_unidades.php",
+            data:{
+                cod:codi,
+                opcion:"buscar"
+            },
+            success:function(respuesta){
+                // console.log(respuesta);
+                var registros=JSON.parse(respuesta);
+                $('#namuni').html("¿ESTA SEGURO DE DESHABILITAR LA UNIDAD "+registros[0].nom+" ?");
+                $('#idunim').val(registros[0].cod);
+                $('#estunimod').val(registros[0].esc);
+            }
+        })
+    })
+    // boton para cancelar la habilitacion o la deshabilitacion de una categoria
+    $(document).on('click','#bcaun',function(){
+        $('#sombra_modal_uni').css("display","none");
+        $('#caja_modal_uni').css("margin-top","-90%");
+    })
+
+    // boton para aceptar la habilitacion o la deshabilitacion de una categoria
+    $(document).on('click','#bacun',function(){
+        // const codi = $(this).data('cod');
+        let codeli=null;
+        let esteli=null;
+        codeli=$('#idunim').val();
+        esteli=$('#estunimod').val();
+        // console.log(codeli);
+        // console.log(esteli);
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_unidades.php",
+            data:{
+                code:codeli,
+                esta:esteli,
+                opcion:"deshabilitar"
+            },
+            success:function(respuestas){
+                alert(respuestas);
+                $('#sombra_modal_uni').css("display","none");
+                $('#caja_modal_uni').css("margin-top","-90%");
+                listar_unidades();
+                
+            }
+        })
+    })
+
+
+    // boton para activar una categoria 
+    $(document).on('click','#bact',function(){
+        $('#sombra_modal_cat').css("display","block");
+        $('#caja_modal_cat').css("margin-top","-30%");
+        const codi = $(this).data('cod');
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_categorias.php",
+            data:{
+                cod:codi,
+                opcion:"buscar"
+            },
+            success:function(respuesta){
+                // console.log(respuesta);
+                var registros=JSON.parse(respuesta);
+                $('#namcamo').html("¿ESTA SEGURO DE HABILITAR LA CATEGORIA "+registros[0].nom+" ?");
+                $('#idce').val(registros[0].cod);
+                $('#estadocategoriamo').val(registros[0].esc);
+                listar_categorias();
+            }
+        })
+    })
+
+
+
     // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
-    $('.cajas-uni').on('input', function() {
+    $('.MTU').on('input', function() {
         let currentValue = $(this).val();
         let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ]/g, '');
         $(this).val(newValue.toUpperCase());
     });
+
+
+     // ---------------------------------------------------------------- CODIGO PARA VALIDAR EL NO INGRESO DE NUMEROS
+
+      $('.MTU').on('keydown', function(event) {
+        // Obtener el código de la tecla presionada
+        var keyCode = event.which;
+    
+        // Validar si la tecla presionada es un número
+        if (keyCode >= 48 && keyCode <= 57) {
+          // Prevenir la acción predeterminada (no permitir que se escriba el número)
+          event.preventDefault();
+        }
+      });
+    
 
 })
