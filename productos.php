@@ -17,8 +17,8 @@
                     <div class="filtros">
                         <label for="" class="fil">Filtros</label>   
                         <div class="buscar"><select name="tcat" id="tcategoria" class="bus" ></select></div>
-                        <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus" placeholder="Buscar por Nombre"></div>
-                        <div class="buscar"><input type="text" name="bus_sa" id="bus_sa" class="bus" placeholder="Buscar por Sabores"></div>
+                        <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MAYP" placeholder="Buscar por Nombre"></div>
+                        <div class="buscar"><input type="text" name="bus_sa" id="bus_sa" class="bus MAYP" placeholder="Buscar por Sabores"></div>
                     </div>
                     <div id="listado"> 
                     <table >
@@ -43,13 +43,13 @@
        <div class="mantenimiento">
                 <label>Mantenimiento Producto</label><br>
                 <input type="text" id="tcod">
-                <select name="tcat" id="tcat" class="cajas-pro cajas"></select></select><div id="ir_cat" class="ir_cat ir"> <img src="img/agregar.png" id="icon-suma" ></div>
-                <img src="" alt=""  class="da-pro"><input type="text" name="tnom_pro" id="tnom_pro" class="cajas-pro" placeholder="Ingrese nombre">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tsabor" id="tsabor" class="cajas-pro" placeholder="Ingrese sabor">
-                <select name="tuni" id="tuni" class="cajas-pro cajas"></select></select><div id="ir_uni" class="ir_uni ir"><img src="img/agregar.png" id="icon-suma"></div>
-                <img src="" alt=""  class="da-pro"><input type="text" name="tpre" id="tpre" class="cajas-pro" placeholder="Ingrese precio">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tstock_min" id="tstock_min" class="cajas-pro" placeholder="Ingrese Stock Minimo">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tstock" id="tstock" class="cajas-pro" placeholder="Ingrese Stock">
+                <select name="tcat" id="tcat" class="cajas-pro cajas MAYP"></select></select><div id="ir_cat" class="ir_cat ir"> <img src="img/agregar.png" id="icon-suma" ></div>
+                <img src="" alt=""  class="da-pro"><input type="text" name="tnom_pro" id="tnom_pro" class="cajas-pro MAYP" placeholder="Ingrese nombre">
+                <img src="" alt=""  class="da-pro"><input type="text" name="tsabor" id="tsabor" class="cajas-pro MAYP" placeholder="Ingrese sabor">
+                <select name="tuni" id="tuni" class="cajas-pro cajas MAYP"></select></select><div id="ir_uni" class="ir_uni ir"><img src="img/agregar.png" id="icon-suma"></div>
+                <img src="" alt=""  class="da-pro"><input type="text" name="tpre" id="tpre" class="cajas-pro MAYP" placeholder="Ingrese precio">
+                <img src="" alt=""  class="da-pro"><input type="text" name="tstock_min" id="tstock_min" class="cajas-pro MAYP" placeholder="Ingrese Stock Minimo">
+                <img src="" alt=""  class="da-pro"><input type="text" name="tstock" id="tstock" class="cajas-pro MAYP" placeholder="Ingrese Stock">
                 
                 <div class="botones">
                 <input type="button" value="Nuevo" class="btn-nuevo  btn" id="bnuevo_pro">
@@ -74,5 +74,17 @@
         <input type="text" name="tnom_uni" id="tnom_uni" placeholder="Ingrese Nombre de Unidad"><br>
         <input type="button" value="Guardar" id="bguardar_uni">
     </div>
+
+    <div id="sombra_modal_pro" class="sombra_modal_pro">
+        
+    </div>
+    <div id="caja_modal_pro" class="caja_modal_pro">
+        <p id="nampro" class="msjpro"> </p>
+        <button id="bapro" class="botpro bop"> ACEPTAR</button>   
+        <button id="bcpro"class="botpro2 bop"> CANCELAR</button>
+        <input type="hidden" name="" id="idcpro">
+        <input type="hidden" name="" id="estpromo">
+    </div>
+
 </body>
 </html>

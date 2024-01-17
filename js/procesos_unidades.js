@@ -208,14 +208,14 @@ $(document).ready(function(){
 
 
     // boton para activar una categoria 
-    $(document).on('click','#bact',function(){
-        $('#sombra_modal_cat').css("display","block");
-        $('#caja_modal_cat').css("margin-top","-30%");
+    $(document).on('click','#bact',function(){  
+        $('#sombra_modal_uni').css("display","block");
+        $('#caja_modal_uni').css("margin-top","-30%");
         const codi = $(this).data('cod');
         $.ajax({
             async:true,
             type:"GET",
-            url:"php/controlador_categorias.php",
+            url:"php/controlador_unidades.php",
             data:{
                 cod:codi,
                 opcion:"buscar"
@@ -223,10 +223,10 @@ $(document).ready(function(){
             success:function(respuesta){
                 // console.log(respuesta);
                 var registros=JSON.parse(respuesta);
-                $('#namcamo').html("¿ESTA SEGURO DE HABILITAR LA CATEGORIA "+registros[0].nom+" ?");
-                $('#idce').val(registros[0].cod);
-                $('#estadocategoriamo').val(registros[0].esc);
-                listar_categorias();
+                $('#namuni').html("¿ESTA SEGURO DE HABILITAR LA CATEGORIA "+registros[0].nom+" ?");
+                $('#idunim').val(registros[0].cod);
+                $('#estunimod').val(registros[0].esc);
+                listar_unidades();
             }
         })
     })
@@ -243,16 +243,16 @@ $(document).ready(function(){
 
      // ---------------------------------------------------------------- CODIGO PARA VALIDAR EL NO INGRESO DE NUMEROS
 
-      $('.MTU').on('keydown', function(event) {
+     $('.MTU').on('keydown', function(event) {
         // Obtener el código de la tecla presionada
         var keyCode = event.which;
     
-        // Validar si la tecla presionada es un número
-        if (keyCode >= 48 && keyCode <= 57) {
-          // Prevenir la acción predeterminada (no permitir que se escriba el número)
-          event.preventDefault();
+        // Validar si la tecla presionada es un número del teclado principal o del teclado numérico
+        if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
+            // Prevenir la acción predeterminada (no permitir que se escriba el número)
+            event.preventDefault();
         }
-      });
+    });
     
 
 })

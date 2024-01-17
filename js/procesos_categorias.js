@@ -248,14 +248,15 @@ $(document).ready(function(){
     });
 
     // ---------------------------------------------------------------- CODIGO PARA VALIDAR EL NO INGRESO DE NUMEROS
-    $('.MTU').on('keydown', function(event) {
+    $('.MT').on('keydown', function(event) {
+        // Obtener el código de la tecla presionada
         // Obtener el código de la tecla presionada
         var keyCode = event.which;
     
-        // Validar si la tecla presionada es un número
-        if (keyCode >= 48 && keyCode <= 57) {
-          // Prevenir la acción predeterminada (no permitir que se escriba el número)
-          event.preventDefault();
+        // Validar si la tecla presionada es un número del teclado principal o del teclado numérico
+        if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
+            // Prevenir la acción predeterminada (no permitir que se escriba el número)
+            event.preventDefault();
         }
       });
 

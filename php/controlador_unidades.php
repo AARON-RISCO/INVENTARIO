@@ -57,7 +57,8 @@ if($opcion=="buscar"){
     while($f=mysqli_fetch_array($res)){
             $json[]=array(
                 "cod"=>$f['id_uni'],
-                "nom"=>$f['tipo_uni']
+                "nom"=>$f['tipo_uni'],
+                "esc"=>$f['estado']
             );}
     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
     echo $jsonresponse;
@@ -77,10 +78,10 @@ if($opcion=="buscar"){
         $code=$_GET['code'];
         $esta=$_GET['esta'];
         if($esta==1){
-            $modificarc="update unidad_medida set estado=0 where id_cat='$code'";
+            $modificarc="update unidad_medida set estado=0 where id_uni='$code'";
             $msj="UNIDAD HABILITADA CORRECTAMENTE";
         }elseif($esta==0){
-            $modificarc="update unidad_medida set estado=1 where id_cat='$code'";
+            $modificarc="update unidad_medida set estado=1 where id_uni='$code'";
             $msj="UNIDAD DESHABILITADA CORRECTAMENTE";
         }
 

@@ -16,6 +16,7 @@ if($opcion=="listar"){
         }
         
         
+        
     $res=mysqli_query($cnn,$con_listar);
     $num=mysqli_num_rows($res);
     if($num>=1){
@@ -28,7 +29,8 @@ if($opcion=="listar"){
                 "uni"=>$f['tipo_uni'],
                 "pre"=>$f['pre_uni'],
                 "min"=>$f['stock_min'],
-                "actual"=>$f['stock_actual']
+                "actual"=>$f['stock_actual'],
+                "esc"=>$f['estado']
             );}
         $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
     }else{
@@ -124,7 +126,8 @@ if($opcion=="buscar"){
                 "uni"=>$f['id_uni'],
                 "pre"=>$f['pre_uni'],
                 "minimo"=>$f['stock_min'],
-                "actual"=>$f['stock_actual']
+                "actual"=>$f['stock_actual'],
+                "esc"=>$f['estado']
             );}
     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
     echo $jsonresponse;
@@ -148,4 +151,18 @@ if($opcion=="actualizar"){
     echo "Producto Actualizado";
 }
 
+if($opcion=="deshabilitar"){
+    $code=$_GET['code'];
+    $esta=$_GET['esta'];
+    if($esta==1){
+        $modificarc="update producto set estado=0 where id_pro='$code'";
+        $msj="PRODUCTO HABILITADA CORRECTAMENTE";
+    }elseif($esta==0){
+        $modificarc="update producto set estado=1 where id_pro='$code'";
+        $msj="PRODUCTO DESHABILITADA CORRECTAMENTE";
+    }
+
+    mysqli_query($cnn,$modificarc)or die("Error en modificar producto");
+    echo $msj;
+}
 ?>

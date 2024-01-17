@@ -19,6 +19,13 @@ $(document).ready(function(){
                     var template='';
                     for(z in registro){
                         cod=registro[z].cod;
+                        
+                        var est=registro[z].esc;
+                        var el=""; var ac="";
+
+                        if(est==0){ var esta="none"; el="block";  ac="none"; }
+                        if(est==1){ var esta="rgba(255, 0, 0, 0.31)";el="none"; ac="block";}
+
                         template+=
                         '<tr><td>'+registro[z].cat+
                         '</td><td>'+registro[z].nom+
@@ -26,7 +33,7 @@ $(document).ready(function(){
                         '</td><td>'+registro[z].uni+
                         '</td><td>'+registro[z].pre+
                         '</td><td>'+registro[z].actual+
-                        '</td><td id="icon"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                        '</td><td id="icon" style="display:flex; justify-content: center; background-color:'+esta+'"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" style="display:'+el+';" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"><img src="img/activar.svg" style="display:'+ac+';" width="40" id="bact" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
                     $('#cuerpo_tabla_productos').html(template);
 
@@ -449,11 +456,91 @@ $(document).ready(function(){
     })
 
     // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
-    $('.cajas-pro').on('input', function() {
+    $('.MAYP').on('input', function() {
         let currentValue = $(this).val();
-        let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ]/g, '');
+        // Ahora la expresión regular permite letras, números, espacios, puntos y comas
+        let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ.,]/g, '');
         $(this).val(newValue.toUpperCase());
     });
 
+    $(document).on('click','#bir',function(){
+        $('#sombra_modal_pro').css("display","block");
+        $('#caja_modal_pro').css("margin-top","-30%");
+        const codi = $(this).data('cod');
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_productos.php",
+            data:{
+                cod:codi,
+                opcion:"buscar"
+            },
+            success:function(respuesta){
+                // console.log(respuesta);
+                var registros=JSON.parse(respuesta);
+                $('#nampro').html("¿ESTA SEGURO DE DESHABILITAR UN PRODUCTO "+registros[0].nom+" ?");
+                $('#idcpro').val(registros[0].cod);
+                $('#estpromo').val(registros[0].esc);
+            }
+        })
+    })
+
+    $(document).on('click','#bcpro',function(){
+        $('#sombra_modal_pro').css("display","none");
+        $('#caja_modal_pro').css("margin-top","-90%");
+    })
+
+    // boton para aceptar la habilitacion o la deshabilitacion de una categoria
+    $(document).on('click','#bapro',function(){
+        // const codi = $(this).data('cod');
+        let codeli=null;
+        let esteli=null;
+        codeli=$('#idcpro').val();
+        esteli=$('#estpromo').val();
+        // console.log(codeli);
+        // console.log(esteli);
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_productos.php",
+            data:{
+                code:codeli,
+                esta:esteli,
+                opcion:"deshabilitar"
+            },
+            success:function(respuestas){
+                alert(respuestas);
+                $('#sombra_modal_pro').css("display","none");
+                $('#caja_modal_pro').css("margin-top","-90%");
+                listar_productos();
+                
+            }
+        })
+    })
+
+
+    // boton para activar una categoria 
+    $(document).on('click','#bact',function(){
+        $('#sombra_modal_pro').css("display","block");
+        $('#caja_modal_pro').css("margin-top","-30%");
+        const codi = $(this).data('cod');
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_productos.php",
+            data:{
+                cod:codi,
+                opcion:"buscar"
+            },
+            success:function(respuesta){
+                // console.log(respuesta);
+                var registros=JSON.parse(respuesta);
+                $('#nampro').html("¿ESTA SEGURO DE SHABILITAR UN PRODUCTO "+registros[0].nom+" ?");
+                $('#idcpro').val(registros[0].cod);
+                $('#estpromo').val(registros[0].esc);
+                // listar_categorias();
+            }
+        })
+    })
 
 })
