@@ -138,7 +138,7 @@ function listar_temporal() {
                 var totven = 0;
                 for (z in registro) {
                     totven = totven + parseFloat(registro[z].tot);
-                    cod_pro=registro[z].cod;
+                    item=registro[z].item;
                     extra=registro[z].ex ;
                     let fondo="";
 
@@ -152,7 +152,7 @@ function listar_temporal() {
                         '</td><td>' + registro[z].can +
                         '</td><td>' + registro[z].ex +
                         '</td><td>' + registro[z].tot +
-                        '</td><td id="icon"><img src="img/helado.svg" width="40" id="'+registro[z].cod+'" class="color frio" data-cod="'+registro[z].cod+'" style="background-color:'+fondo+';"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                        '</td><td id="icon"><img src="img/helado.svg" width="40" id="'+registro[z].item+'" class="color frio" data-cod="'+registro[z].item+'" style="background-color:'+fondo+';"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].item+'"></td></tr>';
                         $('#ttot').val(totven);  
                     }
                     
@@ -162,7 +162,7 @@ function listar_temporal() {
         }
     });
 }
-//let toque='rgba(0,255,255,0.314)';
+
 //AÑADIR AL CARRITO
 $(document).on('click', '#bcarrito', function() {
     const cod = $(this).data('cod');
@@ -203,7 +203,7 @@ $(document).on('click', '#bcarrito', function() {
         $.get('php/controlador_reg_ven.php', datos2, function(response) {
             alert(response);
             listar_temporal();
-            //toque=true;
+
         });
     });
 });
@@ -225,8 +225,6 @@ $(document).on('click', '#bir', function() {
 
 $(document).on('click', '.frio', function() {
     var codigoh=$(event.target).attr('id');
-    // var color = $('#'+codigoh).css('background-color');
-    // alert(color);
     const codigop = $(this).data('cod');
     const ex = 0.2;
 
@@ -261,7 +259,7 @@ $(document).on('click', '#bguardar_ven', function () {
     const estado = $('#est_pago').val();
     const tipo = $('#ttipo_pago').val();
     const deudores = $('#tdeudores').val();
-
+    const cod_ven = $('#cod_ven').val();
     if (estado==0) {
         alert('SELECCIONE ESTADO DE LA VENTA');
         return;
@@ -281,7 +279,7 @@ $(document).on('click', '#bguardar_ven', function () {
     }
 
     const datos = {
-        cod: $('#cod_ven').val(),
+        cod: cod_ven,
         fecha: $('#fecha').val(),
         dni_per: $('#dni_per').val(),
         dni_cli: $('#dni').val(),
@@ -291,26 +289,36 @@ $(document).on('click', '#bguardar_ven', function () {
         opcion: 'agregar_venta'
     };
 
-    // $.get('controlador/controlador_ventas.php', datos, function (response) {
-    //     alert(response);
-    //     $('#tdni').val('');
-    //     $('#tcli').val('');
-    //     $('#ttot').val('');
-    //     $('#tbus').val('');
-    //     $("#cancelar").css("display", "none");
-    //     const datos = {
-    //         opcion: 'limpiar'
-    //     };
-    //     $.get('controlador/controlador_ventas.php', datos, function (response) {
-    //         cod_venta = $('#t_nro').val();
-    //         listar_temporal();
-    //         nfactura();
-    //         $('#cuerpo_tabla_detalle').html('');
-    //         window.open('factura.php?codigo=' + cod_venta);
-    //     });
+    $.get('php/controlador_reg_ven.php', datos, function (response) {
+        alert(response);
+        $("#est_pago").val(0);
+        $("#ttot").val('');
+        $("#bus_nom").val('');
+        const datos = {
+            opcion: 'limpiar'
+        };
+        $.get('php/controlador_reg_ven.php', datos, function (response) {
+            listar_temporal();
+        });
 
-    // });
-});
+        });
+    }); 
+
+    //Cancelar Venta
+    $(document).on('click', '#bcancelar_ven', function() {
+        const datos = {
+            opcion: 'cancelar'
+        };
+        $.get('php/controlador_reg_ven.php', datos, function(response) {
+            alert(response);
+            listar_temporal();
+            $('#cuerpo_tabla_temporal').html('');
+            $("#est_pago").val(0);
+            $("#ttot").val('');
+            $("#bus_nom").val('');
+        });
+    });
+
 
 
 })
