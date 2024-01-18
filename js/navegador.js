@@ -39,4 +39,14 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
+    $('#mrcom').click(function(){
+        $('.contenedor').load("registrar_compras.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
+    $('#mvcom').click(function(){
+        $('.contenedor').load("ver_compras.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
 });
