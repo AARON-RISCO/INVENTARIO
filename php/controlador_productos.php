@@ -3,20 +3,25 @@ include "../conexion/conexion.php";
 $opcion=$_GET['opcion'];
 //LISTAR TODOS LOS PRODUCTOS Y FILTRAR POR NOMBRE
 if($opcion=="listar"){
-    $con_listar="SELECT t1.*, t2.nom_cat, t3.tipo_uni
+    
+    if(isset($_GET['espa'])){
+        $esi=$_GET['espa'];
+        $con_listar="SELECT t1.*, t2.nom_cat, t3.tipo_uni
+                FROM producto t1, categoria t2, unidad_medida t3
+                WHERE t1.estado=$esi AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni"; 
+    }else if(isset($_GET['nombre'])){
+        $nombre=$_GET['nombre'];
+        $con_listar=" SELECT t1.*, t2.nom_cat, t3.tipo_uni
+        FROM producto t1, categoria t2, unidad_medida t3
+        WHERE nom_pro LIKE CONCAT('$nombre','%') AND
+        t1.estado=0 AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni";
+    }else{
+        $con_listar="SELECT t1.*, t2.nom_cat, t3.tipo_uni
                 FROM producto t1, categoria t2, unidad_medida t3
                 WHERE t1.estado=0 AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni"; 
 
-        if(isset($_GET['nombre'])){
-            $nombre=$_GET['nombre'];
-            $con_listar=" SELECT t1.*, t2.nom_cat, t3.tipo_uni
-            FROM producto t1, categoria t2, unidad_medida t3
-            WHERE nom_pro LIKE CONCAT('$nombre','%') AND
-            t1.estado=0 AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni";
-        }
-        
-        
-        
+    }
+
     $res=mysqli_query($cnn,$con_listar);
     $num=mysqli_num_rows($res);
     if($num>=1){

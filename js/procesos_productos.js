@@ -4,14 +4,14 @@ $(document).ready(function(){
     llenar_categorias();
     llenar_unidades();
     BloquearCajas();
-    function listar_productos(parametro){
+    function listar_productos(parametro,espa){
         $.ajax({
             async:true,
             url:'php/controlador_productos.php',
             type:'GET',
-            data:{nombre:parametro,opcion:'listar'},
+            data:{nombre:parametro,espa:espa,opcion:'listar'},
             success: function(response){
-                //console.log(response)
+                console.log(response)
                 if(response=='vacio'){
                     $('#cuerpo_tabla_productos').html('');
                 }else{
@@ -27,13 +27,13 @@ $(document).ready(function(){
                         if(est==1){ var esta="rgba(255, 0, 0, 0.31)";el="none"; ac="block";}
 
                         template+=
-                        '<tr><td>'+registro[z].cat+
-                        '</td><td>'+registro[z].nom+
-                        '</td><td>'+registro[z].sa+
-                        '</td><td>'+registro[z].uni+
-                        '</td><td>'+registro[z].pre+
-                        '</td><td>'+registro[z].actual+
-                        '</td><td id="icon" style="display:flex; justify-content: center; background-color:'+esta+'"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" style="display:'+el+';" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"><img src="img/activar.svg" style="display:'+ac+';" width="40" id="bact" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                        '<tr><td style="background-color:'+esta+'">'+registro[z].cat+
+                        '</td><td style="background-color:'+esta+'">'+registro[z].nom+
+                        '</td><td style="background-color:'+esta+'">'+registro[z].sa+
+                        '</td><td style="background-color:'+esta+'">'+registro[z].uni+
+                        '</td><td style="background-color:'+esta+'">'+registro[z].pre+
+                        '</td><td style="background-color:'+esta+'">'+registro[z].actual+
+                        '</td><td id="icon" style="display:flex; justify-content: center;"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" style="display:'+el+';" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"><img src="img/activar.svg" style="display:'+ac+';" width="40" id="bact" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
                     $('#cuerpo_tabla_productos').html(template);
 
@@ -110,6 +110,20 @@ $(document).ready(function(){
             }
         });
     }
+
+    // function listar_pro_est(para){
+    //     var par=para;
+    //     $.ajax({
+    //         async:true,
+    //         type: "GET",
+    //         data:{opcion:'listar',nombre:par},
+    //         url: "php/controlador_productos.php",
+    //         success: function(response){
+    //             console.log(response);
+    //         }
+    //     });
+    // }
+
     function llenar_unidades(){
         $.ajax({
             async:true,
@@ -125,7 +139,7 @@ $(document).ready(function(){
     $(document).on('keyup','#bus_nom',function(){
         var valor=$(this).val();
         if(valor !=""){
-            listar_productos(valor);
+            listar_productos(valor,'');
         }else{
             listar_productos();
         }
@@ -148,6 +162,17 @@ $(document).ready(function(){
             listar_productos();
         }
     })
+    //buscar prouctos por ESTADO
+    $(document).on('change','#tdesa',function(){
+        var valor=$(this).val();
+        console.log(valor)
+            // if(valor = 1){
+                listar_productos('',valor);
+            // }else{
+            //     listar_productos(); 
+            // }
+    })
+
     //bloqueo de cajas en mantenimiento
     function BloquearCajas(){
         $('#tcat').css('pointer-events', 'none');

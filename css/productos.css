@@ -46,7 +46,7 @@
     position: absolute;
     right: 35%;
     background-color: white;
-    top:18%;
+    top:15%;
     padding: 0px 15px 0px 15px;
 }
 .bus{
@@ -83,6 +83,14 @@ td{
 }
 #bir:hover{ 
     background-color: rgb(255, 0, 0);  
+}
+#bact{
+    background-color: rgba(63, 212, 63, 0.31);
+    /* display: none; */
+    
+}
+#bact:hover{
+    background-color: rgb(63, 212, 63);
 }
 .color{
     width: 30px;

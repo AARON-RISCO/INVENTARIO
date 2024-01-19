@@ -19,6 +19,12 @@
                         <div class="buscar"><select name="tcat" id="tcategoria" class="bus" ></select></div>
                         <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MAYP" placeholder="Buscar por Nombre"></div>
                         <div class="buscar"><input type="text" name="bus_sa" id="bus_sa" class="bus MAYP" placeholder="Buscar por Sabores"></div>
+                        <div class="buscar">
+                            <select name="tdesa" id="tdesa" class="bus" > 
+                                <option value="0">HABILITADO</option>
+                                <option value="1">DESHABILITADO</option>
+                            </select>
+                        </div>
                     </div>
                     <div id="listado"> 
                     <table >
