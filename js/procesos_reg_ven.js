@@ -184,27 +184,63 @@ $(document).on('click', '#bcarrito', function() {
     };
     $.get('php/controlador_reg_ven.php', datos, function(response) {
         registro = JSON.parse(response);
-        nven = venta;
-        codp = (registro[0].cod);
-        nom = (registro[0].nom);
-        sabor = (registro[0].sa);
-        can = parseInt(cantidad);
-        pre = (registro[0].pre);
-        tot = can * pre;
+        if ((registro[0].nom) == "BIG BEN" ) {
+            canpro = parseInt(cantidad);
+            id=registro[0].cod;
+            const dato={
+                canpro:canpro,
+                id:id,
+                opcion:'buscar_promocion'
+            }
+            $.get('php/controlador_reg_ven.php', dato, function(response) {
+                registro = JSON.parse(response);
+                nven = venta;
+                codp = (registro[0].cod);
+                nom = (registro[0].nom);
+                sabor = (registro[0].sa);
+                can = parseInt(cantidad);
+                pre = (registro[0].precio_promo);
+                tot = can * pre;
+                
+                const datos2 = {
+                    ven: nven,
+                    cod: codp,
+                    can: can,
+                    pre: pre,
+                    tot: tot,
+                    opcion: 'agregar_temporal'
+                };
+                $.get('php/controlador_reg_ven.php', datos2, function(response) {
+                    alert(response);
+                    listar_temporal();
+        
+                });
 
-        const datos2 = {
-            ven: nven,
-            cod: codp,
-            can: can,
-            pre: pre,
-            tot: tot,
-            opcion: 'agregar_temporal'
-        };
-        $.get('php/controlador_reg_ven.php', datos2, function(response) {
-            alert(response);
-            listar_temporal();
-
-        });
+            })
+        }else{
+            nven = venta;
+            codp = (registro[0].cod);
+            nom = (registro[0].nom);
+            sabor = (registro[0].sa);
+            can = parseInt(cantidad);
+            pre = (registro[0].pre);
+            tot = can * pre;
+    
+            const datos3 = {
+                ven: nven,
+                cod: codp,
+                can: can,
+                pre: pre,
+                tot: tot,
+                opcion: 'agregar_temporal'
+            };
+            $.get('php/controlador_reg_ven.php', datos3, function(response) {
+                alert(response);
+                listar_temporal();
+    
+            });
+        }
+        
     });
 });
 
@@ -292,8 +328,12 @@ $(document).on('click', '#bguardar_ven', function () {
     $.get('php/controlador_reg_ven.php', datos, function (response) {
         alert(response);
         $("#est_pago").val(0);
+        $("#ttipo_pago").val(0);
         $("#ttot").val('');
         $("#bus_nom").val('');
+        $("#deudores").val(0);
+        $(".debe").css('display','none');
+        $('#listado').css('display','none');
         const datos = {
             opcion: 'limpiar'
         };
@@ -304,20 +344,24 @@ $(document).on('click', '#bguardar_ven', function () {
         });
     }); 
 
-    //Cancelar Venta
-    $(document).on('click', '#bcancelar_ven', function() {
-        const datos = {
-            opcion: 'cancelar'
-        };
-        $.get('php/controlador_reg_ven.php', datos, function(response) {
-            alert(response);
-            listar_temporal();
-            $('#cuerpo_tabla_temporal').html('');
-            $("#est_pago").val(0);
-            $("#ttot").val('');
-            $("#bus_nom").val('');
-        });
+//Cancelar Venta
+$(document).on('click', '#bcancelar_ven', function() {
+    const datos = {
+        opcion: 'cancelar'
+    };
+    $.get('php/controlador_reg_ven.php', datos, function(response) {
+        alert(response);
+        listar_temporal();
+        $('#cuerpo_tabla_temporal').html('');
+        $("#est_pago").val(0);
+        $("#ttipo_pago").val(0);
+        $("#deudores").val(0);
+        $(".debe").css('display','none');
+        $("#ttot").val('');
+        $("#bus_nom").val('');
+        $('#listado').css('display','none');
     });
+});
 
 
 
