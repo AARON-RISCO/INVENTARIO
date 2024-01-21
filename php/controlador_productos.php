@@ -2,105 +2,78 @@
 include "../conexion/conexion.php";
 $opcion=$_GET['opcion'];
 //LISTAR TODOS LOS PRODUCTOS Y FILTRAR POR NOMBRE
-if($opcion=="listar"){
-    
-    if(isset($_GET['espa'])){
-        $esi=$_GET['espa'];
-        $con_listar="SELECT t1.*, t2.nom_cat, t3.tipo_uni
-                FROM producto t1, categoria t2, unidad_medida t3
-                WHERE t1.estado=$esi AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni"; 
-    }else if(isset($_GET['nombre'])){
-        $nombre=$_GET['nombre'];
+if ($opcion == "listar") {
+    $esi = $_GET['espa'];
+    if (isset($_GET['sabo'])) {
+        $sabo = $_GET['sabo'];
+        $con_listar = "SELECT t1.*, t2.nom_cat, t3.tipo_uni
+                       FROM producto t1, categoria t2, unidad_medida t3
+                       WHERE sabores LIKE CONCAT(?, '%')  AND t1.estado = ? AND t1.id_cat = t2.id_cat AND t1.id_uni = t3.id_uni";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar);
+        mysqli_stmt_bind_param($stmt, 'si', $sabo,$esi);
+        mysqli_stmt_execute($stmt);
+
+    }else if(isset($_GET['cate'])){
+        $cat = $_GET['cate'];
         $con_listar=" SELECT t1.*, t2.nom_cat, t3.tipo_uni
-        FROM producto t1, categoria t2, unidad_medida t3
-        WHERE nom_pro LIKE CONCAT('$nombre','%') AND
-        t1.estado=0 AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni";
+                      FROM producto t1, categoria t2, unidad_medida t3
+                      WHERE t1.id_cat = ? AND t1.estado= ? AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar);
+        mysqli_stmt_bind_param($stmt, 'ii', $cat,$esi);
+        mysqli_stmt_execute($stmt);
+
+    }else if (isset($_GET['nombre'])) {
+        $nombre = $_GET['nombre'];
+        $con_listar = "SELECT t1.*, t2.nom_cat, t3.tipo_uni
+                       FROM producto t1, categoria t2, unidad_medida t3
+                       WHERE nom_pro LIKE CONCAT(?, '%') AND t1.estado = ? AND t1.id_cat = t2.id_cat AND t1.id_uni = t3.id_uni";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar);
+        mysqli_stmt_bind_param($stmt, 'si', $nombre,$esi);
+        mysqli_stmt_execute($stmt);
+
     }else{
-        $con_listar="SELECT t1.*, t2.nom_cat, t3.tipo_uni
-                FROM producto t1, categoria t2, unidad_medida t3
-                WHERE t1.estado=0 AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni"; 
+        $con_listar = "SELECT t1.*, t2.nom_cat, t3.tipo_uni
+                       FROM producto t1, categoria t2, unidad_medida t3
+                       WHERE t1.estado = ? AND t1.id_cat = t2.id_cat AND t1.id_uni = t3.id_uni";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar);
+        mysqli_stmt_bind_param($stmt, 'i', $esi);
+        mysqli_stmt_execute($stmt);
 
     }
 
-    $res=mysqli_query($cnn,$con_listar);
-    $num=mysqli_num_rows($res);
-    if($num>=1){
-        while($f=mysqli_fetch_array($res)){
-            $json[]=array(
-                "cod"=>$f['id_pro'],
-                "nom"=>$f['nom_pro'],
-                "cat"=>$f['nom_cat'],
-                "sa"=>$f['sabores'],
-                "uni"=>$f['tipo_uni'],
-                "pre"=>$f['pre_uni'],
-                "min"=>$f['stock_min'],
-                "actual"=>$f['stock_actual'],
-                "esc"=>$f['estado']
-            );}
-        $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
-    }else{
-        $jsonresponse="vacio";
-    }
-    echo $jsonresponse;
-}
-//LISTAR POR SABORES
-if($opcion=="listar_sabores"){
-    $sabor=$_GET['sabor'];
+    // Obtener el resultado
+    $res = mysqli_stmt_get_result($stmt);
+    $num = mysqli_num_rows($res);
 
-    $con_listar=" SELECT t1.*, t2.nom_cat, t3.tipo_uni
-    FROM producto t1, categoria t2, unidad_medida t3
-    WHERE sabores LIKE CONCAT('$sabor','%') AND
-    t1.estado=0 AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni";
-
-    $res=mysqli_query($cnn,$con_listar);
-    $num=mysqli_num_rows($res);
-    if($num>=1){
-        while($f=mysqli_fetch_array($res)){
-            $json[]=array(
-                "cod"=>$f['id_pro'],
-                "nom"=>$f['nom_pro'],
-                "cat"=>$f['nom_cat'],
-                "sa"=>$f['sabores'],
-                "uni"=>$f['tipo_uni'],
-                "pre"=>$f['pre_uni'],
-                "min"=>$f['stock_min'],
-                "actual"=>$f['stock_actual']
-            );}
-        $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
-    }else{
-        $jsonresponse="vacio";
+    if ($num >= 1) {
+        while ($f = mysqli_fetch_array($res)) {
+            $json[] = array(
+                "cod" => $f['id_pro'],
+                "nom" => $f['nom_pro'],
+                "cat" => $f['nom_cat'],
+                "sa" => $f['sabores'],
+                "uni" => $f['tipo_uni'],
+                "pre" => $f['pre_uni'],
+                "min" => $f['stock_min'],
+                "actual" => $f['stock_actual'],
+                "esc" => $f['estado']
+            );
+        }
+        $jsonresponse = json_encode($json, JSON_UNESCAPED_UNICODE);
+    } else {
+        $jsonresponse = "vacio";
     }
     echo $jsonresponse;
 }
-//LISTAR POR categorias
-if($opcion=="listar_por_categorias"){
-    $categoria=$_GET['categoria'];
 
-    $con_listar=" SELECT t1.*, t2.nom_cat, t3.tipo_uni
-    FROM producto t1, categoria t2, unidad_medida t3
-    WHERE t1.id_cat = $categoria AND
-    t1.estado=0 AND t1.id_cat=t2.id_cat AND t1.id_uni=t3.id_uni";
-
-    $res=mysqli_query($cnn,$con_listar);
-    $num=mysqli_num_rows($res);
-    if($num>=1){
-        while($f=mysqli_fetch_array($res)){
-            $json[]=array(
-                "cod"=>$f['id_pro'],
-                "nom"=>$f['nom_pro'],
-                "cat"=>$f['nom_cat'],
-                "sa"=>$f['sabores'],
-                "uni"=>$f['tipo_uni'],
-                "pre"=>$f['pre_uni'],
-                "min"=>$f['stock_min'],
-                "actual"=>$f['stock_actual']
-            );}
-        $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
-    }else{
-        $jsonresponse="vacio";
-    }
-    echo $jsonresponse;
-}
 //agregar nuevo producto
 if($opcion=="agregar"){
     $nom=$_GET['nom'];

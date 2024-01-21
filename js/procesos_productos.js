@@ -4,12 +4,23 @@ $(document).ready(function(){
     llenar_categorias();
     llenar_unidades();
     BloquearCajas();
-    function listar_productos(parametro,espa){
+    function listar_productos(parametro,espa,cat,sab){
+        if(espa==null){
+            espa=$('#tdesa').val();
+        }
+        // console.log(cat);
+        // console.log(parametro);
         $.ajax({
             async:true,
             url:'php/controlador_productos.php',
             type:'GET',
-            data:{nombre:parametro,espa:espa,opcion:'listar'},
+            data:{
+                nombre:parametro,
+                espa:espa,
+                cate:cat,
+                sabo:sab,
+                opcion:'listar'
+            },
             success: function(response){
                 console.log(response)
                 if(response=='vacio'){
@@ -42,62 +53,7 @@ $(document).ready(function(){
 
         })
     }
-    function listar_productos_por_sabores(){
-        const sabores = $('#bus_sa').val().trim();
-        const datos={
-            sabor:sabores,
-            opcion:'listar_sabores'
-        };
-        $.get('php/controlador_productos.php', datos,function(response){
-            if(response=='vacio'){
-                $('#cuerpo_tabla_productos').html('');
-            }else{
-                var registro=JSON.parse(response);
-                var template='';
-                for(z in registro){
-                    cod=registro[z].cod;
-                    template+=
-                    '<tr><td>'+registro[z].cat+
-                    '</td><td>'+registro[z].nom+
-                    '</td><td>'+registro[z].sa+
-                    '</td><td>'+registro[z].uni+
-                    '</td><td>'+registro[z].pre+
-                    '</td><td>'+registro[z].actual+
-                    '</td><td id="icon"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
-                }
-                $('#cuerpo_tabla_productos').html(template);
-            }
-        })
-        
-    }
-    function listar_productos_por_categorias(){
-        const categoria = $('#tcategoria').val().trim();
-        const datos={
-            categoria:categoria,
-            opcion:'listar_por_categorias'
-        };
-        $.get('php/controlador_productos.php', datos,function(response){
-            if(response=='vacio'){
-                $('#cuerpo_tabla_productos').html('');
-            }else{
-                var registro=JSON.parse(response);
-                var template='';
-                for(z in registro){
-                    cod=registro[z].cod;
-                    template+=
-                    '<tr><td>'+registro[z].cat+
-                    '</td><td>'+registro[z].nom+
-                    '</td><td>'+registro[z].sa+
-                    '</td><td>'+registro[z].uni+
-                    '</td><td>'+registro[z].pre+
-                    '</td><td>'+registro[z].actual+
-                    '</td><td id="icon"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
-                }
-                $('#cuerpo_tabla_productos').html(template);
-            }
-        })
-        
-    }
+ 
     function llenar_categorias(){
         $.ajax({
             async:true,
@@ -111,18 +67,6 @@ $(document).ready(function(){
         });
     }
 
-    // function listar_pro_est(para){
-    //     var par=para;
-    //     $.ajax({
-    //         async:true,
-    //         type: "GET",
-    //         data:{opcion:'listar',nombre:par},
-    //         url: "php/controlador_productos.php",
-    //         success: function(response){
-    //             console.log(response);
-    //         }
-    //     });
-    // }
 
     function llenar_unidades(){
         $.ajax({
@@ -138,26 +82,27 @@ $(document).ready(function(){
     //buscar en la caja de texto
     $(document).on('keyup','#bus_nom',function(){
         var valor=$(this).val();
-        if(valor !=""){
-            listar_productos(valor,'');
-        }else{
-            listar_productos();
-        }
+        // if(valor !=""){
+            listar_productos(valor);
+        // }else{
+        //     listar_productos();
+        // }
     })
     //buscar en la caja de texto sabores    
     $(document).on('keyup','#bus_sa',function(){
         var valor=$(this).val();
+
         if(valor !=""){
-            listar_productos_por_sabores(valor);
+            listar_productos('',null,null,valor);
         }else{
-            listar_productos_por_sabores();
+            listar_productos();
         }
     })
     //buscar prouctos por categorias
     $(document).on('change','#tcategoria',function(){
         var valor=$(this).val();
         if(valor !=0){
-            listar_productos_por_categorias(valor);
+            listar_productos('',$("#tdesa").val(),valor);
         }else{
             listar_productos();
         }
@@ -167,6 +112,9 @@ $(document).ready(function(){
         var valor=$(this).val();
         console.log(valor)
             // if(valor = 1){
+                $("#tcategoria").val("0");
+                $("#bus_nom").val("");
+                $("#bus_sa").val("");
                 listar_productos('',valor);
             // }else{
             //     listar_productos(); 
@@ -537,7 +485,7 @@ $(document).ready(function(){
                 alert(respuestas);
                 $('#sombra_modal_pro').css("display","none");
                 $('#caja_modal_pro').css("margin-top","-90%");
-                listar_productos();
+                listar_productos('',$('#tdesa').val());
                 
             }
         })
@@ -560,7 +508,7 @@ $(document).ready(function(){
             success:function(respuesta){
                 // console.log(respuesta);
                 var registros=JSON.parse(respuesta);
-                $('#nampro').html("¿ESTA SEGURO DE SHABILITAR UN PRODUCTO "+registros[0].nom+" ?");
+                $('#nampro').html("¿ESTA SEGURO DE HABILITAR UN PRODUCTO "+registros[0].nom+" ?");
                 $('#idcpro').val(registros[0].cod);
                 $('#estpromo').val(registros[0].esc);
                 // listar_categorias();
