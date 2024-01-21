@@ -213,3 +213,6 @@ td{
     padding: 5px;
     cursor: pointer;
 }
+#ttot{
+    pointer-events: none;
+}
