@@ -80,11 +80,12 @@ $(document).on('click', '.cerrar_modal', function() {
 })
 
 function listar_productos(parametro){
+    var es=0;
     $.ajax({
         async:true,
         url:'php/controlador_productos.php',
         type:'GET',
-        data:{nombre:parametro,opcion:'listar'},
+        data:{nombre:parametro,espa:es,opcion:'listar'},
         success: function(response){
             if(response=='vacio'){
                 $('#cuerpo_tabla_productos').html('');

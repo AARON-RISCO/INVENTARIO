@@ -86,7 +86,7 @@ if($opcion=="agregar"){
     $agregar="insert into producto
     values(' ', '$nom','$sabor',$cat,$uni,$pre,$minimo,$actual,' ')";
     mysqli_query($cnn,$agregar)or die("Error en registrar producto");
-    echo "Producto registrado correctamente";
+    echo "PRODUCTO REGISTRADO CORRECTAMENTE";
 }
 
 //buscar producto a modificar
@@ -126,7 +126,7 @@ if($opcion=="actualizar"){
                 id_cat='$cat', id_uni='$uni', pre_uni='$pre', stock_min='$minimo',
                 stock_actual='$actual' where id_pro='$cod'";
     mysqli_query($cnn,$modificar)or die("Error en modificar producto");
-    echo "Producto Actualizado";
+    echo "PRODUCTO ACTUALIZADO";
 }
 
 if($opcion=="deshabilitar"){
@@ -134,10 +134,10 @@ if($opcion=="deshabilitar"){
     $esta=$_GET['esta'];
     if($esta==1){
         $modificarc="update producto set estado=0 where id_pro='$code'";
-        $msj="PRODUCTO HABILITADA CORRECTAMENTE";
+        $msj="PRODUCTO HABILITADO CORRECTAMENTE";
     }elseif($esta==0){
         $modificarc="update producto set estado=1 where id_pro='$code'";
-        $msj="PRODUCTO DESHABILITADA CORRECTAMENTE";
+        $msj="PRODUCTO DESHABILITADO CORRECTAMENTE";
     }
 
     mysqli_query($cnn,$modificarc)or die("Error en modificar producto");
