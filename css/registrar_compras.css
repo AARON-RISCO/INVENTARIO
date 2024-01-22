@@ -170,19 +170,24 @@ td{
 #bcarrito{
     cursor: pointer;
 }
-
-#bir{ 
-    background-color: rgba(255, 0, 0, 0.31);  
-}
-#bir:hover{ 
-    background-color: rgb(255, 0, 0);  
-}
 .color{
     width: 30px;
     height: 30px;
     margin: 5px;
     padding: 5px;
     cursor: pointer;
+}
+.amarillo{
+    background-color: rgba(255, 255, 0, 0.511);
+}
+.rojo{
+    background-color: rgba(255, 0, 0, 0.529);
+}
+.amarillo:hover{
+    background-color: yellow;
+}
+.rojo:hover{
+    background-color: red;
 }
 .añadir_nuevo{
     padding: 5px 5px 5px 5px;

@@ -53,7 +53,7 @@ if (empty($_SESSION['dni'])){
                                 <th>Opciones</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpo_tabla_temporal">
+                        <tbody id="cuerpo_tabla_temporal_com">
                             
                         </tbody>
                     </table>
@@ -65,11 +65,11 @@ if (empty($_SESSION['dni'])){
             <label for="">Registrar Nueva Compra</label><br>
             <input type="text" class="oculto" id="cod_com">
             <input type="text" class="cajas_com bloquear" placeholder="" id="id_cod">
-            <input type="date" class="cajas_com bloquear" value="" >
+            <input type="date" class="cajas_com" id="fecha" value="" >
             <input type="text" class="oculto" value="<?php echo $_SESSION['dni']; ?>" id="dni_per">
             <input type="text" class="cajas_com bloquear" value="<?php echo $_SESSION['nom'].' '.$_SESSION['ape'] ?>">
 
-            <input type="text" class="cajas_com" placeholder="Neto a pagar" id="ttot">
+            <input type="text" class="cajas_com bloquear" placeholder="Neto a pagar" id="ttot">
             
             <div class="botones">
                 <input type="button" value="Registrar Compra" class="btn-guardar btn" id="bguardar_com"> 

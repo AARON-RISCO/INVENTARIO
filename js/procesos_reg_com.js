@@ -1,10 +1,7 @@
 $(document).ready(function(){
     $(document).off("click","**");
     numerodecompra();
-    // ClienteGeneral();
-    // //bloquear tipo de pago
-    // $('#ttipo_pago').css('pointer-events','none');
-    // //Mostrar codigo de venta
+    listar_temporal();
     function numerodecompra(){
         const datos={
             opcion: 'ultimo'     
@@ -70,14 +67,15 @@ $(document).ready(function(){
             data: { opcion: 'listar_temporal' },
             success: function(response) {
                 if (response == 'vacio') {
-                    $('#cuerpo_tabla_temporal').html('');
+                    $('#cuerpo_tabla_temporal_com').html('');
                 } else {
                     var registro = JSON.parse(response);
                     var template = '';
                     var totcom = 0;
                     for (z in registro) {
                         totcom = totcom + parseFloat(registro[z].tot);
-                  
+                        item=registro[z].item;
+                        cod=registro[z].cod;
                         template +=
                             '<tr><td>' + registro[z].nom+
                             '</td><td>' + registro[z].sabor +
@@ -85,182 +83,186 @@ $(document).ready(function(){
                             '</td><td>' + registro[z].pre_ven +
                             '</td><td>' + registro[z].can +
                             '</td><td>' + registro[z].tot +
-                            '</td><td id="icon"><img src="img/editar.svg" width="40" id="'+registro[z].item+'" class="color frio" data-cod="'+registro[z].item+'><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].item+'"></td></tr>';
-                            $('#ttot').val(totven);  
+                            '</td><td id="icon"><img src="img/editar.svg" class="color amarillo" id="bmod" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" class="color rojo" id="beli" data-cod="'+registro[z].item+'"></td></tr>';
+                            $('#ttot').val(totcom);  
                         }
                         
-                    $('#cuerpo_tabla_temporal').html(template);
-                    
+                    $('#cuerpo_tabla_temporal_com').html(template);
                 }
             }
         });
     }
     
-    //AÑADIR AL CARRITO
-    $(document).on('click', '#bcarrito', function() {
-        const cod = $(this).data('cod');
-        var cantidad;
-        var compra;
-        compra = $('#cod_com').val();
-        var opcion = prompt("Ingrese Cantidad", "");
-        var opcion2 = prompt("Ingrese Precio Compra", "");
-    
-        if (opcion == null || opcion == "" || opcion == 0) {
-            alert('NO A IMGRESADO CANTIDAD');
-            return;
-        } else {
-            cantidad = opcion;
-        }
+// AÑADIR AL CARRITO
+$(document).on('click', '#bcarrito', function() {
+    const cod = $(this).data('cod');
+    var cantidad;
+    var compra;
+    compra = $('#cod_com').val();
+    var opcion;
+    var opcion2;
 
-        if (opcion2 == null || opcion2 == "" || opcion2 == 0) {
-            alert('NO A IMGRESADO PRECIO DE COMPRA');
-            return;
-        } else {
-            pre = opcion2;
-        }
-    
+    do {
+        opcion = prompt("Ingrese Cantidad", "");
+    } while (opcion !== null && (!validarEntero(opcion) || opcion.trim() === ''));
+
+    if (opcion === null) {
+        // El usuario ha cancelado el prompt
+        return;
+    } else {
+        cantidad = opcion;
+    }
+
+    do {
+        opcion2 = prompt("Ingrese Precio Compra", "");
+    } while (opcion2 !== null && (!validarPrecio(opcion2) || opcion2.trim() === ''));
+
+    if (opcion2 === null) {
+        // El usuario ha cancelado el prompt
+        return;
+    }
+
+    const datos = {
+        cod: cod,
+        opcion: 'buscar'
+    };
+
+    $.get('php/controlador_reg_com.php', datos, function(response) {
+        registro = JSON.parse(response);
+        ncom = compra;
+        codp = (registro[0].cod);
+        nom = (registro[0].nom);
+        sabor = (registro[0].sa);
+        can = parseInt(cantidad);
+        pre_com = parseFloat(opcion2);
+        pre_ven = (registro[0].pre);
+        tot = can * pre_com;
+
+        const datos2 = {
+            com: ncom,
+            cod: codp,
+            can: can,
+            pre: pre_com,
+            tot: tot,
+            opcion: 'agregar_temporal'
+        };
+
+        $.get('php/controlador_reg_com.php', datos2, function(response) {
+            alert(response);
+            listar_temporal();
+        });
+    });
+});
+
+function validarEntero(valor) {
+    // Expresión regular que permite solo números enteros
+    var regex = /^[0-9]+$/;
+    return regex.test(valor);
+}
+
+function validarPrecio(valor) {
+    // Expresión regular que permite números y puntos decimales
+    var regex = /^[0-9]+(\.[0-9]+)?$/;
+    return regex.test(valor);
+}
+ 
+ //Eliminar producto de la temporal
+ $(document).on('click', '#beli', function() {
+     const cod = $(this).data('cod');
+     const datos={
+         cod:cod,
+         opcion:'eliminar'
+     }
+     $.get('php/controlador_reg_com.php', datos, function(response) {
+         alert(response);
+         $('#ttot').val('');
+         listar_temporal();
+     });
+ })
+ 
+ //añadir extra
+ 
+ $(document).on('click', '#bmod', function() {
+    const cod = $(this).data('cod');
+    var nuevo_precio
+    do {
+        nuevo_precio = prompt("Ingrese Nuevo Precio de Venta", "");
+    } while (nuevo_precio !== null && (!validarPrecio(nuevo_precio) || nuevo_precio.trim() === ''));
+
+    if (nuevo_precio === null) {
+        // El usuario ha cancelado el prompt
+        return;
+    }
+    const datos={
+        cod:cod,
+        nuevo_pre:nuevo_precio,
+        opcion:'modificar_pre'
+    }
+    $.get('php/controlador_reg_com.php',datos,function(response){
+        alert(response);
+        listar_temporal();
+    })
+     
+ });
+ 
+ //registrar venta
+$(document).on('click', '#bguardar_com', function () {
+    var neto = parseFloat($('#ttot').val());
+    const fecha = $('#fecha').val();
+    const dni = $('#dni_per').val();
+    const cod_com = $('#cod_com').val();
+    if (fecha=="") {
+        alert('Ingrese Fecha');
+        return;
+    }
+
+    // Validar si hay productos en la tabla temporal
+    if ($('#cuerpo_tabla_temporal_com tr').length === 0) {
+        alert('NO SE PUEDE REGISTRAR LA COMPRA SIN PRODUCTOS');
+        return;
+    }
+
+    const datos = {
+        cod: cod_com,
+        fecha:fecha,
+        dni:dni,
+        neto: neto,
+        opcion: 'agregar_compra'
+    };
+
+    $.get('php/controlador_reg_com.php', datos, function (response) {
+        alert(response);
+        $('#cuerpo_tabla_temporal_com').html('');
+        $("#listado").css("display","none");
+        $("#fecha").val("");
+        $("#ttot").val('');
+        $("#bus_nom").val('');
         const datos = {
-            cod: cod,
-            opcion: 'buscar'
+            opcion: 'limpiar'
+        };
+        $.get('php/controlador_reg_com.php', datos, function (response) {
+            listar_temporal();
+        });
+
+    });
+}); 
+
+    //Cancelar compra
+    $(document).on('click', '#bcancelar_com', function() {
+        const datos = {
+            opcion: 'cancelar'
         };
         $.get('php/controlador_reg_com.php', datos, function(response) {
-            registro = JSON.parse(response);
-            ncom = compra;
-            codp = (registro[0].cod);
-            nom = (registro[0].nom);
-            sabor = (registro[0].sa);
-            can = parseInt(cantidad);
-            pre_com = pre;
-            pre_ven = (registro[0].pre);
-            tot = can * pre_com;
-            
-            const datos2 = {
-                com: ncom,
-                cod: codp,
-                can: can,
-                pre: pre_com,
-                tot: tot,
-                opcion: 'agregar_temporal'
-            };
-            $.get('php/controlador_reg_com.php', datos2, function(response) {
-                alert(response);
-                listar_temporal();
-    
-            });
+            alert(response);
+            listar_temporal();
+            $('#cuerpo_tabla_temporal_com').html('');
+            $("#listado").css("display","none");
+            $("#fecha").val("");
+            $("#ttot").val('');
+            $("#bus_nom").val('');
         });
     });
     
-    // //Eliminar producto de la temporal
-    // $(document).on('click', '#bir', function() {
-    //     const cod = $(this).data('cod');
-    //     const datos={
-    //         cod:cod,
-    //         opcion:'eliminar'
-    //     }
-    //     $.get('php/controlador_reg_ven.php', datos, function(response) {
-    //         alert(response);
-    //         listar_temporal();
-    //     });
-    // })
-    
-    // //añadir extra
-    
-    // $(document).on('click', '.frio', function() {
-    //     var codigoh=$(event.target).attr('id');
-    //     const codigop = $(this).data('cod');
-    //     const ex = 0.2;
-    
-    //     if ($('#'+codigoh).css('background-color') === 'rgba(0, 0, 0, 0)') {
-    //         $('#'+codigoh).css('background-color', 'rgb(0, 255, 255)');
-    //         const datos = {
-    //             cod: codigop,
-    //             ex: ex,
-    //             opcion: 'extra'
-    //         };
-    
-    //         $.get('php/controlador_reg_ven.php', datos, function(response) {
-    //             listar_temporal();
-    //         });
-    //     } else if ($('#'+codigoh).css('background-color') === 'rgb(0, 255, 255)') {
-    //         $('#'+codigoh).css('background-color', 'rgba(0, 0, 0, 0)');
-    //         const datos = {
-    //             cod: codigop,
-    //             ex: ex,
-    //             opcion: 'menos_extra'
-    //         };
-    
-    //         $.get('php/controlador_reg_ven.php', datos, function(response) {
-    //             listar_temporal();
-    //         });
-    //     }
-    // });
-    
-    // //registrar venta
-    // $(document).on('click', '#bguardar_ven', function () {
-    //     var neto = parseFloat($('#ttot').val());
-    //     const estado = $('#est_pago').val();
-    //     const tipo = $('#ttipo_pago').val();
-    //     const deudores = $('#tdeudores').val();
-    //     const cod_ven = $('#cod_ven').val();
-    //     if (estado==0) {
-    //         alert('SELECCIONE ESTADO DE LA VENTA');
-    //         return;
-    //     }
-    //     if (estado==1 & tipo==0) {
-    //         alert('SELECCIONE TIPO DE PAGO');
-    //         return;
-    //     }else if (estado==2 & deudores==0) {
-    //         alert('SELECCIONE UN DEUDOR');
-    //         return;
-    //     }
-    
-    //     // Validar si hay productos en la tabla temporal
-    //     if ($('#cuerpo_tabla_temporal tr').length === 0) {
-    //         alert('NO SE PUEDE REGISTRAR LA VENTA SIN PRODUCTOS');
-    //         return;
-    //     }
-    
-    //     const datos = {
-    //         cod: cod_ven,
-    //         fecha: $('#fecha').val(),
-    //         dni_per: $('#dni_per').val(),
-    //         dni_cli: $('#dni').val(),
-    //         estado: estado,
-    //         deudor: deudores,
-    //         neto: neto,
-    //         opcion: 'agregar_venta'
-    //     };
-    
-    //     $.get('php/controlador_reg_ven.php', datos, function (response) {
-    //         alert(response);
-    //         $("#est_pago").val(0);
-    //         $("#ttot").val('');
-    //         $("#bus_nom").val('');
-    //         const datos = {
-    //             opcion: 'limpiar'
-    //         };
-    //         $.get('php/controlador_reg_ven.php', datos, function (response) {
-    //             listar_temporal();
-    //         });
-    
-    //         });
-    //     }); 
-    
-    //     //Cancelar Venta
-    //     $(document).on('click', '#bcancelar_ven', function() {
-    //         const datos = {
-    //             opcion: 'cancelar'
-    //         };
-    //         $.get('php/controlador_reg_ven.php', datos, function(response) {
-    //             alert(response);
-    //             listar_temporal();
-    //             $('#cuerpo_tabla_temporal').html('');
-    //             $("#est_pago").val(0);
-    //             $("#ttot").val('');
-    //             $("#bus_nom").val('');
-    //         });
-    //     });
     
     
-    
-    })
+})
