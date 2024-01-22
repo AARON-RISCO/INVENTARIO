@@ -254,6 +254,7 @@ $(document).on('click', '#bir', function() {
     }
     $.get('php/controlador_reg_ven.php', datos, function(response) {
         alert(response);
+        $('#ttot').val('');
         listar_temporal();
     });
 })
