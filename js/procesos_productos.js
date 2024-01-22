@@ -22,7 +22,7 @@ $(document).ready(function(){
                 opcion:'listar'
             },
             success: function(response){
-                console.log(response)
+                // console.log(response)
                 if(response=='vacio'){
                     $('#cuerpo_tabla_productos').html('');
                 }else{
@@ -110,7 +110,7 @@ $(document).ready(function(){
     //buscar prouctos por ESTADO
     $(document).on('change','#tdesa',function(){
         var valor=$(this).val();
-        console.log(valor)
+        // console.log(valor)
             // if(valor = 1){
                 $("#tcategoria").val("0");
                 $("#bus_nom").val("");
@@ -436,10 +436,24 @@ $(document).ready(function(){
         $(this).val(newValue.toUpperCase());
     });
 
+    $('.NUMP').on('input', function() {
+        // Obtener el valor actual del input
+        let currentValue = $(this).val();
+    
+        // Remover caracteres no permitidos (que no son números, puntos ni comas)
+        let newValue = currentValue.replace(/[^0-9.,]/g, '');
+    
+        // Reemplazar comas por puntos (si las hay)
+        newValue = newValue.replace(/,/g, '.');
+    
+        // Actualizar el valor del input en mayúsculas
+        $(this).val(newValue.toUpperCase());
+    });
+
     $(document).on('click','#bir',function(){
         $('#sombra_modal_pro').css("display","block");
         $('#caja_modal_pro').css("margin-top","-30%");
-        const codi = $(this).data('cod');
+        const codi = $(this).data('cod');   
         $.ajax({
             async:true,
             type:"GET",

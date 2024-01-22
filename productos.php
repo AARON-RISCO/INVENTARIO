@@ -28,7 +28,7 @@
                         
                     </div>
                     <div id="listado"> 
-                    <table >
+                    <table>
                         <thead>
                             <tr>
                                 <th>Categoria</th>
@@ -54,9 +54,9 @@
                 <img src="" alt=""  class="da-pro"><input type="text" name="tnom_pro" id="tnom_pro" class="cajas-pro MAYP" placeholder="Ingrese nombre">
                 <img src="" alt=""  class="da-pro"><input type="text" name="tsabor" id="tsabor" class="cajas-pro MAYP" placeholder="Ingrese sabor">
                 <select name="tuni" id="tuni" class="cajas-pro cajas MAYP"></select></select><div id="ir_uni" class="ir_uni ir"><img src="img/agregar.png" id="icon-suma"></div>
-                <img src="" alt=""  class="da-pro"><input type="text" name="tpre" id="tpre" class="cajas-pro MAYP" placeholder="Ingrese precio">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tstock_min" id="tstock_min" class="cajas-pro MAYP" placeholder="Ingrese Stock Minimo">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tstock" id="tstock" class="cajas-pro MAYP" placeholder="Ingrese Stock">
+                <img src="" alt=""  class="da-pro"><input type="text" name="tpre" id="tpre" class="cajas-pro NUMP" placeholder="Ingrese precio">
+                <img src="" alt=""  class="da-pro"><input type="text" name="tstock_min" id="tstock_min" class="cajas-pro NUMP" placeholder="Ingrese Stock Minimo">
+                <img src="" alt=""  class="da-pro"><input type="text" name="tstock" id="tstock" class="cajas-pro NUMP" placeholder="Ingrese Stock">
                 
                 <div class="botones">
                 <input type="button" value="Nuevo" class="btn-nuevo  btn" id="bnuevo_pro">
