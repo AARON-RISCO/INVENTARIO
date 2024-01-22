@@ -51,7 +51,7 @@ if (empty($_SESSION['dni'])){
             <li class="list_item">
                 <div class="list__button">
                     <img src="img/home.svg" class="list_img">
-                    <label class="nav_link">Inicio</label >
+                    <label id="mhome" class="nav_link">Inicio</label >
                 </div>
             </li>
             
@@ -115,7 +115,7 @@ if (empty($_SESSION['dni'])){
             <li class="list_item">
                 <div class="list__button">
                     <img src="img/deudores.svg" class="list_img">
-                    <label class="nav_link">Deudores</label >
+                    <label id="mdeu" class="nav_link">Deudores</label >
                 </div>
             </li>
 
@@ -171,6 +171,13 @@ if (empty($_SESSION['dni'])){
                 </ul>
             </li>
           
+            <li class="list_item">
+                <div class="list__button">
+                    <img src="img/usuario.svg" class="list_img">
+                    <label id="musu" class="nav_link">Personal</label >
+                </div>
+            </li>
+
             <li class="list_item">
                 <div class="list__button">
                     <img src="img/salir.svg" class="list_img">
