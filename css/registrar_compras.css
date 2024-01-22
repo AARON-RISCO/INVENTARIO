@@ -82,7 +82,10 @@ body{
     margin-left: -0px;
     border: 1px solid rgba(0, 128, 0, 0.475);
     flex-direction: column;
-}   
+}  
+.añadir{
+    display: none;
+} 
 .bus{
     margin: 10px 10px 10px 10px;
     padding: 5px 10px 5px 10px;
@@ -180,4 +183,15 @@ td{
     margin: 5px;
     padding: 5px;
     cursor: pointer;
+}
+.añadir_nuevo{
+    padding: 5px 5px 5px 5px;
+    background-color: rgba(255, 255, 0, 0.792);
+    border: 0;
+    cursor: pointer;
+    margin-bottom: 10px;
+
+}
+.añadir_nuevo:hover{
+    background-color: #EAEBEF;
 }

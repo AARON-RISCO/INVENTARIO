@@ -20,6 +20,7 @@ if (empty($_SESSION['dni'])){
                 <div class="filtro">
                     <label for="">Ingrese Nombre del Producto</label>
                     <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus" placeholder="Buscar por Nombre"></div>
+                    <div class="añadir"><input type="submit" value="Añadir Nuevo Producto" class="añadir_nuevo" ></div>
                 </div>
 
                 <div id="listado"> 
@@ -45,7 +46,8 @@ if (empty($_SESSION['dni'])){
                             <tr>
                                 <th>Producto</th>
                                 <th>Sabor</th>
-                                <th>Precio</th>
+                                <th>Precio Compra</th>
+                                <th>Precio Venta</th>
                                 <th>Cantidad</th>
                                 <th>Total</th>
                                 <th>Opciones</th>

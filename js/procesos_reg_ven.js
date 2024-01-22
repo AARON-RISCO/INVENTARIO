@@ -83,7 +83,7 @@ function listar_productos(parametro){
     var es=0;
     $.ajax({
         async:true,
-        url:'php/controlador_productos.php',
+        url:'php/controlador_reg_com.php',
         type:'GET',
         data:{nombre:parametro,espa:es,opcion:'listar'},
         success: function(response){

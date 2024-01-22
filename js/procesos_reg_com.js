@@ -19,13 +19,15 @@ $(document).ready(function(){
     function listar_productos(parametro){
         $.ajax({
             async:true,
-            url:'php/controlador_productos.php',
+            url:'php/controlador_reg_com.php',
             type:'GET',
             data:{nombre:parametro,opcion:'listar'},
             success: function(response){
                 if(response=='vacio'){
+                    $('.añadir').css('display','block');
                     $('#cuerpo_tabla_productos').html('');
                 }else{
+                    $('.añadir').css('display','none');
                     var registro=JSON.parse(response);
                     var template='';
                     for(z in registro){ 
@@ -59,91 +61,94 @@ $(document).ready(function(){
         }
     })
     
-    // //listar temporal
-    // function listar_temporal() {
-    //     $.ajax({
-    //         async: true,
-    //         url: 'php/controlador_reg_ven.php',
-    //         type: 'GET',
-    //         data: { opcion: 'listar_temporal' },
-    //         success: function(response) {
-    //             if (response == 'vacio') {
-    //                 $('#cuerpo_tabla_temporal').html('');
-    //             } else {
-    //                 var registro = JSON.parse(response);
-    //                 var template = '';
-    //                 var totven = 0;
-    //                 for (z in registro) {
-    //                     totven = totven + parseFloat(registro[z].tot);
-    //                     item=registro[z].item;
-    //                     extra=registro[z].ex ;
-    //                     let fondo="";
-    
-    //                     if(extra>0){ fondo="rgb(0, 255, 255)";  }
-    //                     if(extra==0){ fondo="rgba(0, 0, 0, 0)";}
-                
-    //                     template +=
-    //                         '<tr><td>' + registro[z].nom+
-    //                         '</td><td>' + registro[z].sabor +
-    //                         '</td><td>' + registro[z].pre +
-    //                         '</td><td>' + registro[z].can +
-    //                         '</td><td>' + registro[z].ex +
-    //                         '</td><td>' + registro[z].tot +
-    //                         '</td><td id="icon"><img src="img/helado.svg" width="40" id="'+registro[z].item+'" class="color frio" data-cod="'+registro[z].item+'" style="background-color:'+fondo+';"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].item+'"></td></tr>';
-    //                         $('#ttot').val(totven);  
-    //                     }
+    //listar temporal
+    function listar_temporal() {
+        $.ajax({
+            async: true,
+            url: 'php/controlador_reg_com.php',
+            type: 'GET',
+            data: { opcion: 'listar_temporal' },
+            success: function(response) {
+                if (response == 'vacio') {
+                    $('#cuerpo_tabla_temporal').html('');
+                } else {
+                    var registro = JSON.parse(response);
+                    var template = '';
+                    var totcom = 0;
+                    for (z in registro) {
+                        totcom = totcom + parseFloat(registro[z].tot);
+                  
+                        template +=
+                            '<tr><td>' + registro[z].nom+
+                            '</td><td>' + registro[z].sabor +
+                            '</td><td>' + registro[z].pre_com +
+                            '</td><td>' + registro[z].pre_ven +
+                            '</td><td>' + registro[z].can +
+                            '</td><td>' + registro[z].tot +
+                            '</td><td id="icon"><img src="img/editar.svg" width="40" id="'+registro[z].item+'" class="color frio" data-cod="'+registro[z].item+'><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].item+'"></td></tr>';
+                            $('#ttot').val(totven);  
+                        }
                         
-    //                 $('#cuerpo_tabla_temporal').html(template);
+                    $('#cuerpo_tabla_temporal').html(template);
                     
-    //             }
-    //         }
-    //     });
-    // }
+                }
+            }
+        });
+    }
     
-    // //AÑADIR AL CARRITO
-    // $(document).on('click', '#bcarrito', function() {
-    //     const cod = $(this).data('cod');
-    //     var cantidad;
-    //     var venta;
-    //     venta = $('#cod_ven').val();
-    //     var opcion = prompt("Ingrese Cantidad", "");
+    //AÑADIR AL CARRITO
+    $(document).on('click', '#bcarrito', function() {
+        const cod = $(this).data('cod');
+        var cantidad;
+        var compra;
+        compra = $('#cod_com').val();
+        var opcion = prompt("Ingrese Cantidad", "");
+        var opcion2 = prompt("Ingrese Precio Compra", "");
     
-    //     if (opcion == null || opcion == "" || opcion == 0) {
-    //         alert('NO A IMGRESADO CANTIDAD');
-    //         return;
-    //     } else {
-    //         cantidad = opcion;
-    //     }
+        if (opcion == null || opcion == "" || opcion == 0) {
+            alert('NO A IMGRESADO CANTIDAD');
+            return;
+        } else {
+            cantidad = opcion;
+        }
+
+        if (opcion2 == null || opcion2 == "" || opcion2 == 0) {
+            alert('NO A IMGRESADO PRECIO DE COMPRA');
+            return;
+        } else {
+            pre = opcion2;
+        }
     
-    //     const datos = {
-    //         cod: cod,
-    //         opcion: 'buscar'
-    //     };
-    //     $.get('php/controlador_reg_ven.php', datos, function(response) {
-    //         registro = JSON.parse(response);
-    //         nven = venta;
-    //         codp = (registro[0].cod);
-    //         nom = (registro[0].nom);
-    //         sabor = (registro[0].sa);
-    //         can = parseInt(cantidad);
-    //         pre = (registro[0].pre);
-    //         tot = can * pre;
+        const datos = {
+            cod: cod,
+            opcion: 'buscar'
+        };
+        $.get('php/controlador_reg_com.php', datos, function(response) {
+            registro = JSON.parse(response);
+            ncom = compra;
+            codp = (registro[0].cod);
+            nom = (registro[0].nom);
+            sabor = (registro[0].sa);
+            can = parseInt(cantidad);
+            pre_com = pre;
+            pre_ven = (registro[0].pre);
+            tot = can * pre_com;
+            
+            const datos2 = {
+                com: ncom,
+                cod: codp,
+                can: can,
+                pre: pre_com,
+                tot: tot,
+                opcion: 'agregar_temporal'
+            };
+            $.get('php/controlador_reg_com.php', datos2, function(response) {
+                alert(response);
+                listar_temporal();
     
-    //         const datos2 = {
-    //             ven: nven,
-    //             cod: codp,
-    //             can: can,
-    //             pre: pre,
-    //             tot: tot,
-    //             opcion: 'agregar_temporal'
-    //         };
-    //         $.get('php/controlador_reg_ven.php', datos2, function(response) {
-    //             alert(response);
-    //             listar_temporal();
-    
-    //         });
-    //     });
-    // });
+            });
+        });
+    });
     
     // //Eliminar producto de la temporal
     // $(document).on('click', '#bir', function() {
