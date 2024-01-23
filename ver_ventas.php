@@ -56,11 +56,36 @@
         
     </div>
     <div id="caja_modal_vventas" class="caja_modal_vventas">
+        <table >
+            <caption><b class=iddv ></b> <input type="text" name="ttes" id="ttes"></caption>
+            <thead>
+                <tr>
+                    <th>CANT.</th>
+                    <th>PROD.</th>
+                    <th>PRE.U</th>
+                    <th>ICE</th>
+                    <th>TOT.</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo_tabla_vdventa">
+                
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan=4>TOTAL DE LA VENTA</td>
+                    <td><input type="text" name="ttdv" id="ttdv"></td>
+                </tr>
+            </tfoot>
+        </table>
         <p id="namuni" class="msjmuni"> </p>
-        <button id="bacun" class="botoun bosu"> ACEPTAR</button>   
-        <button id="bcaun"class="botoun2 bosu"> CANCELAR</button>
-        <input type="hidden" name="" id="idunim">
-        <input type="hidden" name="" id="estunimod">
+        <div id="conteiner-boto" class="conteiner-boto">
+            <button id="bacvv" class="botovv bosv"> PAGAR DEUDA</button>   
+            <button id="bcavv"class="botovv2 bosv"> CERRAR DETALLE</button>
+        </div>
+        
+        <input type="hidden" name="" id="tdeu">
+        <input type="hidden" name="" id="teve">
+        <input type="hidden" name="" id="tnee">
     </div>
     
 </body>

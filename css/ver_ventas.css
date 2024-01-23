@@ -35,10 +35,10 @@
 .caja_modal_vventas{
     position: absolute;
     background-color: #EAEBEF;
-    height: 200px;
-    width: 380px;
+    height: auto;
+    width: 45%;
     text-align: center;
-    padding: 30px 0 0 0;
+    padding: 25px;
     margin-top: -90%;
     transition: 0.5s;
 }
@@ -72,6 +72,9 @@
     max-height: 500px;
    
 }
+caption{
+    padding-bottom: 20px;
+}
 table{
     width: 100%;
     margin-top: 10px;
@@ -90,4 +93,57 @@ td{
   background-color: white;
   padding: 8px;
   border-bottom: 1px solid green;
+}
+#ttdv{
+    border: none;
+    width: 60px;
+    text-align: center;
+    outline: none;
+}
+#bir{
+    background-color: rgba(40, 142, 174, 0.371);
+    padding: 5px;
+}
+#bir:hover{
+    background-color: rgb(40, 143, 174);
+}
+#bmod{
+    background-color: rgba(87, 187, 76, 0.352);
+    padding: 5px;
+}
+#bmod:hover{
+    background-color: rgb(87, 187, 76);
+}
+
+#conteiner-boto{
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px -50px !important;
+}
+#bcavv{
+    width: 48%;
+    background-color: rgb(224, 60, 35);
+}
+
+#bcavv:hover{
+    background-color: rgba(224, 60, 35, 0.434);
+}
+
+#bacvv{
+    background-color: rgb(54, 224, 35);
+    width: 48%;
+}
+
+#bacvv:hover{
+    background-color: rgba(54, 224, 35, 0.396);
+}
+#ttes{
+    text-align: right;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width:250px;
 }
