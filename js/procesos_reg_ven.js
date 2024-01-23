@@ -348,6 +348,7 @@ $(document).on('click', '#bguardar_ven', function () {
         };
         $.get('php/controlador_reg_ven.php', datos, function (response) {
             listar_temporal();
+            numerodeventa();
         });
 
         });
