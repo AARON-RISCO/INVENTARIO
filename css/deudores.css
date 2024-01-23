@@ -25,7 +25,7 @@
     border-radius: 4px;
     padding: 20px;
 }
-.filtros{
+.filtros_deudores{
     display: flex;
     text-align: center;
     justify-content: center;
@@ -34,26 +34,20 @@
     margin-left: -0px;
     border: 1px solid rgba(0, 128, 0, 0.475);
     height: 100%;
+    flex-direction: row;
 }
-.buscar{
+.buscar_deudores{
     width: 30%;
     height: 100%;
     margin: 14px;
     border: 0px;
-    background-color: red;
-}
-.fil{
-    position: absolute;
-    right: 35%;
-    background-color: white;
-    top:15%;
-    padding: 0px 15px 0px 15px;
+    /* background-color: red; */
 }
 .bus{
     padding: 5px 10px 5px 10px;
     width: 100%;
 }
-table{
+table, #detalle{
     width: 100%;
     margin-top: 10px;
     font-family: 'Gruppo', sans-serif;
@@ -72,6 +66,19 @@ td{
   padding: 8px;
   border-bottom: 1px solid green;
 }
+
+#detalle th{
+  background-color: green;
+  padding: 8px;
+  border-radius: 2px;
+  color: white;
+  font-family: 'Gruppo', sans-serif;
+}
+#detalle td{
+  background-color: white;
+  padding: 20px;
+  border-bottom: 1px solid rgb(128, 0, 0);
+}
 .amarillo{
     background-color: rgba(0, 255, 255, 0.314); 
 }
@@ -84,12 +91,34 @@ td{
 .rojo:hover{ 
     background-color: yellow;  
 }
+#bpagar{
+    background-color: rgba(0, 128, 0, 0.344); 
+    padding: 4px 5px 4px 5px;
+    cursor: pointer;
+    margin: 2px 2px 2px 2px;
+}
+#bpagar:hover{
+    background-color:green; 
+    color: white;
+}
+#bver{ 
+    background-color: rgba(255, 242, 0, 0.342);
+    padding: 4px 5px 4px 5px;
+    cursor: pointer;
+    margin: 2px 2px 2px 2px;
+}
+#bver:hover{ 
+    background-color: yellow;  
+}
 
 .color{
     width: 30px;
     height: 30px;
     margin: 5px;
     padding: 5px;
+    cursor: pointer;
+}
+#todos_deudores{
     cursor: pointer;
 }
 .cajas-pro{
@@ -148,6 +177,9 @@ display: none;
 .btn-cancelar{
     background-color: rgb(217, 6, 6);
     color: white;
+    display: none;
+}
+.esconder{
     display: none;
 }
 
