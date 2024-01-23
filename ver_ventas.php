@@ -17,8 +17,9 @@
                         <legend>Información Personal</legend>
                         <div class="buscar_vventas">
                             <select name="tdesav" id="tdesav" class="bus_vventas" > 
-                                <option value="0">PROD. HABILITADOS</option>
-                                <option value="1">PROD. DESHABILITADOS</option>
+                                <option value="0">SELECCIONA ESTADO VENTA</option>
+                                <option value="0">PAGADO</option>
+                                <option value="1">PENDIENTE</option>
                             </select>
                         </div> 
                         <div class="buscar_vventas"><input type="text" name="bus_nom" id="bus_nom" class="bus_vventas MTU" placeholder="Buscar por Nombre"></div>

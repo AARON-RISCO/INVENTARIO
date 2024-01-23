@@ -1,15 +1,15 @@
 $(document).ready(function(){
-    listar_ventas();
+    listar_ventas($("#tdesav").val());
     function listar_ventas(est){
-        if(est=null){
-            est=$("#tdesav").val();
-        }
+        
+        console.log(est);
         $.ajax({
             async:true,
             type:"GET",
             url:"php/controlador_vventas.php",
             data:{esta:est,opcion:"listar"},
             success:function(response){
+                console.log(response)
                 if(response=='vacio'){
                     $('#cuerpo_tabla_vventas').html('');
                 }else{
