@@ -310,13 +310,19 @@ $(document).on('click', '#bguardar_ven', function () {
         return;
     }
 
+    if(estado==1){
+        var deuda=0;
+    }else if(estado==2){
+        var deuda=neto;
+    }
+
     // Validar si hay productos en la tabla temporal
     if ($('#cuerpo_tabla_temporal tr').length === 0) {
         alert('NO SE PUEDE REGISTRAR LA VENTA SIN PRODUCTOS');
         return;
     }
 
-    const datos = {
+    const datos = { 
         cod: cod_ven,
         fecha: $('#fecha').val(),
         dni_per: $('#dni_per').val(),
@@ -324,6 +330,7 @@ $(document).on('click', '#bguardar_ven', function () {
         estado: estado,
         deudor: deudores,
         neto: neto,
+        deuda: deuda,
         opcion: 'agregar_venta'
     };
 

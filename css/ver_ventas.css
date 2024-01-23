@@ -66,6 +66,12 @@
     padding: 5px 10px 5px 10px;
     width: 100%;
 }
+.conteiner_tab{
+    width: 98%;
+    overflow: auto;
+    max-height: 500px;
+   
+}
 table{
     width: 100%;
     margin-top: 10px;

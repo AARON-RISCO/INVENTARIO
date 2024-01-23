@@ -195,10 +195,11 @@ if($opcion=="agregar_venta"){
     $est=$_GET['estado'];
     $deu=$_GET['deudor'];
     $neto=$_GET['neto'];
+    $deuda=$_GET['deuda'];
 
     //Insertar a cabecera
     $agregar="insert into venta 
-    values('$cod','$fech','$cli','$per',$est,$deu,$neto)";
+    values('$cod','$fech','$cli','$per',$est,$deu,$neto,$deuda)";
     mysqli_query($cnn,$agregar)or die("Error en agregar Venta");
     echo "Venta registrada correctamente";
 

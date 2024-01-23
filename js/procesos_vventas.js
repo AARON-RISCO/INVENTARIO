@@ -17,11 +17,11 @@ $(document).ready(function(){
                     var template='';
                     for(z in registro){
                         
-                        var est=registro[z].esc;
+                        var est=registro[z].estd;
                         var el=""; var ac="";
 
-                        if(est==0){ var esta="none"; el="block";  ac="none"; }
-                        if(est==1){ var esta="rgba(255, 0, 0, 0.31)";el="none"; ac="block";}
+                        if(est==1){ var esta="none"; el="block";  ac="block"; }
+                        if(est==2){ var esta="rgba(255, 0, 0, 0.31)";el="none"; ac="block";}
 
                         template+=
                         '<tr><td>'+registro[z].cod+
@@ -29,7 +29,7 @@ $(document).ready(function(){
                         '</td><td>'+registro[z].fec+
                         '</td><td>'+registro[z].nomp+
                         '</td><td>'+registro[z].estd+
-                        '</td><td id="icon" style="display:flex; justify-content: center;"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" style="display:'+el+';" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                        '</td><td id="icon" style="display:flex; justify-content: center;"><img src="img/editar.svg" width="30" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" style="display:'+el+';" width="30" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
                     $('#cuerpo_tabla_vventas').html(template);
 
