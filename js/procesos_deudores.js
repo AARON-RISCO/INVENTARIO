@@ -26,7 +26,7 @@ $(document).ready(function(){
                         '<tr><td>'+registro[z].nom+
                         '</td><td>'+registro[z].ape+  
                         '</td><td>'+registro[z].deu+   
-                        '</td><td id="icon"><img src="img/pagar.svg" class="color amarillo bpagar" id="'+registro[z].nom+" "+registro[z].ape+'" data-cod="'+registro[z].cod+'" alt="Pagar"><img src="img/editar.svg" class="color rojo" id="bmod" data-cod="'+registro[z].cod+'"></td></tr>';
+                        '</td><td id="icon"><img src="img/pagar.svg" class="color amarillo bpagar" id="'+registro[z].nom+" "+registro[z].ape+'" data-cod="'+registro[z].cod+'" alt="Pagar"></td></tr>';
                     }
                     $('#cuerpo_tabla_deudores').html(template);
                     

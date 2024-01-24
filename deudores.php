@@ -51,25 +51,13 @@
                                     
                                 </tbody>
                             </table>
+                            <input type="text" class="oculto2 esconder">
+                            <input type="text" class="oculto esconder">
                         </div> 
                     </div>
         </div>    
         </div>
         
-       <div class="mantenimiento">
-                <label>Mantenimiento Deudores</label><br>
-                <img src="" alt=""  class="da-pro"><input type="text" name="tnom_deu" id="tnom_deu" class="cajas-pro MAYP" placeholder="Ingrese nombre">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tape_deu" id="tape_deu" class="cajas-pro MAYP" placeholder="Ingrese Apellidos">
-                <input type="text" class="oculto2 esconder">
-                <input type="text" class="oculto esconder">
-                <div class="botones">
-                <input type="button" value="Nuevo" class="btn-nuevo  btn" id="bnuevo_deu">
-                <input type="button" value="Guardar" class="btn-guardar btn" id="bguardar_deu">
-                <input type="button" value="Actualizar" class="btn-modificar btn" id="bmodificar_deu">
-                <input type="button" value="Cancelar" class="btn-cancelar btn" id="bcancelar_deu">
-                </div>
-                
-       </div> 
     </div>
 </body>
 </html>

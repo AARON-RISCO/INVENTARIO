@@ -12,19 +12,12 @@
 .listado{
     background-color: rgb(251, 250, 250);
     margin: 15px;
-    width: 70%;
+    width: 100%;
     border-radius: 4px;
     padding: 20px;
     height: 85vh;
 }
-.mantenimiento{
-    background-color: rgb(251, 250, 250);
-    margin: 15px;
-    width: 30%;
-    height: 250px;
-    border-radius: 4px;
-    padding: 20px;
-}
+
 .filtros_deudores{
     display: flex;
     text-align: center;
@@ -85,12 +78,7 @@ td{
 .amarillo:hover{
     background-color: rgb(0, 255, 255); 
 }
-.rojo{ 
-    background-color: rgba(255, 242, 0, 0.342)
-}
-.rojo:hover{ 
-    background-color: yellow;  
-}
+
 #bpagar{
     background-color: rgba(0, 128, 0, 0.344); 
     padding: 4px 5px 4px 5px;
@@ -144,41 +132,7 @@ td{
     margin-top: 10px;
     cursor: pointer;
 }
-.botones{
-    display: flex;
-    gap:15px;
-    width: 100%;
-    height: 10%;
-    justify-content: center;
-    align-items: center;
-}
 
-.btn{
-    padding: 8px 15px 8px 15px;
-    width: 150px;
-    border: 0px;
-    cursor: pointer;
-    margin-top: 50px;
-}
-.btn-nuevo{
-    background-color: rgb(13, 189, 189);
-    color: black;
-}
-.btn-guardar{
-background-color: rgb(1, 163, 1);
-color: white;
-display: none;
-}
-.btn-modificar{
-    background-color: rgb(221, 221, 4);
-   color: black;
-   display: none;
-}
-.btn-cancelar{
-    background-color: rgb(217, 6, 6);
-    color: white;
-    display: none;
-}
 .esconder{
     display: none;
 }
