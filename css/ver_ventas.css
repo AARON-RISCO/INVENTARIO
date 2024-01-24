@@ -48,7 +48,7 @@
     display: flex;
     text-align: center;
     justify-content: center;
-    width: 100%;
+    width: 98%;
     margin: 10px;
     margin-left: -0px;
     border: 1px solid rgba(0, 128, 0, 0.475);
@@ -146,4 +146,10 @@ td{
     background-color: transparent;
     outline: none;
     width:250px;
+}
+.uni{
+    display: none;
+}
+.uni2{
+    display: none;
 }

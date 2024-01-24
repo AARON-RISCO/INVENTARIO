@@ -1,15 +1,18 @@
 $(document).ready(function(){
     listar_ventas($("#tdesav").val());
-    function listar_ventas(est){
-        
-        console.log(est);
+    function listar_ventas(est,name,fe1,fe2){
+        // console.log(name)
+        if(name==undefined){
+            name="";
+        }
+        console.log(fe1+"----"+fe2);
         $.ajax({
             async:true,
             type:"GET",
             url:"php/controlador_vventas.php",
-            data:{esta:est,opcion:"listar"},
+            data:{esta:est,name:name,fe1:fe1,fe2:fe2,opcion:"listar"},
             success:function(response){
-                // console.log(response)
+                console.log(response);
                 if(response=='vacio'){
                     $('#cuerpo_tabla_vventas').html('');
                 }else{
@@ -43,6 +46,49 @@ $(document).ready(function(){
 
     }
 
+    // codigo para filtrar por estado de venta
+    $(document).on('input','#tdesav',function(){
+        var valor=$(this).val();
+        listar_ventas(valor,'');
+    })
+
+    //codigo para ver el tipo de filtro que desea hacer :v 
+    $(document).on('change','#ttfil',function(){
+        var valor=$(this).val();
+        console.log(valor);
+        if(valor==1){
+            $(".uni").css("display","none");
+            $(".uni2").css("display","block"); 
+            $('#bus_fec').val(''); 
+            $('#bus_fec2').val(''); 
+            
+        }
+        if(valor==2){
+            $(".uni2").css("display","none");
+            $('#bus_nom').val('');
+            $(".uni").css("display","block");
+            
+        }
+        listar_ventas($("#tdesav").val());
+    })
+
+    // codigo para filtrar por nombre
+    $(document).on('keyup','#bus_nom',function(){
+        var valor=$(this).val();
+        listar_ventas($("#tdesav").val(),valor)
+    })
+
+    // codigo para manejar la validacion de fechas
+    $(document).on('change', '#bus_fec, #bus_fec2', function() {
+        var fechai = $('#bus_fec').val();
+        var fechaf = $('#bus_fec2').val();
+    
+        if (fechaf.length > 0 && fechai.length > 0 && fechai <= fechaf) {
+            listar_ventas($("#tdesav").val(), '', fechai, fechaf);
+        } else {
+            listar_ventas($("#tdesav").val());
+        }
+    });
 
     // codigo para el manejo de ver detalle de venta
 

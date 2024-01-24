@@ -17,14 +17,21 @@
                         <legend>Información Personal</legend>
                         <div class="buscar_vventas">
                             <select name="tdesav" id="tdesav" class="bus_vventas" > 
-                                <option value="3">SELECCIONA ESTADO VENTA</option>
+                                <option value="0">SELECCIONA ESTADO VENTA</option>
                                 <option value="1">PAGADO</option>
                                 <option value="2">PENDIENTE</option>
                             </select>
                         </div> 
-                        <div class="buscar_vventas"><input type="text" name="bus_nom" id="bus_nom" class="bus_vventas MTU" placeholder="Buscar por Nombre"></div>
-                        <div class="buscar_vventas"><input type="date" name="bus_date" id="bus_fec" class="bus_vventas MTU" ></div>
-                        <div class="buscar_vventas"><input type="date" name="bus_date2" id="bus_fec2" class="bus_vventas MTU" ></div>
+                        <div class="buscar_vventas">
+                            <select name="ttfil" id="ttfil" class="bus_vventas" > 
+                                <option value="0">SELECCIONA TIPO DE FILTRO</option>
+                                <option value="1">POR NOMBRE</option>
+                                <option value="2">POR FECHA</option>
+                            </select>
+                        </div> 
+                        <div class="buscar_vventas uni2"><input type="text" name="bus_nom" id="bus_nom" class="bus_vventas MTU" placeholder="Buscar por Nombre"></div>
+                        <div class="buscar_vventas uni"><input type="date" name="bus_date" id="bus_fec" class="bus_vventas MTU" ></div>
+                        <div class="buscar_vventas uni"><input type="date" name="bus_date2" id="bus_fec2" class="bus_vventas MTU" ></div>
 
                     </fieldset>
                     <div id="listado"> 

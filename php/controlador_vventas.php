@@ -3,14 +3,51 @@ include("../conexion/conexion.php");
 $opcion=$_GET['opcion'];
 if($opcion=="listar"){
     $est=$_GET['esta'];
-    if($_GET['esta']==3){
+    $name=$_GET['name'];
+    // $fei=$_GET['fe1'];
+    // $fef=$_GET['fe2'];
+    if($est > 0 && isset($_GET['fe1']) && isset($_GET['fe2'])){
+        $fei=$_GET['fe1'];
+        $fef=$_GET['fe2'];
+        $con_listar_v="SELECT t1.*,t2.ape_cli,t2.nom_cli,t3.ape_per,t3.nom_per, t4.nom_deudor,t4.apellidos_deudor
+        FROM venta as t1 , cliente as t2, personal as t3, deudores as t4
+        WHERE t1.fecha_venta BETWEEN (? and ?)  and t1.estado=? and t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY t1.id_venta ASC";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar_v);
+        mysqli_stmt_bind_param($stmt, 'ssi' ,$fei,$fef,$est);
+        mysqli_stmt_execute($stmt);
+
+        $res = mysqli_stmt_get_result($stmt);
+
+    }else if($est==0 && isset($_GET['fe1']) && isset($_GET['fe2'])){
+        $fei=$_GET['fe1'];
+        $fef=$_GET['fe2'];
+        $con_listar_v="SELECT t1.*,t2.ape_cli,t2.nom_cli,t3.ape_per,t3.nom_per, t4.nom_deudor,t4.apellidos_deudor
+        FROM venta as t1 , cliente as t2, personal as t3, deudores as t4
+        WHERE t1.fecha_venta BETWEEN (? and ?)  and t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY t1.id_venta ASC";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar_v);
+        mysqli_stmt_bind_param($stmt, 'ss' ,$fei,$fef);
+        mysqli_stmt_execute($stmt);
+
+        $res = mysqli_stmt_get_result($stmt);
+
+
+    }else if($est > 0 && isset($name)){
         $con_listar_v="SELECT t1.*,t2.ape_cli,t2.nom_cli,t3.ape_per,t3.nom_per, t4.nom_deudor,t4.apellidos_deudor
                    FROM venta as t1 , cliente as t2, personal as t3, deudores as t4
-                   WHERE  t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY id_venta ASC";
-        $res=mysqli_query($cnn,$con_listar_v);
+                   WHERE t2.nom_cli LIKE CONCAT(?, '%')  AND t1.estado=? and t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY id_venta ASC";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar_v);
+        mysqli_stmt_bind_param($stmt, 'si' ,$name,$est);
+        mysqli_stmt_execute($stmt);
+
+        $res = mysqli_stmt_get_result($stmt);
         
-        
-    }else if($_GET['esta']==1 || $_GET['esta']==2){
+    }else if($est > 0 && $name==""){
         $con_listar_v="SELECT t1.*,t2.ape_cli,t2.nom_cli,t3.ape_per,t3.nom_per, t4.nom_deudor,t4.apellidos_deudor
                    FROM venta as t1 , cliente as t2, personal as t3, deudores as t4
                    WHERE t1.estado=? and t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY id_venta ASC";
@@ -22,7 +59,29 @@ if($opcion=="listar"){
 
         $res = mysqli_stmt_get_result($stmt);
         
+    }else if($est == 0 && isset($name)){
+        $con_listar_v="SELECT t1.*,t2.ape_cli,t2.nom_cli,t3.ape_per,t3.nom_per, t4.nom_deudor,t4.apellidos_deudor
+                   FROM venta as t1 , cliente as t2, personal as t3, deudores as t4
+                   WHERE t2.nom_cli LIKE CONCAT(?, '%')  and t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY id_venta ASC";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar_v);
+        mysqli_stmt_bind_param($stmt, 's' ,$name);
+        mysqli_stmt_execute($stmt);
+
+        $res = mysqli_stmt_get_result($stmt);
+        
     }
+    else{
+        $con_listar_v="SELECT t1.*,t2.ape_cli,t2.nom_cli,t3.ape_per,t3.nom_per, t4.nom_deudor,t4.apellidos_deudor
+                   FROM venta as t1 , cliente as t2, personal as t3, deudores as t4
+                   WHERE  t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY id_venta ASC";
+        $res=mysqli_query($cnn,$con_listar_v);
+        
+        
+    }
+    
+    
     $num = mysqli_num_rows($res);
 
     
