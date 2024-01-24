@@ -136,6 +136,31 @@ td{
 .esconder{
     display: none;
 }
+.sombra_modal_vventas{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.478);
+    position: fixed; 
+    display:none;
+}
+.caja_modal_vventas{
+    position: absolute;
+    background-color: #EAEBEF;
+    height: auto;
+    width: 45%;
+    text-align: center;
+    padding: 25px;
+    margin-top: -90%;
+    transition: 0.5s;
+}
+#namuni{
+    width: auto;
+    height: auto;
+    display: block;
+}
+
 
 
 

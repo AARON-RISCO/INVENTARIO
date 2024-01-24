@@ -202,6 +202,59 @@ $(document).ready(function(){
         return regex.test(valor);
     }
 
+    // boton para cerrar la ventana modal de ver ventas
+    $(document).on('click','#bcavv',function(){
+        $('#sombra_modal_vventas').css("display","none");
+        $('#caja_modal_vventas').css("margin-top","-90%");
+        
+    });
+
+    $(document).on('click','#bver',function(){
+        $('#sombra_modal_vventas').css("display","block");
+        $('#caja_modal_vventas').css("margin-top","-25%");
+        $('#bacvv').css("display","none");
+        const codi = $(this).data('cod');
+        // console.log(codi)
+        $(".iddv").html( "DETALLE DE LA VENTA N°: "+codi);
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_vventas.php",
+            data:{
+                cod:codi,
+                opcion:"listar_detalle"
+            },
+            success:function(respon){
+                if(respon=='vacio'){
+                    $('#cuerpo_tabla_vdventa').html('');
+                }else{
+                    var registro=JSON.parse(respon);
+                    $('#ttdv').html("S/. "+registro[0].neto);
+                    var template='';
+                    for(z in registro){
+                        
+                        var est=registro[z].icev;
+                        // var el=""; var ac="";
+                        var nomest;
+
+                        if(est==0){  nomest="NO"}
+                        if(est>0){  nomest="SI"}
+
+                        template+=
+                        '<tr><td>'+registro[z].cant+
+                        '</td><td>'+registro[z].nopr+
+                        '</td><td>S/. '+registro[z].prec+
+                        '</td><td>'+nomest+
+                        '</td><td>S/. '+registro[z].totv+
+                        '</td></tr>';
+                    }
+                    $('#cuerpo_tabla_vdventa').html(template);
+
+                }
+            }
+        });
+        // alert("funciona ver ");
+    });
 
 
     // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS

@@ -59,5 +59,40 @@
         </div>
         
     </div>
+    <div id="sombra_modal_vventas" class="sombra_modal_vventas">
+        
+        </div>
+        <div id="caja_modal_vventas" class="caja_modal_vventas">
+            <table >
+                <caption><b class="iddv" ></b> </caption>
+                <thead>
+                    <tr>
+                        <th>CANT.</th>
+                        <th>PROD.</th>
+                        <th>PRE.U</th>
+                        <th>ICE</th>
+                        <th>TOT.</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo_tabla_vdventa">
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan=4>TOTAL DE LA VENTA</td>
+                        <td><label id="ttdv" class="ttdv"></label></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <p id="namuni" class="msjmuni"> </p>
+
+            <div id="conteiner-boto" class="conteiner-boto">  
+                <button id="bcavv"class="botovv2 bosv"> CERRAR DETALLE</button>
+            </div>
+            
+            <input type="hidden" name="" id="tdeu">
+            <input type="hidden" name="" id="teve">
+            <input type="hidden" name="" id="tnee">
+        </div>
 </body>
 </html>
