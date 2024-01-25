@@ -83,9 +83,10 @@ $(document).ready(function(){
     
         if (fechaf.length > 0 && fechai.length > 0 && fechai <= fechaf) {
             listar_ventas('',fechai,fechaf);
-            console.log(fechai+" ---"+fechaf);
+            // console.log(fechai+" ---"+fechaf);
         } else {
             listar_ventas('');
+            $('#bus_fec2').val('');
         }
     });
 

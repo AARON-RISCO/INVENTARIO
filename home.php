@@ -105,7 +105,7 @@ if (empty($_SESSION['dni'])){
                     </li>
 
                     <li class="list_inside">
-                        <label id="mrcom" class="nav_link nav_link--inside">Ver compras</label >
+                        <label id="mvcom" class="nav_link nav_link--inside">Ver compras</label >
                     </li>
                 </ul>
             </li>
