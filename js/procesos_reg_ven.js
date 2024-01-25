@@ -50,7 +50,7 @@ function EstadoVenta(){
     } else if (estado > 1) {
         $('.debe').css('display','block');
         $('#ttipo_pago').css('pointer-events','none');
-        $('#ttipo_pago').val(3);
+        $('#ttipo_pago').val("PENDIENTE");
         $.ajax({
             async:true,
             type: "GET",
@@ -201,7 +201,7 @@ $(document).on('click', '#bcarrito', function() {
                 sabor = (registro[0].sa);
                 can = parseInt(cantidad);
                 pre = (registro[0].precio_promo);
-                tot = can * pre;
+                tot = pre;
                 
                 const datos2 = {
                     ven: nven,
@@ -245,7 +245,6 @@ $(document).on('click', '#bcarrito', function() {
     });
 });
 
-//Eliminar producto de la temporal
 $(document).on('click', '#bir', function() {
     const cod = $(this).data('cod');
     const datos={
@@ -328,6 +327,7 @@ $(document).on('click', '#bguardar_ven', function () {
         dni_per: $('#dni_per').val(),
         dni_cli: $('#dni').val(),
         estado: estado,
+        tipo: tipo,
         deudor: deudores,
         neto: neto,
         deuda: deuda,
@@ -336,6 +336,7 @@ $(document).on('click', '#bguardar_ven', function () {
 
     $.get('php/controlador_reg_ven.php', datos, function (response) {
         alert(response);
+        console.log(response);
         $("#est_pago").val(0);
         $("#ttipo_pago").val(0);
         $("#ttot").val('');

@@ -230,6 +230,7 @@ $(document).ready(function(){
                 }else{
                     var registro=JSON.parse(respon);
                     $('#ttdv').html("S/. "+registro[0].neto);
+
                     var template='';
                     for(z in registro){
                         

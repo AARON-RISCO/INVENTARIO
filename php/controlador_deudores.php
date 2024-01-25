@@ -89,6 +89,7 @@ if ($opcion == "buscar_deuda") {
 if ($opcion == "pagar") {
     $cod = $_GET['cod'];
     $pago = $_GET['pago'];
+
     $pagar="UPDATE venta SET deuda= deuda - $pago  WHERE id_venta='$cod'";
     mysqli_query($cnn,$pagar)or die("Error en Pagar");
     echo "Pagado Correctamente";
@@ -102,59 +103,9 @@ if ($opcion == "pagar") {
 
     if ($deuda_actualizada == 0) {
         // La deuda es igual o menor que 0, actualizar el estado a 1
-        $actualizar_estado = "UPDATE venta SET estado = 1, id_deudor = 1  WHERE id_venta = '$cod'";
+        $actualizar_estado = "UPDATE venta SET estado = 1, id_deudor = 1, tipo_pago = 'EFECTIVO'  WHERE id_venta = '$cod'";
         mysqli_query($cnn, $actualizar_estado) or die("Error al actualizar estado");
     }
 }
-
-
-// //agregar nuevo categoria
-// if($opcion=="agregar"){
-//         $nom=$_GET['nom'];
-//         $agregar="insert into categoria
-//         values(' ', '$nom',' ')";
-//         mysqli_query($cnn,$agregar)or die("Error en registrar categoria");
-//         echo "Categoria registrada correctamente";
-// }
-    
-// //buscar categoria a modificar
-// if($opcion=="buscar"){
-//     $cod=$_GET['cod'];
-//     $buscar="SELECT* FROM categoria WHERE id_cat='$cod'";
-//     $res=mysqli_query($cnn,$buscar);
-//     $num=mysqli_num_rows($res);
-//     while($f=mysqli_fetch_array($res)){
-//             $json[]=array(
-//                 "cod"=>$f['id_cat'],
-//                 "nom"=>$f['nom_cat'],
-//                 "esc"=>$f['estado']
-//             );}
-//     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
-//     echo $jsonresponse;
-// }
-    
-    
-//     //Actualizar categoria
-//     if($opcion=="actualizar"){
-//         $cod=$_GET['cod'];
-//         $nom=$_GET['nom'];
-//         $modificar="update categoria set nom_cat='$nom' where id_cat='$cod'";
-//         mysqli_query($cnn,$modificar)or die("Error en modificar categoria");
-//         echo "Categoria Actualizado";
-//     }
-//     if($opcion=="deshabilitar"){
-//         $code=$_GET['code'];
-//         $esta=$_GET['esta'];
-//         if($esta==1){
-//             $modificarc="update categoria set estado=0 where id_cat='$code'";
-//             $msj="CATEGORIA HABILITADA CORRECTAMENTE";
-//         }elseif($esta==0){
-//             $modificarc="update categoria set estado=1 where id_cat='$code'";
-//             $msj="CATEGORIA DESHABILITADA CORRECTAMENTE";
-//         }
-
-//         mysqli_query($cnn,$modificarc)or die("Error en modificar categoria");
-//         echo $msj;
-//     }
 
 ?>

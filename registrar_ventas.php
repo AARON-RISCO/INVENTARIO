@@ -31,9 +31,9 @@ if (empty($_SESSION['dni'])){
             </select>
             <select name="" id="ttipo_pago" class="cajas_ven">
                 <option value="0">SELECCCIONE TIPO DE PAGO</option>
-                <option value="1">EFECTIVO</option>
-                <option value="2">YAPE</option>
-                <option value="3">PENDIENTE</option>
+                <option value="EFECTIVO">EFECTIVO</option>
+                <option value="YAPE">YAPE</option>
+                <option value="PENDIENTE">PENDIENTE</option>
             </select>
             <div class="debe">
             <select name="" id="tdeudores"></select><img src="img/agregar.png" class="reg_deudores"> 
