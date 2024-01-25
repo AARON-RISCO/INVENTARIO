@@ -20,7 +20,7 @@ if (empty($_SESSION['dni'])){
                 <div class="filtro">
                     <label for="">Ingrese Nombre del Producto</label>
                     <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus" placeholder="Buscar por Nombre"></div>
-                    <div class="añadir"><input type="submit" value="Añadir Nuevo Producto" class="añadir_nuevo" ></div>
+                    <div class="añadir"><input type="submit" value="Añadir Nuevo Producto" class="añadir_nuevo" id="nuevo_pro"></div>
                 </div>
 
                 <div id="listado"> 
@@ -78,15 +78,20 @@ if (empty($_SESSION['dni'])){
 
         </div>
         
-    <!-- Registrar nuevo deudor -->
-    <!-- <div class="fondo"></div> -->
-    <!--Ventana modal de agregar nuevo deudor-->
-    <!-- <div class="modal">
+    <!--Registrar nuevo producto -->
+    <div class="fondo"></div>
+    <!--Ventana modal de agregar nuevo producto-->
+    <div class="modal">
         <img src="img/cerrar2.svg" alt="" class="cerrar_modal">
-        <label>Agregar nuevo deudor</label><br>
-        <input type="text" name="tnom_cat" id="tnom_cat" class="cajas_modal" placeholder="Ingrese Nombres"><br>
-        <input type="text" name="tnom_cat" id="tnom_cat" class="cajas_modal" placeholder="Ingrese Apellidos"><br>
-        <input type="button" value="Guardar" id="bguardar_deudor">
-    </div> -->
+        <label>Registrar Nuevo deudor</label><br>
+        <select name="tcat" id="tcat" class="cajas-modal"></select></select><div id="ir_cat" class="ir_cat ir"> <img src="img/agregar.png" id="icon-suma" ></div>
+        <input type="text" id="tnom" class="cajas_modal" placeholder="Ingrese nombre">
+        <input type="text" id="tsa" class="cajas_modal" placeholder="Ingrese sabor">
+        <input type="text" id="tpre" class="cajas_modal" placeholder="Ingrese precio de venta">        
+        <div class="botones">
+        <input type="button" value="Guardar" class="btn-guardar btn" id="bguardar_pro">
+        </div>
+
+    </div>
 </body>
 </html>

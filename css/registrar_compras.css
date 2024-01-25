@@ -150,12 +150,18 @@ td{
 .modal{
     position: absolute;
     background-color: #EAEBEF;
-    height: 250px;
+    height: 400px;
     width: 380px;
     text-align: center;
     padding: 30px 0 0 0;
     margin-top: -90%;
     transition: 0.5s;
+}
+.cerrar_modal{
+    position: absolute;
+    margin-left: 67%;
+    top: 5px;
+    cursor: pointer;
 }
 .cajas_modal{
     margin: 15px 20px 15px 20px;
@@ -164,7 +170,32 @@ td{
     background-color: white;
     border: 0;
     text-align: center;
-    
+}
+#tcat{
+    margin: 15px 0px 15px 20px;
+    padding: 5px 10px 5px 10px;
+    width: 75%;
+    background-color: white;
+    border: 0;
+    text-align: center;
+}
+
+.ir{
+    width: 8%;
+    height:35px;
+    margin-right: 25px;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#icon-suma{
+    width: 27px;
+    height: 27px;
 }
 
 #bcarrito{
