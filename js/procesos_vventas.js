@@ -1,18 +1,14 @@
 $(document).ready(function(){
-    listar_ventas($("#tdesav").val());
-    function listar_ventas(est,name,fe1,fe2){
-        // console.log(name)
-        if(name==undefined){
-            name="";
-        }
-        console.log(fe1+"----"+fe2);
+    listar_ventas('');
+    function listar_ventas(est,name,fe1){
+        
         $.ajax({
             async:true,
             type:"GET",
             url:"php/controlador_vventas.php",
-            data:{esta:est,name:name,fe1:fe1,fe2:fe2,opcion:"listar"},
+            data:{esta:est,name:name,fe1:fe1,opcion:"listar"},
             success:function(response){
-                console.log(response);
+                // console.log(response);
                 if(response=='vacio'){
                     $('#cuerpo_tabla_vventas').html('');
                 }else{
@@ -24,16 +20,16 @@ $(document).ready(function(){
                         var el=""; var ac="";
                         var nomest;
 
-                        if(est==1){ el="none"; ac="block"; nomest="PAGADO"}
-                        if(est==2){ el="block";  ac="none"; nomest="PENDIENTE"}
+                        if(est==1){ el="green"; ac="block"; nomest="PAGADO"}
+                        if(est==2){ el="red";  ac="block"; nomest="PENDIENTE"}
 
                         template+=
                         '<tr><td>'+registro[z].cod+
                         '</td><td>'+registro[z].nomc+
                         '</td><td>'+registro[z].fec+
                         '</td><td>'+registro[z].nomp+
-                        '</td><td>'+nomest+
-                        '</td><td id="icon" style="display:flex; justify-content: center; gap: 10px"><img src="img/pago.png" width="30" id="bmod" class="color" style="display:'+el+';" data-cod="'+registro[z].cod+'"><img src="img/verv.svg" style="display:'+ac+';" width="30" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                        '</td><td style="color:'+el+';">'+nomest+
+                        '</td><td id="icon" style="display:flex; justify-content: center; gap: 10px"><img src="img/pago.png" width="30" id="bmod" class="color" style="display:none;" data-cod="'+registro[z].cod+'"><img src="img/verv.svg" style="display:'+ac+';" width="30" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
                     $('#cuerpo_tabla_vventas').html(template);
 
@@ -49,7 +45,7 @@ $(document).ready(function(){
     // codigo para filtrar por estado de venta
     $(document).on('input','#tdesav',function(){
         var valor=$(this).val();
-        listar_ventas(valor,'');
+        listar_ventas(valor);
     })
 
     //codigo para ver el tipo de filtro que desea hacer :v 
@@ -60,16 +56,18 @@ $(document).ready(function(){
             $(".uni").css("display","none");
             $(".uni2").css("display","block"); 
             $('#bus_fec').val(''); 
-            $('#bus_fec2').val(''); 
+            $('#bus_fec2').val('');
+            $('#tdesav').val(0);  
             
         }
         if(valor==2){
             $(".uni2").css("display","none");
             $('#bus_nom').val('');
             $(".uni").css("display","block");
+            $('#tdesav').val(0);  
             
         }
-        listar_ventas($("#tdesav").val());
+        listar_ventas('');
     })
 
     // codigo para filtrar por nombre
@@ -84,9 +82,10 @@ $(document).ready(function(){
         var fechaf = $('#bus_fec2').val();
     
         if (fechaf.length > 0 && fechai.length > 0 && fechai <= fechaf) {
-            listar_ventas($("#tdesav").val(), '', fechai, fechaf);
+            listar_ventas('',fechai,fechaf);
+            console.log(fechai+" ---"+fechaf);
         } else {
-            listar_ventas($("#tdesav").val());
+            listar_ventas('');
         }
     });
 
