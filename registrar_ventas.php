@@ -95,8 +95,8 @@ if (empty($_SESSION['dni'])){
     <div class="modal">
         <img src="img/cerrar2.svg" alt="" class="cerrar_modal">
         <label>Agregar nuevo deudor</label><br>
-        <input type="text" name="tnom_cat" id="tnom_cat" class="cajas_modal" placeholder="Ingrese Nombres"><br>
-        <input type="text" name="tnom_cat" id="tnom_cat" class="cajas_modal" placeholder="Ingrese Apellidos"><br>
+        <input type="text" name="tnom_deu" id="tnom_deu" class="cajas_modal" placeholder="Ingrese Nombres"><br>
+        <input type="text" name="tape_deu" id="tape_deu" class="cajas_modal" placeholder="Ingrese Apellidos"><br>
         <input type="button" value="Guardar" id="bguardar_deudor">
     </div>
 </body>

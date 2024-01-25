@@ -235,4 +235,13 @@ if($opcion=="eliminar"){
     echo ("PRODUCTO ELIMINADO CORRECTAMENTE");
 }
 
+if ($opcion=="reg_deudor") {
+    $nom=$_GET['nom'];
+    $ape=$_GET['ape'];
+    $agregar="INSERT INTO deudores 
+    VALUES (' ','$nom','$ape',' ')";
+    mysqli_query($cnn,$agregar)or die("Error en agregar Deudor");
+    echo("AGREGADO CORRECTAMENTE");
+}
+
 ?>

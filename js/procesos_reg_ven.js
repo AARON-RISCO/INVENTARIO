@@ -353,7 +353,7 @@ $(document).on('click', '#bguardar_ven', function () {
         });
 
         });
-    }); 
+}); 
 
 //Cancelar Venta
 $(document).on('click', '#bcancelar_ven', function() {
@@ -374,6 +374,34 @@ $(document).on('click', '#bcancelar_ven', function() {
     });
 });
 
+//registrar venta
+$(document).on('click', '#bguardar_deudor', function () {
+    const nom=$('#tnom_deu').val().trim();
+    const ape=$('#tape_deu').val().trim();
+    if (nom=="") {
+        alert("INGRESE NOMBRES");
+        $('#tnom_deu').focus()
+        return;
+    }
+    if (ape=="") {
+        alert("INGRESE APELLIDOS");
+        $('#tape_deu').focus()
+        return;
+    }
+    const datos = {
+        nom:nom,
+        ape:ape,
+        opcion:'reg_deudor'
+    }
+    $.get('php/controlador_reg_ven.php', datos, function(response) {
+    alert(response);
+    $('#tnom_deu').val("");
+    $('#tape_deu').val("");
+    $('.fondo').css('display','none');
+    $('.modal').css('margin-top','-90%');
+    EstadoVenta();
+    })
+}); 
 
 
 })
