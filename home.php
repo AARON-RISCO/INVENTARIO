@@ -58,7 +58,7 @@ if (empty($_SESSION['dni'])){
             <li class="list_item list__item--click">
                 <div class="list__button list_button--click">
                     <img src="img/productos.svg" class="list_img">
-                    <label class="nav_link">PRODUCTOS</label >
+                    <label class="nav_link">Productos</label >
                     <img src="img/flecha.svg" class="list_arrow">
                 </div>
                 <ul class="list_show">
