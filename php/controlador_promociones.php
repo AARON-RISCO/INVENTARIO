@@ -2,7 +2,7 @@
 include "../conexion/conexion.php";
 $opcion=$_GET['opcion'];
 
-// Listar deudores
+// Listar promociones
 if ($opcion == "listar") {
     $nom = $_GET['nom'];
     $sa = $_GET['sa'];
@@ -29,6 +29,36 @@ if ($opcion == "listar") {
                 "sa" => $f['sabores'],
                 "can" => $f['cantidad'],
                 "pre" => $f['pre_venta']
+            );
+        }
+        $jsonresponse = json_encode($json, JSON_UNESCAPED_UNICODE);
+    } else {
+        $jsonresponse = "vacio";
+    }
+    echo $jsonresponse;
+}
+
+// Listar productos
+if ($opcion == "listar_productos") {
+    $con_listar = "SELECT id_pro, nom_pro, sabores, pre_uni
+                   FROM producto 
+                   ORDER BY nom_pro";
+        if(isset($_GET['nom'])){
+        $nom=$_GET['nom'];
+        $con_listar="SELECT id_pro, nom_pro, sabores, pre_uni
+        FROM producto
+        WHERE nom_pro like CONCAT('$nom','%') ORDER BY nom_pro";
+        }
+       
+    $res = mysqli_query($cnn, $con_listar);
+    $num = mysqli_num_rows($res);
+    if ($num >= 1) {
+        while ($f = mysqli_fetch_array($res)) {
+            $json[] = array(
+                "cod" => $f['id_pro'],
+                "nom" => $f['nom_pro'],
+                "sa" => $f['sabores'],
+                "pre" => $f['pre_uni']
             );
         }
         $jsonresponse = json_encode($json, JSON_UNESCAPED_UNICODE);

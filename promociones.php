@@ -19,7 +19,7 @@
                         <legend>Filtros</legend>
                             <div class="buscar_promo"><input type="text" name="bus_nom" id="bus_nom" class="bus MTU" placeholder="Buscar por Producto"></div>
                             <div class="buscar_promo"><input type="text" name="bus_sa" id="bus_sa" class="bus MTU" placeholder="Buscar por Sabores"></div>         
-                        </fieldset>
+                    </fieldset>
                     </div>
                     <div id="listado"> 
                     <table>
@@ -42,7 +42,9 @@
        <div class="mantenimiento">
                 <label>Mantenimiento Promociones</label><br>
                 <input type="text" id="tcod">
-                <img src="" alt=""  class="da-promo"><input type="text" name="tnom" id="tnom" class="cajas-promo MTU" placeholder="Ingrese nombre">
+                <input type="text" id="tcod_pro" >
+                <img src="" alt=""  class="da-promo"><input type="text" name="tnom" id="tnom" class="cajas-promo MTU" placeholder="Producto"><img src="img/buscar.svg" alt=""  class="bus_promo">
+                <img src="" alt=""  class="da-promo"><input type="text" name="tsa" id="tsa" class="cajas-promo MTU" placeholder="Sabor">
                 <img src="" alt=""  class="da-promo"><input type="text" name="tcan" id="tcan" class="cajas-promo NUM" placeholder="Ingrese Cantidad">
                 <img src="" alt=""  class="da-promo"><input type="text" name="tpre" id="tpre" class="cajas-promo MPRE" placeholder="Ingrese Precio">
                 
@@ -55,6 +57,34 @@
                 
        </div> 
     </div>
-
+    <div class="fondo"></div>
+   
+    </div>
+    
+    <!--Ventana modal de agregar nueva categoria-->
+    <div class="modal">
+    <img src="img/cerrar2.svg" alt="" class="cerrar_modal">
+    <label for="">Seleccione un producto</label>
+    <div class="filtrar_pro">
+    <fieldset class="filtrar">
+        <legend>Buscar</legend>
+            <div class="buscar_pro"><input type="text" name="buscar" id="buscar" class="bus MTU" placeholder="Buscar por Producto"></div>      
+    </fieldset>
+        <div id="productos"> 
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Sabor</th>
+                            <th>Precio</th>
+                            <th>Seleccionar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo_tabla_productos">
+                        
+                    </tbody>
+                </table>
+        </div>
+    </div>
 </body>
 </html>
