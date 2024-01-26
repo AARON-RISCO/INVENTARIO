@@ -48,6 +48,7 @@
     display: flex;
     text-align: center;
     justify-content: center;
+    align-items: center;
     width: 98%;
     margin: 10px;
     margin-left: -0px;
@@ -147,9 +148,28 @@ td{
     outline: none;
     width:250px;
 }
+.bototp{
+    background-color: #EAEBEF;
+    width: 50px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+}
+
 .uni{
     display: none;
 }
 .uni2{
+    
     display: none;
+}
+.uni3{
+    width: 200px;
+    padding: 5px 0px 5px 0px;
+    border: 1px solid rgb(44, 188, 44);
+    border-radius: 5px;
+    display: none; 
+}
+.bototp:hover{
+    background-color: rgb(87, 239, 70);
+   
 }

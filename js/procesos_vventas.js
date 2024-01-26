@@ -1,12 +1,12 @@
 $(document).ready(function(){
     listar_ventas('');
-    function listar_ventas(est,name,fe1){
+    function listar_ventas(est,name,fe1,tp){
         
         $.ajax({
             async:true,
             type:"GET",
             url:"php/controlador_vventas.php",
-            data:{esta:est,name:name,fe1:fe1,opcion:"listar"},
+            data:{esta:est,name:name,fe1:fe1,tp:tp,opcion:"listar"},
             success:function(response){
                 // console.log(response);
                 if(response=='vacio'){
@@ -28,6 +28,7 @@ $(document).ready(function(){
                         '</td><td>'+registro[z].nomc+
                         '</td><td>'+registro[z].fec+
                         '</td><td>'+registro[z].nomp+
+                        '</td><td>'+registro[z].tpve+
                         '</td><td style="color:'+el+';">'+nomest+
                         '</td><td id="icon" style="display:flex; justify-content: center; gap: 10px"><img src="img/pago.png" width="30" id="bmod" class="color" style="display:none;" data-cod="'+registro[z].cod+'"><img src="img/verv.svg" style="display:'+ac+';" width="30" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
@@ -44,6 +45,7 @@ $(document).ready(function(){
 
     // codigo para filtrar por estado de venta
     $(document).on('input','#tdesav',function(){
+        $('#bus_nom').val('');
         var valor=$(this).val();
         listar_ventas(valor);
     })
@@ -54,7 +56,9 @@ $(document).ready(function(){
         console.log(valor);
         if(valor==1){
             $(".uni").css("display","none");
+            $(".uni3").css("display","none");
             $(".uni2").css("display","block"); 
+            $('#bus_nom').val('');
             $('#bus_fec').val(''); 
             $('#bus_fec2').val('');
             $('#tdesav').val(0);  
@@ -62,13 +66,41 @@ $(document).ready(function(){
         }
         if(valor==2){
             $(".uni2").css("display","none");
+            $(".uni3").css("display","none");
             $('#bus_nom').val('');
-            $(".uni").css("display","block");
+            $(".uni").css("display","block");   
+            $('#tdesav').val(0);  
+            
+        }
+        if(valor==3){
+            $(".uni2").css("display","none");
+            $(".uni").css("display","none");
+            $(".uni3").css("display","flex");
+            
+            $(".uni3").css("justify-content","center");
+            $(".uni3").css("align-items","start");
+            $(".uni3").css("gap","15px");
+            $('#bus_nom').val('');
             $('#tdesav').val(0);  
             
         }
         listar_ventas('');
     })
+
+    // codigo para filtrar por tipo de pago
+
+        $(document).on('click','#bototp',function(){
+            $('#tdesav').val(0); 
+            let valor = $(this).data('cod');
+            listar_ventas('','','',valor);
+        })
+
+        $(document).on('click','#bototp2',function(){
+            $('#tdesav').val(0); 
+            let valor = $(this).data('cod');
+            console.log(valor)
+            listar_ventas('','','',valor);
+        })
 
     // codigo para filtrar por nombre
     $(document).on('keyup','#bus_nom',function(){

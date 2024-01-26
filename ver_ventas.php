@@ -14,7 +14,7 @@
         <div class="todos">
                     <label for="">VISUALIZACION DE TODAS LAS VENTAS</label>
                     <fieldset class="filtros_vventas">
-                        <legend>Información Personal</legend>
+                        <legend>FILTRO PARA VER VENTAS</legend>
                         <div class="buscar_vventas">
                             <select name="tdesav" id="tdesav" class="bus_vventas" > 
                                 <option value="0">SELECCIONA ESTADO VENTA</option>
@@ -27,11 +27,13 @@
                                 <option value="0">SELECCIONA TIPO DE FILTRO</option>
                                 <option value="1">POR NOMBRE</option>
                                 <option value="2">POR FECHA</option>
+                                <option value="3">POR TIPO DE PAGO</option>
                             </select>
                         </div> 
                         <div class="buscar_vventas uni2"><input type="text" name="bus_nom" id="bus_nom" class="bus_vventas MTU" placeholder="Buscar por Nombre"></div>
                         <div class="buscar_vventas uni"><input type="date" name="bus_date" id="bus_fec" class="bus_vventas MTU" ></div>
                         <div class="buscar_vventas uni"><input type="date" name="bus_date2" id="bus_fec2" class="bus_vventas MTU" ></div>
+                        <div class="buscar_vventas uni3" ><img src="img/dinero.png" alt="pagos en efectivo" class="bototp" id="bototp" data-cod="EFECTIVO"><img src="img/yape.png" alt="pagos en yape" data-cod="YAPE" class="bototp" id="bototp2"></div>
 
                     </fieldset>
                     <div id="listado"> 
@@ -44,6 +46,7 @@
                                     <th>Cliente</th>
                                     <th>Fecha </th>
                                     <th>Personal </th>
+                                    <th>Tipo Pago </th>
                                     <th>Estado </th>
                                     <th>Opciones </th>
                                 </tr>
