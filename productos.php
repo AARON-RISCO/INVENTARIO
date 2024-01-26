@@ -14,18 +14,19 @@
         <div class="listado">
         <div class="todos">
                     <label for="">Todos los productos</label>
-                    <div class="filtros">
-                        <label for="" class="fil">Filtros</label>  
-                        <div class="buscar">
+                    <div class="todos_todos">
+                    <fieldset class="filtros_pro">
+                        <legend>Filtros</legend>
+                            <div class="buscar_pro">
                             <select name="tdesa" id="tdesa" class="bus" > 
                                 <option value="0">PROD. HABILITADOS</option>
                                 <option value="1">PROD. DESHABILITADOS</option>
                             </select>
-                        </div> 
-                        <div class="buscar"><select name="tcat" id="tcategoria" class="bus" ></select></div>
-                        <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MAYP" placeholder="Buscar por Nombre"></div>
-                        <div class="buscar"><input type="text" name="bus_sa" id="bus_sa" class="bus MAYP" placeholder="Buscar por Sabores"></div>
-                        
+                            </div>
+                            <div class="buscar_pro"><select name="tcat" id="tcategoria" class="bus" ></select></div>
+                            <div class="buscar_pro"><input type="text" name="bus_nom" id="bus_nom" class="bus MAYP" placeholder="Buscar por Nombre"></div>
+                            <div class="buscar_pro"><input type="text" name="bus_sa" id="bus_sa" class="bus MAYP" placeholder="Buscar por Sabores"></div>
+                    </fieldset>
                     </div>
                     <div id="listado"> 
                     <table>

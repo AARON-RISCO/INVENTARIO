@@ -24,7 +24,7 @@ $(document).ready(function(){
                         '</td><td>'+registro[z].sa+  
                         '</td><td>'+registro[z].can+   
                         '</td><td>'+registro[z].pre+ 
-                        '</td><td id="icon"><img src="img/pagar.svg" class="color amarillo bpagar" data-cod="'+registro[z].cod+'" alt="Pagar"></td></tr>';
+                        '</td><td id="icon"><img src="img/editar.svg" class="color amarillo" id="mod" data-cod="'+registro[z].cod+'" alt="Pagar"><img src="img/eliminar.svg" id="eli" class="color red" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
                     $('#cuerpo_tabla_promociones').html(template);
                     
