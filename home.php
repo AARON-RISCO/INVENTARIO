@@ -70,8 +70,12 @@ if (empty($_SESSION['dni'])){
                         <label id="mcat" class="nav_link nav_link--inside">Categorias</label >
                     </li>
 
-                    <li class="list_inside">
+                    <!-- <li class="list_inside">
                         <label id="muni" class="nav_link nav_link--inside">Unidad de Medida</label >
+                    </li> -->
+
+                    <li class="list_inside">
+                        <label id="mpromo" class="nav_link nav_link--inside">Promociones</label >
                     </li>
                 </ul>
             </li>

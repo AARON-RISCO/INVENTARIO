@@ -54,6 +54,11 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
+    $('#mpromo').click(function(){
+        $('.contenedor').load("promociones.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
     // $('#mhome').click(function(){
     //     $('body').load("home.php");
     //     $('#nav').css("margin-left","-90%");
