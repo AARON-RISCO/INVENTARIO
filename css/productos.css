@@ -15,7 +15,8 @@
     width: 70%;
     border-radius: 4px;
     padding: 20px;
-    height: 100%;
+    height: 85vh;
+    overflow: auto;
 }
 .mantenimiento{
     background-color: rgb(251, 250, 250);
@@ -25,7 +26,7 @@
     border-radius: 4px;
     padding: 20px;
 }
-.filtros{
+.filtros_pro{
     display: flex;
     text-align: center;
     justify-content: center;
@@ -34,13 +35,18 @@
     margin-left: -0px;
     border: 1px solid rgba(0, 128, 0, 0.475);
     height: 100%;
+    flex-direction: row;
 }
-.buscar{
+.buscar_pro{
     width: 30%;
     height: 100%;
     margin: 14px;
     border: 0px;
-    background-color: red;
+    /* background-color: red; */
+}
+.bus{
+    padding: 5px 10px 5px 10px;
+    width: 100%;
 }
 .fil{
     position: absolute;
@@ -183,7 +189,7 @@ display: none;
     margin-top: -90%;
     transition: 0.5s;
 }
-#tnom_cat, #tnom_uni{
+#tnom_cat{
     margin: 20px 20px 20px 20px;
     padding: 5px 10px 5px 10px;
     width: 85%;
