@@ -138,7 +138,7 @@ if (empty($_SESSION['dni'])){
                     </li>
 
                     <li class="list_inside">
-                        <label class="nav_link nav_link--inside">Ingresos / Egresos</label >
+                        <label  class="nav_link nav_link--inside">Ingresos / Egresos</label >
                     </li>
                 </ul>
             </li>
@@ -151,7 +151,7 @@ if (empty($_SESSION['dni'])){
                 </div>
                 <ul class="list_show">
                     <li class="list_inside">
-                        <label class="nav_link nav_link--inside">Reportes Ventas</label >
+                        <label id="mreve" class="nav_link nav_link--inside">Reportes Ventas</label >
                     </li>
 
                     <li class="list_inside">

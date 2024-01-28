@@ -54,6 +54,11 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
+    $('#mreve').click(function(){
+        $('.contenedor').load("reporte_ventas.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
     // $('#mhome').click(function(){
     //     $('body').load("home.php");
     //     $('#nav').css("margin-left","-90%");
