@@ -154,7 +154,7 @@ function listar_temporal() {
                         '</td><td>' + registro[z].ex +
                         '</td><td>' + registro[z].tot +
                         '</td><td id="icon"><img src="img/helado.svg" width="40" id="'+registro[z].item+'" class="color frio" data-cod="'+registro[z].item+'" style="background-color:'+fondo+';"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].item+'"></td></tr>';
-                        $('#ttot').val(totven);  
+                        $('#ttot').val(totven.toFixed(2)); 
                     }
                     
                 $('#cuerpo_tabla_temporal').html(template);
@@ -170,6 +170,7 @@ $(document).on('click', '#bcarrito', function() {
     var cantidad;
     var venta;
     venta = $('#cod_ven').val();
+
     var opcion = prompt("Ingrese Cantidad", "");
 
     if (opcion == null || opcion == "" || opcion == 0) {
@@ -177,33 +178,24 @@ $(document).on('click', '#bcarrito', function() {
         return;
     } else {
         cantidad = opcion;
-    }
-
-    const datos = {
-        cod: cod,
-        opcion: 'buscar'
-    };
-    $.get('php/controlador_reg_ven.php', datos, function(response) {
-        registro = JSON.parse(response);
-        if ((registro[0].nom) == "BIG BEN" ) {
-            canpro = parseInt(cantidad);
-            id=registro[0].cod;
-            const dato={
-                canpro:canpro,
-                id:id,
-                opcion:'buscar_promocion'
-            }
-            $.get('php/controlador_reg_ven.php', dato, function(response) {
-                registro = JSON.parse(response);
+        const datos = {
+            cod: cod,
+            canpro:cantidad,
+            opcion: 'buscar_promocion'
+        };
+        $.get('php/controlador_reg_ven.php', datos, function(response) {
+            const registro = JSON.parse(response);
+            if (registro[0].ver==0) {
+                const registro2 = JSON.parse(response);
+                console.log(registro2);
                 nven = venta;
                 codp = (registro[0].cod);
                 nom = (registro[0].nom);
                 sabor = (registro[0].sa);
                 can = parseInt(cantidad);
-                pre = (registro[0].precio_promo);
-                tot = pre;
-                
-                const datos2 = {
+                pre = parseFloat((registro2[0].pre));
+                tot = can * pre;
+                const datos3 = {
                     ven: nven,
                     cod: codp,
                     can: can,
@@ -211,38 +203,38 @@ $(document).on('click', '#bcarrito', function() {
                     tot: tot,
                     opcion: 'agregar_temporal'
                 };
-                $.get('php/controlador_reg_ven.php', datos2, function(response) {
+                $.get('php/controlador_reg_ven.php', datos3, function(response) {
                     alert(response);
                     listar_temporal();
         
                 });
 
-            })
-        }else{
-            nven = venta;
-            codp = (registro[0].cod);
-            nom = (registro[0].nom);
-            sabor = (registro[0].sa);
-            can = parseInt(cantidad);
-            pre = (registro[0].pre);
-            tot = can * pre;
-    
-            const datos3 = {
-                ven: nven,
-                cod: codp,
-                can: can,
-                pre: pre,
-                tot: tot,
-                opcion: 'agregar_temporal'
-            };
-            $.get('php/controlador_reg_ven.php', datos3, function(response) {
-                alert(response);
-                listar_temporal();
-    
-            });
-        }
-        
-    });
+            }else{
+                const registro3 = JSON.parse(response);
+                console.log(registro3);
+                nven = venta;
+                codp = (registro[0].cod);
+                nom = (registro[0].nom);
+                sabor = (registro[0].sa);
+                can = parseInt(cantidad);    
+                pre = parseFloat((registro3[0].precio_promo));
+                tot = pre;
+                const datos2 = {
+                         ven: nven,
+                         cod: codp,
+                         can: can,
+                         pre: pre,
+                         tot: tot,
+                         opcion: 'agregar_temporal'
+                     };
+                     $.get('php/controlador_reg_ven.php', datos2, function(response) {
+                         alert(response);
+                         listar_temporal();
+                    
+                     });
+            }
+        })
+    }
 });
 
 $(document).on('click', '#bir', function() {

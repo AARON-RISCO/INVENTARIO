@@ -98,13 +98,16 @@ $(document).ready(function(){
 
     function BloquearCajas(){
         $('.cajas-promo').prop('disabled', true);
+        $('.bus_promo').prop('disabled', true);
     }
     function DesbloquearCajas(){
         $('.cajas-promo').prop('disabled', false);
+        $('.bus_promo').prop('disabled', false);
     }
     function limpiacajas(){
         $('.cajas-promo').val('');
-    }
+        $('#tcod_pro').val('');
+    }   
 
     $('#bnuevo_promo').click(function(){
         DesbloquearCajas();
@@ -124,6 +127,25 @@ $(document).ready(function(){
             $('#bnuevo_promo').css('display','block');
          
     })
+
+    //Extraer nombres del producto seleccionado
+    $(document).on('click', '#bselec', function() {
+       const cod = $(this).data("cod");
+       const datos={
+        cod:cod,
+        opcion:'extraer_pro'
+       }
+       $.get('php/controlador_promociones.php',datos,function(response){
+            $('.modal').css('margin-top','-90%');
+            $('.fondo').css('display','none');
+            $('#buscar').val("");
+            listar_productos();
+            var registro = JSON.parse(response);
+            $("#tcod_pro").val(registro[0].cod);
+            $("#tnom").val(registro[0].nom);
+            $("#tsa").val(registro[0].sa);
+       })
+    }) 
 
     // //Agregar nueva promocion
     // $(document).on('click', '#bguardar_promo', function() {
@@ -197,12 +219,20 @@ $(document).ready(function(){
     //       });
     // })  
 
-    //Seleccionar producto a modificar
+    //abrir modal
     $(document).on('click', '.bus_promo', function() {
         $('.fondo').css('display','block');
         $('.modal').css('margin-top','-10%');
         listar_productos();
-      }) 
+    }) 
+
+    //Cerrar modal
+    $(document).on('click', '.cerrar_modal', function() {
+        $('.modal').css('margin-top','-90%');
+        $('.fondo').css('display','none');
+        $('#buscar').val("");
+        listar_productos();
+    }) 
 
     // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
     $('.MTU').on('input', function() {

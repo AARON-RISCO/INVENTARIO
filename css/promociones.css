@@ -173,7 +173,8 @@ display: none;
 }
 
 .cerrar_modal{
-
+    position: absolute;
     top: 5px;
+    right: 5px;
     cursor: pointer;
 }

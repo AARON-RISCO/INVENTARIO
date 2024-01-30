@@ -77,26 +77,71 @@ if($opcion=="buscar"){
     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
     echo $jsonresponse;
 }
-//buscar producto en promociones
-if($opcion=="buscar_promocion"){
-    $id=$_GET['id'];
-    $can=$_GET['canpro'];
-    $buscar="SELECT t1.*, t2.* 
-            FROM promociones t1, producto t2 
-            WHERE t1.id_pro=t2.id_pro AND t1.id_pro=$id AND cantidad=$can";
-    $res=mysqli_query($cnn,$buscar);
-    $num=mysqli_num_rows($res);
-    while($f=mysqli_fetch_array($res)){
-            $json[]=array(
+
+// Buscar producto en promociones
+if ($opcion == "buscar_promocion") {
+    $cod =$_GET['cod'];
+    $can =$_GET['canpro'];
+
+    // Consulta en la tabla de promociones
+    $buscar_promocion = "SELECT t1.*, t2.* 
+                        FROM promociones t1 
+                        LEFT JOIN producto t2 ON t1.id_pro = t2.id_pro 
+                        WHERE t1.id_pro = $cod AND t1.cantidad = $can";
+    $res_promocion = mysqli_query($cnn, $buscar_promocion);
+    $num_promocion = mysqli_num_rows($res_promocion);
+
+    if ($num_promocion > 0) {
+        // Si se encuentra en promociones, devolver datos de promociones
+        while ($f = mysqli_fetch_array($res_promocion)) {
+            $json[] = array(
+                "cod" => $f['id_pro'],
+                "nom" => $f['nom_pro'],
+                "sa" => $f['sabores'],
+                "precio_promo" => $f['pre_venta'],
+                "ver"=> 1
+            );
+        }
+    } else {
+        // Si no se encuentra en promociones, realizar consulta en la tabla de productos
+        $buscar_producto = "SELECT * FROM producto WHERE id_pro = $cod";
+        $res_producto = mysqli_query($cnn, $buscar_producto);
+
+        while ($f = mysqli_fetch_array($res_producto)) {
+            $json[] = array(
                 "cod"=>$f['id_pro'],
                 "nom"=>$f['nom_pro'],
                 "sa"=>$f['sabores'],
-                "precio_promo"=>$f['pre_venta']
+                "pre"=>$f['pre_uni'],
+                "ver"=> 0// Puedes ajustar el nombre del campo según tu estructura
+            );
+        }
+    }
 
-            );}
     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
     echo $jsonresponse;
 }
+
+// //buscar producto en promociones
+// if($opcion=="buscar_promocion"){
+//     $id=$_GET['id'];
+//     $can=$_GET['canpro'];
+//     $buscar="SELECT t1.*, t2.* 
+//             FROM promociones t1, producto t2 
+//             WHERE t1.id_pro=t2.id_pro AND t1.id_pro=$id AND cantidad=$can";
+//     $res=mysqli_query($cnn,$buscar);
+//     $num=mysqli_num_rows($res);
+//     while($f=mysqli_fetch_array($res)){
+//             $json[]=array(
+//                 "cod"=>$f['id_pro'],
+//                 "nom"=>$f['nom_pro'],
+//                 "sa"=>$f['sabores'],
+//                 "precio_promo"=>$f['pre_venta']
+
+//             );}
+//     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
+//     echo $jsonresponse;
+// }
 
 //agregar a temporal
 if($opcion=="agregar_temporal"){

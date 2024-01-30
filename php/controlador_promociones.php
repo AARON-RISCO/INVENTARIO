@@ -68,4 +68,23 @@ if ($opcion == "listar_productos") {
     echo $jsonresponse;
 }
 
+//extraer producto por codigo
+if ($opcion == "extraer_pro") {
+    $cod=$_GET['cod'];
+    $buscar = "SELECT id_pro, nom_pro, sabores
+                FROM producto 
+                WHERE id_pro=$cod";
+
+    $res=mysqli_query($cnn,$buscar);
+    $num=mysqli_num_rows($res);
+    while($f=mysqli_fetch_array($res)){
+            $json[]=array(
+                "cod"=>$f['id_pro'],
+                "nom"=>$f['nom_pro'],
+                "sa"=>$f['sabores']
+            );}
+    $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
+    echo $jsonresponse;
+}
+
 ?>
