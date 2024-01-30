@@ -60,24 +60,6 @@ if ($opcion=="deudores") {
     }
 }
 
-//buscar producto para agregar a temporal
-if($opcion=="buscar"){
-    $cod=$_GET['cod'];
-    $buscar="select* from producto where id_pro='$cod'";
-    $res=mysqli_query($cnn,$buscar);
-    $num=mysqli_num_rows($res);
-    while($f=mysqli_fetch_array($res)){
-            $json[]=array(
-                "cod"=>$f['id_pro'],
-                "nom"=>$f['nom_pro'],
-                "sa"=>$f['sabores'],
-                "pre"=>$f['pre_uni']
-
-            );}
-    $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
-    echo $jsonresponse;
-}
-
 // Buscar producto en promociones
 if ($opcion == "buscar_promocion") {
     $cod =$_GET['cod'];
@@ -121,27 +103,6 @@ if ($opcion == "buscar_promocion") {
     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
     echo $jsonresponse;
 }
-
-// //buscar producto en promociones
-// if($opcion=="buscar_promocion"){
-//     $id=$_GET['id'];
-//     $can=$_GET['canpro'];
-//     $buscar="SELECT t1.*, t2.* 
-//             FROM promociones t1, producto t2 
-//             WHERE t1.id_pro=t2.id_pro AND t1.id_pro=$id AND cantidad=$can";
-//     $res=mysqli_query($cnn,$buscar);
-//     $num=mysqli_num_rows($res);
-//     while($f=mysqli_fetch_array($res)){
-//             $json[]=array(
-//                 "cod"=>$f['id_pro'],
-//                 "nom"=>$f['nom_pro'],
-//                 "sa"=>$f['sabores'],
-//                 "precio_promo"=>$f['pre_venta']
-
-//             );}
-//     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
-//     echo $jsonresponse;
-// }
 
 //agregar a temporal
 if($opcion=="agregar_temporal"){
