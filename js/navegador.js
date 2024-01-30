@@ -54,13 +54,13 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
-<<<<<<< HEAD
+
     $('#mreve').click(function(){
-        $('.contenedor').load("reporte_ventas.php");
-=======
+        $('.contenedor').load("reporte_ventas.php");    
+    })
+
     $('#mpromo').click(function(){
         $('.contenedor').load("promociones.php");
->>>>>>> 4852380798a5ce244fcf18d1f4f0a90bb2dfacd2
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
