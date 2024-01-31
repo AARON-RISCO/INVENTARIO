@@ -97,56 +97,16 @@ $(document).ready(function(){
 
     //--------------------------------------imprimir reporte
     $(document).on('click','#bimprimirv',function(){    
-        // alert("asdfa");        
-        // $('#contenido_reporte_venta').css('overflow','hidden');
-        // $('#contenido_reporte_venta').height('auto');
-        // window.print();
-        imprimirDiv("contenido_reporte_venta");
-        // $('#contenido_reporte_venta').height('65vh');
-        // $('#contenido_reporte_venta').css('overflow','auto');
+        alert("asdfa");        
+        $('#contenido_reporte_venta').css('overflow','hidden');
+        $('#contenido_reporte_venta').height('auto');
+        window.print();
+        // imprimirDiv("contenido_reporte_venta");
+        $('#contenido_reporte_venta').height('65vh');
+        $('#contenido_reporte_venta').css('overflow','auto');
     })
   
-    function imprimirDiv(idDiv) {
-        var contenidoDiv = $("#" + idDiv).clone();  // Clonar el contenido del div
-    
-        // Crear un nuevo documento temporal
-        var ventanaImpresion = window.open('', '_blank');
-        ventanaImpresion.document.write('<html><head><title>Imprimir</title>');
-    
-        // Obtener los estilos CSS y agregarlos al nuevo documento
-        $('link[rel="stylesheet"]').each(function() {
-            ventanaImpresion.document.write($(this).prop('outerHTML'));
-        });
-    
-        // Establecer estilos para el cuerpo del documento
-        ventanaImpresion.document.write('<style>body {margin: 0; padding: 0;}</style>');
-    
-        // Establecer estilos para el div en el nuevo documento usando jQuery
-        ventanaImpresion.document.write('<style>#' + idDiv + ' {width: 98%; margin: 0 auto;}</style>');
-    
-        // Establecer estilos para la tabla en el nuevo documento usando jQuery
-        ventanaImpresion.document.write('<style>#' + idDiv + ' table {width: 100%; border-collapse: collapse;}</style>');
-    
-        // Establecer estilos para el encabezado de la tabla en el nuevo documento usando jQuery
-        ventanaImpresion.document.write('<style>#' + idDiv + ' th {background-color: #f2f2f2;}</style>');
-    
-        ventanaImpresion.document.write('</head><body>');
-    
-        // Agregar el contenido del div clonado al nuevo documento
-        ventanaImpresion.document.write(contenidoDiv[0].outerHTML);
-    
-        // Finalizar el nuevo documento
-        ventanaImpresion.document.write('</body></html>');
-        ventanaImpresion.document.close();
-    
-        // Llamada a la función print() para activar la ventana de impresión
-        ventanaImpresion.print();
-    
-        // Cerrar el nuevo documento después de la impresión
-        ventanaImpresion.close();
-    }
-    
-
+   
     // codigo para poner titulo al reporte 
     $(document).on('input','#titrpv',function(){
         let valor=$(this).val();
