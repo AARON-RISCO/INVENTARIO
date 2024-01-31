@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    listar_ventas('');
+    listar_ventas(0);
     function listar_ventas(est,name,fe1,tp){
         
         $.ajax({
@@ -84,7 +84,7 @@ $(document).ready(function(){
             $('#tdesav').val(0);  
             
         }
-        listar_ventas('');
+        listar_ventas(0);
     })
 
     // codigo para filtrar por tipo de pago
@@ -99,7 +99,7 @@ $(document).ready(function(){
             $('#tdesav').val(0); 
             let valor = $(this).data('cod');
             console.log(valor)
-            listar_ventas('','','',valor);
+            listar_ventas(0,'','',valor);
         })
 
     // codigo para filtrar por nombre
@@ -117,7 +117,7 @@ $(document).ready(function(){
             listar_ventas('',fechai,fechaf);
             // console.log(fechai+" ---"+fechaf);
         } else {
-            listar_ventas('');
+            listar_ventas(0);
             $('#bus_fec2').val('');
         }
     });
@@ -270,15 +270,7 @@ $(document).ready(function(){
 
             }
         })
-        // let de=$("#tdeu").val();
-        // let pago=prompt("PAGAR",de);
-        // if(pago<=0 || pago >de){
-        //     alert("LA CANTIDAD QUE INGRESO NO ES VALIDA");
-        //     return;
-        // }
-
-        // $('#sombra_modal_vventas').css("display","none");
-        // $('#caja_modal_vventas').css("margin-top","-90%");
+       
         
     });
 })

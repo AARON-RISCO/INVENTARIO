@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    listar_compras('');
+    listar_compras();
     function listar_compras(name,fe1){
         
         $.ajax({
