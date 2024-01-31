@@ -97,13 +97,15 @@ $(document).ready(function(){
 
     //--------------------------------------imprimir reporte
     $(document).on('click','#bimprimirv',function(){    
-        alert("asdfa");        
+        // alert("asdfa");  
         $('#contenido_reporte_venta').css('overflow','hidden');
         $('#contenido_reporte_venta').height('auto');
-        window.print();
-        // imprimirDiv("contenido_reporte_venta");
-        $('#contenido_reporte_venta').height('65vh');
-        $('#contenido_reporte_venta').css('overflow','auto');
+        $('#contenido_reporte_venta').width('100%');
+        $("#contenido_reporte_venta").print();
+        $('#conteiner').height('65vh');
+        $('#conteiner').css('overflow','auto');
+              
+        
     })
   
    

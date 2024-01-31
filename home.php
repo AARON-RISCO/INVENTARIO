@@ -12,6 +12,7 @@ if (empty($_SESSION['dni'])){
     <link rel="stylesheet" href="css/home.css">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <script src="js/jquery-3.6.1.min.js"></script>
+    <script type="text/JavaScript" src="js/cdnjs.cloudflare.com_ajax_libs_jQuery.print_1.6.0_jQuery.print.min.js"></script>
     <script src="js/navegador.js"></script>
     <title>Inventario</title>
 </head>
