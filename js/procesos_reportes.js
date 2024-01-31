@@ -1,6 +1,5 @@
 $(document).ready(function(){
-    // listar_ventas('','');
-
+    $(document).off("click","**");
     llenar_per();
     function listar_ventas(f1,f2,cp,ep,tp){
         $.ajax({
@@ -97,13 +96,21 @@ $(document).ready(function(){
 
     //--------------------------------------imprimir reporte
     $(document).on('click','#bimprimirv',function(){    
-        // alert("asdfa");  
+        if($('#titrpv').val()===""){
+            alert("POR FAVOR AGREGA TITULO A TU REPORTE");
+                return;
+        }
+        if ($('#rangoFechas').val()==="" || $('#rangoFechas2').val()==="" ) {
+            alert("SELECCIONE FECHAS DE SU REPORTE");
+            return;
+        }
+
         $('#contenido_reporte_venta').css('overflow','hidden');
         $('#contenido_reporte_venta').height('auto');
         $('#contenido_reporte_venta').width('100%');
         $("#contenido_reporte_venta").print();
-        $('#conteiner').height('65vh');
-        $('#conteiner').css('overflow','auto');
+        // $('#conteiner').height('65vh');
+        $('#conteiner').css('overflow','auto'); 
               
         
     })
@@ -141,5 +148,17 @@ $(document).ready(function(){
             }
         })
     }
+
+    // CODIGO PARA CANCELAR EL REPORTE CREADO
+    $(document).on('click','#bcancelar_ven',function(){
+        $('#rangoFechas').val('');
+        $('#rangoFechas2').val('');
+        $('#cvrp').prop('selectedIndex', 0);
+        $('#est_pago').prop('selectedIndex', 0);
+        $('#ttipo_pago').prop('selectedIndex', 0);
+        $('#cuerpo_tabla_reve').html('');
+        $('#vtit_rpv').html('');
+        $('#titrpv').val('');
+    })
 
 });

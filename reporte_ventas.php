@@ -36,12 +36,12 @@ if (empty($_SESSION['dni'])){
             <!-- <input type="text" class="oculto" placeholder="Ingrese DNI del cliente" value="11111111" id="dni"> -->
             <!-- <input type="text" class="cajas_ven" placeholder="Cliente" id="cliente"> -->
             <select name="" id="est_pago">
-                <option value="">SELECCCIONE ESTADO DE VENTA</option>
+                <option value="">SELECCCIONE ESTADO DE VENTA(opcional)</option>
                 <option value="1">PAGADA</option>
                 <option value="2">PENDIENTE</option>
             </select>
             <select name="" id="ttipo_pago" class="cajas_ven">
-                <option value="">SELECCCIONE TIPO DE PAGO</option>
+                <option value="">SELECCCIONE TIPO DE PAGO(opcional)</option>
                 <option value="EFECTIVO">EFECTIVO</option>
                 <option value="YAPE">YAPE</option>
                 <option value="PENDIENTE">PENDIENTE</option>
