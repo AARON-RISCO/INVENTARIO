@@ -146,13 +146,6 @@ $(document).ready(function(){
         ventanaImpresion.close();
     }
     
-    
-    
-    
-    
-    
-    
-
 
     // codigo para poner titulo al reporte 
     $(document).on('input','#titrpv',function(){
@@ -161,7 +154,7 @@ $(document).ready(function(){
         if(valor==""){
             $('#titrpv').css('border','1px solid red');
         }else{
-            $('#titrpv').css('border','1px solid green');
+            $('#titrpv').css('border','1px solid green');   
         }
     })
 
