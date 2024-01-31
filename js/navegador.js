@@ -56,6 +56,15 @@ $(document).ready(function(){
     });
     $('#mreve').click(function(){
         $('.contenedor').load("reporte_ventas.php");
+    })
+    $('#mreve').click(function(){
+        $('.contenedor').load("reporte_ventas.php");  
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");  
+    })
+
+    $('#mpromo').click(function(){
+        $('.contenedor').load("promociones.php");
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });

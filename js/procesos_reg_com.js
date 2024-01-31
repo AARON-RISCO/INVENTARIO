@@ -85,7 +85,7 @@ llenar_categorias();
                             '</td><td>' + registro[z].can +
                             '</td><td>' + registro[z].tot +
                             '</td><td id="icon"><img src="img/editar.svg" class="color amarillo" id="bmod" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" class="color rojo" id="beli" data-cod="'+registro[z].item+'"></td></tr>';
-                            $('#ttot').val(totcom);  
+                            $('#ttot').val(totcom.toFixed(2));  
                         }
                         
                     $('#cuerpo_tabla_temporal_com').html(template);

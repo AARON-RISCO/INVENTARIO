@@ -44,7 +44,6 @@ $(document).ready(function(){
                 opcion:'listar_productos'
             },
             success: function(response){
-            console.log(response);
             if(response=='vacio'){
                 $('#cuerpo_tabla_productos').html('');
             }else{
@@ -98,13 +97,16 @@ $(document).ready(function(){
 
     function BloquearCajas(){
         $('.cajas-promo').prop('disabled', true);
+        $('.bus_promo').prop('disabled', true);
     }
     function DesbloquearCajas(){
         $('.cajas-promo').prop('disabled', false);
+        $('.bus_promo').prop('disabled', false);
     }
     function limpiacajas(){
         $('.cajas-promo').val('');
-    }
+        $('#tcod_pro').val('');
+    }   
 
     $('#bnuevo_promo').click(function(){
         DesbloquearCajas();
@@ -125,84 +127,163 @@ $(document).ready(function(){
          
     })
 
-    // //Agregar nueva promocion
-    // $(document).on('click', '#bguardar_promo', function() {
-    //     // Obtener los valores de las cajas de texto
-    //     const nom = $('#tnom').val().trim();
-    //     const can = $('#tcan').val().trim();
-    //     const pre = $('#tpre').val().trim();
-    //     //Validaciones  
-    //     if (nom=="") {
-    //         alert("")
-    //     }
-    //     // Crear el objeto de datos para enviar la solicitud
-    //     const datos = {
-    //         nom: uni,
-    //         opcion: 'agregar'
-    //       };
-      
-    //       // Enviar la solicitud AJAX
-    //       $.get('php/controlador_unidades.php', datos, function(response) {
-    //         alert(response);
-    //         listar_unidades();
-    //         limpiacajas();
-    //         BloquearCajas();
-    //         $('#bguardar_uni').css('display','none');
-    //         $('#bmodificar_uni').css('display','none');
-    //         $('#bcancelar_uni').css('display','none');
-    //         $('#bnuevo_uni').css('display','block');
-    //       });
-    // })  
-    //Seleccionar producto a modificar
-    // $(document).on('click', '#bmod', function() {
-    //     DesbloquearCajas();
-    //     $('#bmodificar_uni').css('display','block');
-    //     $('#bcancelar_uni').css('display','block');
-    //     $('#bnuevo_uni').css('display','none');
-    //     $('#bguardar_uni').css('display','none');   
-    //     const cod = $(this).data('cod');    
-    //     const datos={
-    //     cod:cod,
-    //     opcion:'buscar'
-    //     };
-    //     $.get('php/controlador_unidades.php', datos,function(response){ 
-    //         var registro=JSON.parse(response);
-    //         $('#tcod').val(registro[0].cod);
-    //         $('#tnom_uni').val(registro[0].nom);
-    //     });
-    //   })    
-    // //actualizar unidades
-    // $(document).on('click', '#bmodificar_uni', function() {
-    //     const cod = $('#tcod').val().trim();
-    //     const nom = $('#tnom_uni').val().trim();
-    //     //Validaciones  
+    //Extraer nombres del producto seleccionado
+    $(document).on('click', '#bselec', function() {
+       const cod = $(this).data("cod");
+       const datos={
+        cod:cod,
+        opcion:'extraer_pro'
+       }
+       $.get('php/controlador_promociones.php',datos,function(response){
+            $('.modal').css('margin-top','-90%');
+            $('.fondo').css('display','none');
+            $('#buscar').val("");
+            listar_productos();
+            var registro = JSON.parse(response);
+            $("#tcod_pro").val(registro[0].cod);
+            $("#tnom").val(registro[0].nom);
+            $("#tsa").val(registro[0].sa);
+       })
+    }) 
 
-    //     // Crear el objeto de datos para enviar la solicitud
-    //     const datos = {
-    //         cod: cod,
-    //         nom: nom,
-    //         opcion: 'actualizar'
-    //       };
+    //Agregar nueva promocion
+    $(document).on('click', '#bguardar_promo', function() {
+        // Obtener los valores de las cajas de texto
+        const cod = $('#tcod_pro').val().trim();
+        const can = $('#tcan').val().trim();
+        const pre = $('#tpre').val().trim();
+        //Validaciones  
+        if (cod=="") {
+            alert("Seleccione un producto , Por favor !");
+            return;
+        }
+        if (can=="") {
+            alert("Ingrese Cantidad");
+            $('#tcan').focus();
+            return;
+        }
+        if (pre=="") {
+            alert("Ingrese Precio");
+            $('#tpre').focus();
+            return;
+        }
+        // Crear el objeto de datos para enviar la solicitud
+        const datos = {
+            cod: cod,
+            can:can,
+            pre:pre,
+            opcion: 'agregar_promo'
+          };
       
-    //       // Enviar la solicitud AJAX
-    //       $.get('php/controlador_unidades.php', datos, function(response) {
-    //         alert(response);
-    //         listar_unidades();
-    //         limpiacajas();
-    //         BloquearCajas();
-    //         $('#bmodificar_uni').css('display','none');
-    //         $('#bcancelar_uni').css('display','none');
-    //         $('#bagregar_uni').css('display','none');
-    //         $('#bnuevo_uni').css('display','block');
-    //       });
-    // })  
+          // Enviar la solicitud AJAX
+          $.get('php/controlador_promociones.php', datos, function(response) {
+            alert(response);
+            listar_promociones();
+            limpiacajas();
+            BloquearCajas();
+            $('#bguardar_promo').css('display','none');
+            $('#bcancelar_promo').css('display','none');
+            $('#bmodificar_promo').css('display','none');
+            $('#bnuevo_promo').css('display','block');
+          });
+    })  
 
-    //Seleccionar producto a modificar
+    // Seleccionar promocion a modificar
+    $(document).on('click', '#mod', function() {
+        DesbloquearCajas();
+        $('#bguardar_promo').css('display','none');
+        $('#bcancelar_promo').css('display','block');
+        $('#bnuevo_promo').css('display','none');
+        $('#bmodificar_promo').css('display','block');  
+        const cod = $(this).data('cod');    
+        const datos={
+        cod:cod,
+        opcion:'buscar_promo'
+        };
+        $.get('php/controlador_promociones.php', datos,function(response){ 
+            var registro=JSON.parse(response);
+            $('#tcod').val(registro[0].cod);
+            $('#tcod_pro').val(registro[0].cod_pro);
+            $('#tnom').val(registro[0].nom);
+            $('#tsa').val(registro[0].sa);
+            $('#tcan').val(registro[0].can);
+            $('#tpre').val(registro[0].pre);
+        });
+    })
+
+    //actualizar promocion
+    $(document).on('click', '#bmodificar_promo', function() {
+         // Obtener los valores de las cajas de texto
+         const cod = $('#tcod').val().trim();
+         const cod_pro = $('#tcod_pro').val().trim();
+         const can = $('#tcan').val().trim();
+         const pre = $('#tpre').val().trim();
+         //Validaciones  
+         if (cod_pro=="") {
+             alert("Seleccione un producto , Por favor !");
+             return;
+         }
+         if (can=="") {
+             alert("Ingrese Cantidad");
+             $('#tcan').focus();
+             return;
+         }
+         if (pre=="") {
+             alert("Ingrese Precio");
+             $('#tpre').focus();
+             return;
+         }
+        //Validaciones  
+
+        // Crear el objeto de datos para enviar la solicitud
+        const datos = {
+            cod: cod,
+            cod_pro: cod_pro,
+            can: can,
+            pre: pre,
+            opcion: 'actualizar'
+          };
+      
+          // Enviar la solicitud AJAX
+          $.get('php/controlador_promociones.php', datos, function(response) {
+            alert(response);
+            listar_promociones();
+            limpiacajas();
+            BloquearCajas();
+            $('#bguardar_promo').css('display','none');
+            $('#bcancelar_promo').css('display','none');
+            $('#bmodificar_promo').css('display','none');
+            $('#bnuevo_promo').css('display','block');
+          });
+    })  
+
+    //Eliminar promocion
+    $(document).on('click', '#eli', function() {
+        const cod = $(this).data('cod');
+        const datos={
+            cod:cod,
+            opcion:'eliminar'
+        }
+        $.get('php/controlador_promociones.php',datos,function(response){
+            alert(response);
+            listar_promociones();
+        })
+   })  
+
+    //abrir modal
     $(document).on('click', '.bus_promo', function() {
         $('.fondo').css('display','block');
         $('.modal').css('margin-top','-10%');
         listar_productos();
-      }) 
+    }) 
+
+    //Cerrar modal
+    $(document).on('click', '.cerrar_modal', function() {
+        $('.modal').css('margin-top','-90%');
+        $('.fondo').css('display','none');
+        $('#buscar').val("");
+        listar_productos();
+    }) 
 
     // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
     $('.MTU').on('input', function() {
