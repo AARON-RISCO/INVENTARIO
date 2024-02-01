@@ -54,11 +54,14 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
-    $('#mreve').click(function(){
-        $('.contenedor').load("reporte_ventas.php");
-    })
+    
     $('#mreve').click(function(){
         $('.contenedor').load("reporte_ventas.php");  
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");  
+    })
+    $('#mreco').click(function(){
+        $('.contenedor').load("reporte_compras.php");  
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");  
     })

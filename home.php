@@ -160,7 +160,7 @@ if (empty($_SESSION['dni'])){
                     </li>
 
                     <li class="list_inside">
-                        <label class="nav_link nav_link--inside">Reporte Compras</label >
+                        <label id="mreco" class="nav_link nav_link--inside">Reporte Compras</label >
                     </li>
                     <li class="list_inside">
                         <label class="nav_link nav_link--inside">Venta día / mes</label >
