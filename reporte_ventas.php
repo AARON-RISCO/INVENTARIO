@@ -10,7 +10,7 @@ if (empty($_SESSION['dni'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reportes_ventas.css">
-    <script src="js/procesos_reportes.js"></script>
+    <script src="js/procesos_rventas.js"></script>
     <title>Document</title>
 </head>
 <body>
