@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $(document).off("click","**");
     llenar_per();
-    function listar_ventas(f1,f2,cp,ep,tp){
+    function listar_ventas(f1,f2,cp){
         $.ajax({
             async:true,
             type:"GET",
@@ -9,9 +9,7 @@ $(document).ready(function(){
             data:{
                 f1:f1,
                 f2:f2,
-                cp:cp,
-                ep:ep,
-                tp:tp,  
+                cp:cp, 
                 opcion:"listarv"
             },
             success:function(response){

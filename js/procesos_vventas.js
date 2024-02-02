@@ -128,8 +128,8 @@ $(document).ready(function(){
         $('#sombra_modal_vventas').css("display","block");
         $('#caja_modal_vventas').css("margin-top","-25%");
         $('#bacvv').css("display","none");
-        $('#ttes').val(" VENTA FINALIZADA");
-        $('#ttes').css("color","green");
+        
+        
         const codi = $(this).data('cod');
         // console.log(codi)
         $(".iddv").html( "DETALLE DE LA VENTA N°: "+codi);
@@ -156,7 +156,8 @@ $(document).ready(function(){
 
                         if(est==0){  nomest="NO"}
                         if(est>0){  nomest="SI"}
-
+                        if(registro[z].deud>0){$('#ttes').val(" VENTA PENDIENTE"); $('#ttes').css("color","red");}
+                        if(registro[z].deud==0){$('#ttes').val(" VENTA FINALIZADA"); $('#ttes').css("color","green");}
                         template+=
                         '<tr><td>'+registro[z].cant+
                         '</td><td>'+registro[z].nopr+

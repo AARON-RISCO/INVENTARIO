@@ -162,13 +162,13 @@ if (empty($_SESSION['dni'])){
                     <li class="list_inside">
                         <label id="mreco" class="nav_link nav_link--inside">Reporte Compras</label >
                     </li>
-                    <li class="list_inside">
+                    <!-- <li class="list_inside">
                         <label class="nav_link nav_link--inside">Venta día / mes</label >
                     </li>
 
                     <li class="list_inside">
                         <label class="nav_link nav_link--inside">Ventas por vendedor</label >
-                    </li>
+                    </li> -->
 
                     <li class="list_inside">
                         <label class="nav_link nav_link--inside">Margen de ganancia</label >
