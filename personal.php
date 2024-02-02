@@ -42,14 +42,14 @@
        </div>
        <div class="mantenimiento">
                 <label>Mantenimiento personal</label><br>
-                <img src="" alt=""  class="da-usu"><input type="text" name="tnom_usu" id="tnom_usu" class="cajas-usu MT" placeholder="Ingrese DNI">
+                <img src="" alt=""  class="da-usu"><input type="text" name="tdni_usu" id="tdni_usu" class="cajas-usu MT" placeholder="Ingrese DNI">
                 <img src="" alt=""  class="da-usu"><input type="text" name="tnom_usu" id="tnom_usu" class="cajas-usu MT" placeholder="Ingrese Apellidos">
                 <img src="" alt=""  class="da-usu"><input type="text" name="tnom_usu" id="tnom_usu" class="cajas-usu MT" placeholder="Ingrese Nombres">
                 <img src="" alt=""  class="da-usu"><select name="" id="ttipo" class="cajas-usu">
                     <option value="ADMINISTRADOR">ADMINISTRADOR</option>
                     <option value="VENDEDOR">VENDEDOR</option>
                 </select>
-                <img src="" alt=""  class="da-usu"><input type="password" name="tnom_usu" id="tnom_usu" class="cajas-usu MT" placeholder="Ingrese Contraseña">
+                <img src="" alt=""  class="da-usu"><input type="text" name="tnom_usu" id="tnom_usu" class="cajas-usu MT" placeholder="Ingrese Contraseña">
                 
                 <!--Botones-->
                 <div class="botones">

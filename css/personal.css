@@ -16,6 +16,7 @@
     border-radius: 4px;
     padding: 20px;
     height: 85vh;
+    overflow: auto;
 }
 .mantenimiento{
     background-color: rgb(251, 250, 250);
@@ -35,23 +36,17 @@
     border: 1px solid rgba(0, 128, 0, 0.475);
     height: 100%;
 }
-.buscar{
+.buscar_per{
     width: 30%;
     height: 100%;
     margin: 14px;
     border: 0px;
-    background-color: red;
 }
-.fil{
-    position: absolute;
-    right: 43%;
-    background-color: white;
-    top:18%;
-    padding: 0px 15px 0px 15px;
-}
+
 .bus{
     padding: 5px 10px 5px 10px;
     width: 100%;
+
 }
 table{
     width: 100%;
@@ -205,4 +200,9 @@ display: none;
     width: auto;
     height: auto;
     display: block;
+}
+.password{
+    text-align: center;
+    pointer-events: none;
+    border: 0;
 }
