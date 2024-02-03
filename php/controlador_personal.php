@@ -30,14 +30,18 @@ if($opcion=="listar"){
         }
         echo $jsonresponse;
 }
-// //agregar nuevo categoria
-// if($opcion=="agregar"){
-//         $nom=$_GET['nom'];
-//         $agregar="insert into categoria
-//         values(' ', '$nom',' ')";
-//         mysqli_query($cnn,$agregar)or die("Error en registrar categoria");
-//         echo "Categoria registrada correctamente";
-// }
+//agregar nuevo categoria
+if($opcion=="agregar"){
+        $dni=$_GET['dni'];
+        $ape=$_GET['ape'];
+        $nom=$_GET['nom'];
+        $tipo=$_GET['tipo'];
+        $clave=$_GET['clave'];
+        $agregar="INSERT INTO personal
+        VALUES(' $dni','$ape','$nom','ACTIVO','$tipo','$clave')";
+        mysqli_query($cnn,$agregar)or die("ERROR EN REGISTRAR PERSONAL");
+        echo "PERSONAL REGISTRADO CORRECTAMENTE";
+}
     
 //buscar categoria a modificar
 if($opcion=="buscar"){
@@ -58,15 +62,18 @@ if($opcion=="buscar"){
     echo $jsonresponse;
 }
     
-    
-//     //Actualizar categoria
-//     if($opcion=="actualizar"){
-//         $cod=$_GET['cod'];
-//         $nom=$_GET['nom'];
-//         $modificar="update categoria set nom_cat='$nom' where id_cat='$cod'";
-//         mysqli_query($cnn,$modificar)or die("Error en modificar categoria");
-//         echo "Categoria Actualizado";
-//     }
+    //Actualizar personal
+    if($opcion=="actualizar"){
+        $dni=$_GET['dni'];
+        $ape=$_GET['ape'];
+        $nom=$_GET['nom'];
+        $tipo=$_GET['tipo'];
+        $clave=$_GET['clave'];
+        $modificar="UPDATE personal SET ape_per='$ape',nom_per='$nom',tipo_per='$tipo',clave_per='$clave' WHERE dni_per='$dni'";
+        mysqli_query($cnn,$modificar)or die("ERROR, NO SE MODIFICO EL PERSONAL");
+        echo "PERSONAL ACTUALIZADO CORRECTAMENTE";
+    }
+
     if($opcion=="deshabilitar"){
         $code=$_GET['code'];
         $esta=$_GET['esta'];

@@ -2,6 +2,7 @@ $(document).ready(function(){
     $(document).off("click","**");
     listar_personal();
     BloquearCajas();
+    $('#tdni_usu').prop('disabled', true);
     $('#ttipo').val(0);
     function listar_personal(parametro){
         $.ajax({
@@ -41,7 +42,7 @@ $(document).ready(function(){
     }
     
     //buscar en la caja de texto
-    $(document).on('keyup','#bus_nom',function(){
+    $(document).on('keyup','#bus_dni',function(){
         var valor=$(this).val();
         if(valor !=""){
             listar_personal(valor);
@@ -84,38 +85,74 @@ $(document).ready(function(){
          
     })
 
-    // //Agregar categoria nueva
-    // $(document).on('click', '#bguardar_cat', function() {
-    //     // Obtener los valores de las cajas de texto
-    //     const cat = $('#tnom_cat').val();
-    //     //Validaciones
-    //     if($('#tnom_cat').val()==""){
-    //         alert("caja vacia");
-    //         return;
-    //     }
+    //Agregar categoria nueva
+    $(document).on('click', '#bguardar_usu', function() {
+        // Obtener los valores de las cajas de texto
+        const dni = $('#tdni_usu').val();
+        const ape = $('#tape_usu').val();
+        const nom = $('#tnom_usu').val();
+        const tipo = $('#ttipo').val();
+        const clave = $('#clave').val();
+
+        //Validaciones
+        if(dni==""){
+            alert("ERROR, INGRESE DNI !");
+            $('#tdni_usu').focus();
+            return;
+        }
+        if (dni.length !== 8) {
+            alert("ERROR, INGRESE EXACTAMENTE 8 DÍGITOS !");
+            $('#tdni_usu').focus();
+            return;
+        }
+        if(ape==""){
+            alert("ERROR, INGRESE APELLIDOS !");
+            $('#tape_usu').focus();
+            return;
+        }
+        if(nom==""){
+            alert("ERROR, INGRESE NOMBRES !");
+            $('#tnom_usu').focus();
+            return;
+        }
+        if(tipo==0){
+            alert("ERROR, SELECCIONE CARGO !");
+            $('#ttipo').focus();
+            return;
+        }
+        if(clave==""){
+            alert("ERROR, INGRESE CLAVE !");
+            $('#clave').focus();
+            return;
+        } 
+                
+        // Crear el objeto de datos para enviar la solicitud
+        const datos = {
+            dni: dni,
+            ape: ape,
+            nom: nom,
+            tipo: tipo,
+            clave: clave,
+            opcion: 'agregar'
+          };
         
-    //     // Crear el objeto de datos para enviar la solicitud
-    //     const datos = {
-    //         nom: cat,
-    //         opcion: 'agregar'
-    //       };
-        
-    //       // Enviar la solicitud AJAX
-    //       $.get('php/controlador_categorias.php', datos, function(response) {
-    //         alert(response);
-    //         listar_categorias();
-    //         limpiacajas();
-    //         BloquearCajas();
-    //         $('#bguardar_cat').css('display','none');
-    //         $('#bmodificar_cat').css('display','none');
-    //         $('#bcancelar_cat').css('display','none');
-    //         $('#bnuevo_cat').css('display','block');
-    //       });
-    // })
+          // Enviar la solicitud AJAX
+          $.get('php/controlador_personal.php', datos, function(response) {
+            alert(response);
+            listar_personal();
+            limpiacajas();
+            BloquearCajas();
+            $('#bguardar_usu').css('display','none');
+            $('#bmodificar_usu').css('display','none');
+            $('#bcancelar_usu').css('display','none');
+            $('#bnuevo_usu').css('display','block');
+          });
+    })
 
     //Seleccionar producto a modificar
     $(document).on('click', '#bmod', function() {
         DesbloquearCajas();
+        $('#tdni_usu').prop('disabled', true);  
         $('#bmodificar_usu').css('display','block');
         $('#bcancelar_usu').css('display','block');
         $('#bnuevo_usu').css('display','none');
@@ -138,32 +175,67 @@ $(document).ready(function(){
         });
       })
 
-    // //actualizar usuegorias
-    // $(document).on('click', '#bmodificar_cat', function() {
-    //     const cod = $('#tcod').val().trim();
-    //     const nom = $('#tnom_cat').val().trim();
-    //     //Validaciones
+    //actualizar usuegorias
+    $(document).on('click', '#bmodificar_usu', function() {
+        const dni = $('#tdni_usu').val();
+        const ape = $('#tape_usu').val();
+        const nom = $('#tnom_usu').val();
+        const tipo = $('#ttipo').val();
+        const clave = $('#clave').val();
 
+        //Validaciones
+        if(dni==""){
+            alert("ERROR, INGRESE DNI !");
+            $('#tdni_usu').focus();
+            return;
+        }
+        if (dni.length !== 8) {
+            alert("ERROR, INGRESE EXACTAMENTE 8 DÍGITOS !");
+            $('#tdni_usu').focus();
+            return;
+        }
+        if(ape==""){
+            alert("ERROR, INGRESE APELLIDOS !");
+            $('#tape_usu').focus();
+            return;
+        }
+        if(nom==""){
+            alert("ERROR, INGRESE NOMBRES !");
+            $('#tnom_usu').focus();
+            return;
+        }
+        if(tipo==0){
+            alert("ERROR, SELECCIONE CARGO !");
+            $('#ttipo').focus();
+            return;
+        }
+        if(clave==""){
+            alert("ERROR, INGRESE CLAVE !");
+            $('#clave').focus();
+            return;
+        } 
+        // Crear el objeto de datos para enviar la solicitud
+        const datos = {
+            dni: dni,
+            ape: ape,
+            nom: nom,
+            tipo: tipo,
+            clave: clave,
+            opcion: 'actualizar'
+          };
         
-    //     // Crear el objeto de datos para enviar la solicitud
-    //     const datos = {
-    //         cod: cod,
-    //         nom: nom,
-    //         opcion: 'actualizar'
-    //       };
-        
-    //       // Enviar la solicitud AJAX
-    //       $.get('php/controlador_categorias.php', datos, function(response) {
-    //         alert(response);
-    //         listar_categorias();
-    //         limpiacajas();
-    //         BloquearCajas();
-    //         $('#bmodificar_cat').css('display','none');
-    //         $('#bcancelar_cat').css('display','none');
-    //         $('#bagregar_cat').css('display','none');
-    //         $('#bnuevo_cat').css('display','block');
-    //       });
-    // })
+          // Enviar la solicitud AJAX
+          $.get('php/controlador_personal.php', datos, function(response) {
+            alert(response);
+            listar_personal();
+            limpiacajas();
+            BloquearCajas();
+            $('#bmodificar_usu').css('display','none');
+            $('#bcancelar_usu').css('display','none');
+            $('#bagregar_usu').css('display','none');
+            $('#bnuevo_usu').css('display','block');
+          });
+    })
 
     // boton para eliminar una categoria 
     $(document).on('click','#bir',function(){
@@ -247,24 +319,37 @@ $(document).ready(function(){
         })
     })
 
-    // // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
-    // $('.MT').on('input', function() {
-    //     let currentValue = $(this).val();
-    //     let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ]/g, '');
-    //     $(this).val(newValue.toUpperCase());
-    // });
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
+    $('.MT').on('input', function() {
+        let currentValue = $(this).val();
+        let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ]/g, '');
+        $(this).val(newValue.toUpperCase());
+    });
 
-    // // ---------------------------------------------------------------- CODIGO PARA VALIDAR EL NO INGRESO DE NUMEROS
-    // $('.MT').on('keydown', function(event) {
-    //     // Obtener el código de la tecla presionada
-    //     // Obtener el código de la tecla presionada
-    //     var keyCode = event.which;
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR EL NO INGRESO DE NUMEROS
+    $('.MT').on('keydown', function(event) {
+        // Obtener el código de la tecla presionada
+        // Obtener el código de la tecla presionada
+        var keyCode = event.which;
     
-    //     // Validar si la tecla presionada es un número del teclado principal o del teclado numérico
-    //     if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
-    //         // Prevenir la acción predeterminada (no permitir que se escriba el número)
-    //         event.preventDefault();
-    //     }
-    //   });
+        // Validar si la tecla presionada es un número del teclado principal o del teclado numérico
+        if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
+            // Prevenir la acción predeterminada (no permitir que se escriba el número)
+            event.preventDefault();
+        }
+      });
+
+      $('.SN').on('input', function() {
+        let currentValue = $(this).val();
+        
+        // Elimina todos los caracteres no numéricos
+        let newValue = currentValue.replace(/\D/g, '');
+    
+        // Limita la longitud máxima a 8 dígitos
+        newValue = newValue.substring(0, 8);
+    
+        $(this).val(newValue);
+
+    });
 
 })
