@@ -1,8 +1,10 @@
 <?php
 session_start();
-if (empty($_SESSION['dni'])){
+
+if (empty($_SESSION['dni'])) {
     header("location: index.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +19,28 @@ if (empty($_SESSION['dni'])){
     <title>Inventario</title>
 </head>
 <body>
+<?php
 
+if ($_SESSION['cargo'] == "VENDEDOR") {
+    $valor = 1;
+
+    if ($valor == 1) {
+        echo '<script>
+                var valorDesdePHP = ' . json_encode($valor) . ';
+                console.log("Valor desde PHP:", valorDesdePHP);
+
+                // Cargar contenido en contenedor usando jQuery
+                $(document).ready(function() {
+                    $(".contenedor").load("registrar_ventas.php");
+                    $("#nav").css("margin-left", "-90%");
+                    $("#opacar2").css("display", "none");
+                });
+              </script>';
+    } else {
+        header("location: home.php");
+    }
+}
+?>
  <!-- Ventana modal de caja inicial-->
 <!-- Fondo negro -->
 <div id="opacar2"></div>
@@ -197,15 +220,6 @@ if (empty($_SESSION['dni'])){
     
     <!-- Contenedor -->
     <div class="contenedor">
-       <div class="tarjetas"></div>
-       <div class="tarjetas"></div>
-       <div class="tarjetas"></div>
-       <div class="tarjetas"></div>
-       <div class="tarjetas"></div>
-       <div class="tarjetas"></div>
-       <div class="tarjetas"></div>
-       <div class="tarjetas"></div>
-       <div class="tarjetas"></div>
     </div>
     
     <!-- Script-->
