@@ -12,9 +12,14 @@ if (!empty($_POST["bacceder"])) {
             $_SESSION["dni"]=$datos->dni_per;
             $_SESSION["nom"]=$datos->nom_per;
             $_SESSION["ape"]=$datos->ape_per;
+            $_SESSION["estado"]=$datos->estado_per;
             $_SESSION["cargo"]=$datos->tipo_per;
             $_SESSION["nivel"]=1;
-            header("location:home.php");
+            if($_SESSION["estado"]=="ACTIVO"){
+              header("location:home.php");
+            }else{
+              echo "<div class='error'>Acceso denegado</div>";
+            } 
             
           } else {
             echo "<div class='error'>Acceso denegado</div>";

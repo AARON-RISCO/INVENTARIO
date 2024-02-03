@@ -4,12 +4,18 @@ $(document).ready(function(){
     BloquearCajas();
     $('#tdni_usu').prop('disabled', true);
     $('#ttipo').val(0);
-    function listar_personal(parametro){
+    function listar_personal(dni='',ape='',nom='',car=''){
         $.ajax({
             async:true,
             url:'php/controlador_personal.php',
             type:'GET',
-            data:{dni:parametro,opcion:'listar'},
+            data:{
+                dni:dni,
+                ape:ape,
+                nom:nom,
+                car:car,
+                opcion:'listar'
+            },
             success: function(response){
                 if(response=='vacio'){
                     $('#cuerpo_tabla_personal').html('');
@@ -41,11 +47,50 @@ $(document).ready(function(){
         })
     }
     
-    //buscar en la caja de texto
+    //buscar por dni
     $(document).on('keyup','#bus_dni',function(){
         var valor=$(this).val();
+        var ape=$('#bus_ape').val();
+        var nom=$('#bus_nom').val();
+        var car=$('#bus_car').val();
         if(valor !=""){
-            listar_personal(valor);
+            listar_personal(valor,ape,nom,car);
+        }else{
+            listar_personal();
+        }
+    })
+     //buscar por dni
+     $(document).on('keyup','#bus_ape',function(){
+        var valor=$(this).val();
+        var dni=$('#bus_dni').val();
+        var nom=$('#bus_nom').val();
+        var car=$('#bus_car').val();
+        if(valor !=""){
+            listar_personal(dni,valor,nom,car);
+        }else{
+            listar_personal();
+        }
+    })
+     //buscar por dni
+     $(document).on('keyup','#bus_nom',function(){
+        var valor=$(this).val();
+        var dni=$('#bus_dni').val();
+        var ape=$('#bus_ape').val();
+        var car=$('#bus_car').val();
+        if(valor !=""){
+            listar_personal(dni,ape,valor,car);
+        }else{
+            listar_personal();
+        }
+    })
+     //buscar por dni
+     $(document).on('keyup','#bus_car',function(){
+        var valor=$(this).val();
+        var dni=$('#bus_dni').val();
+        var ape=$('#bus_ape').val();
+        var nom=$('#bus_nom').val();
+        if(valor !=""){
+            listar_personal(dni,ape,nom,valor);
         }else{
             listar_personal();
         }
@@ -293,7 +338,6 @@ $(document).ready(function(){
             }
         })
     })
-
 
     // boton para activar una categoria 
     $(document).on('click','#bact',function(){

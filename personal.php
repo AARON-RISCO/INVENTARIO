@@ -20,7 +20,7 @@
                             <div class="buscar_per"><input type="text" name="bus_dni" id="bus_dni" class="bus SN" placeholder="Buscar por DNI"></div>
                             <div class="buscar_per"><input type="text" name="bus_nom" id="bus_nom" class="bus MT" placeholder="Buscar por Nombres"></div>
                             <div class="buscar_per"><input type="text" name="bus_ape" id="bus_ape" class="bus MT" placeholder="Buscar por Apellidos"></div>         
-                            <div class="buscar_per"><input type="text" name="bus_car" id="bus_car" class="bus" placeholder="Buscar por Cargo"></div> 
+                            <div class="buscar_per"><input type="text" name="bus_car" id="bus_car" class="bus MT " placeholder="Buscar por Cargo"></div> 
                     </fieldset>
                     </div>
                     <div id="listado"> 

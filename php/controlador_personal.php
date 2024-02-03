@@ -4,14 +4,26 @@ $opcion=$_GET['opcion'];
 
 //Listar categorias
 if($opcion=="listar"){
-        $con_listar="SELECT* FROM personal"; 
-    
-            if(isset($_GET['dni'])){
-                $dni=$_GET['dni'];
-                $con_listar="SELECT * FROM personal
-                WHERE dni_per LIKE CONCAT('$dni','%')";
-            }
-            
+    $dni = $_GET['dni'];
+    $apellido = $_GET['ape'];
+    $nombre = $_GET['nom'];
+    $cargo = $_GET['car'];
+
+        $con_listar="SELECT* FROM personal WHERE 0=0"; 
+        
+        if ($dni != '') {
+            // Búsqueda solo por dni
+            $con_listar .= " AND dni_per LIKE '" . $dni . "%'";
+        } elseif ($apellido != '') {
+            // Búsqueda solo por apellido
+            $con_listar .= " AND ape_per LIKE '" . $apellido . "%'";
+        } elseif ($nombre != '') {
+            // Búsqueda solo por nombre
+            $con_listar .= " AND nom_per LIKE '" . $nombre . "%'";
+        }elseif ($cargo != '') {
+            // Búsqueda solo por cargo
+            $con_listar .= " AND tipo_per LIKE '" . $cargo . "%'";
+        }
             
         $res=mysqli_query($cnn,$con_listar);
         $num=mysqli_num_rows($res);

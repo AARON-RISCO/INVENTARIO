@@ -71,12 +71,12 @@ if (empty($_SESSION['dni'])){
                         <label id="mcat" class="nav_link nav_link--inside">Categorias</label >
                     </li>
 
-                    <!-- <li class="list_inside">
-                        <label id="muni" class="nav_link nav_link--inside">Unidad de Medida</label >
-                    </li> -->
-
                     <li class="list_inside">
                         <label id="mpromo" class="nav_link nav_link--inside">Promociones</label >
+                    </li>
+
+                    <li class="list_inside">
+                        <label id="msp" class="nav_link nav_link--inside">Stock / Precios</label >
                     </li>
                 </ul>
             </li>
@@ -121,13 +121,6 @@ if (empty($_SESSION['dni'])){
                 <div class="list__button">
                     <img src="img/deudores.svg" class="list_img">
                     <label id="mdeu" class="nav_link">Deudores</label >
-                </div>
-            </li>
-
-            <li class="list_item">
-                <div class="list__button">
-                    <img src="img/precios.svg" class="list_img">
-                    <label class="nav_link">Stock / Precios</label >
                 </div>
             </li>
 
