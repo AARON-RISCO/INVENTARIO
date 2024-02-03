@@ -2,6 +2,7 @@ $(document).ready(function(){
     $(document).off("click","**");
     listar_personal();
     BloquearCajas();
+    $('#ttipo').val(0);
     function listar_personal(parametro){
         $.ajax({
             async:true,
@@ -51,12 +52,16 @@ $(document).ready(function(){
     //bloqueo de cajas en mantenimiento
     function BloquearCajas(){
         $('.cajas-usu').prop('disabled', true);
+        $('.bloquear').css('pointer-events', 'none');
     }
     function DesbloquearCajas(){
         $('.cajas-usu').prop('disabled', false);
+        $('.bloquear').css('pointer-events', 'auto');
+        
     }
     function limpiacajas(){
         $('.cajas-usu').val('');
+        $('#ttipo').val('0');
     }
 
     $('#bnuevo_usu').click(function(){
@@ -108,29 +113,32 @@ $(document).ready(function(){
     //       });
     // })
 
-    // //Seleccionar producto a modificar
-    // $(document).on('click', '#bmod', function() {
-    //     DesbloquearCajas();
-    //     $('#bmodificar_cat').css('display','block');
-    //     $('#bcancelar_cat').css('display','block');
-    //     $('#bnuevo_cat').css('display','none');
-    //     $('#bguardar_cat').css('display','none');
+    //Seleccionar producto a modificar
+    $(document).on('click', '#bmod', function() {
+        DesbloquearCajas();
+        $('#bmodificar_usu').css('display','block');
+        $('#bcancelar_usu').css('display','block');
+        $('#bnuevo_usu').css('display','none');
+        $('#bguardar_usu').css('display','none');
 
-    //     const cod = $(this).data('cod');
+        const cod = $(this).data('cod');
+       
+        const datos={
+        cod:cod,
+        opcion:'buscar'
+        };
+        $.get('php/controlador_personal.php', datos,function(response){
 
-    //     const datos={
-    //     cod:cod,
-    //     opcion:'buscar'
-    //     };
-    //     $.get('php/controlador_categorias.php', datos,function(response){
+            var registro=JSON.parse(response);
+            $('#tdni_usu').val(registro[0].dni);
+            $('#tape_usu').val(registro[0].ape);
+            $('#tnom_usu').val(registro[0].nom);
+            $('#ttipo').val(registro[0].car);
+            $('#clave').val(registro[0].cla);
+        });
+      })
 
-    //         var registro=JSON.parse(response);
-    //         $('#tcod').val(registro[0].cod);
-    //         $('#tnom_cat').val(registro[0].nom);
-    //     });
-    //   })
-
-    // //actualizar categorias
+    // //actualizar usuegorias
     // $(document).on('click', '#bmodificar_cat', function() {
     //     const cod = $('#tcod').val().trim();
     //     const nom = $('#tnom_cat').val().trim();
@@ -157,86 +165,87 @@ $(document).ready(function(){
     //       });
     // })
 
-    // // boton para eliminar una categoria 
-    // $(document).on('click','#bir',function(){
-    //     $('#sombra_modal_cat').css("display","block");
-    //     $('#caja_modal_cat').css("margin-top","-30%");
-    //     const codi = $(this).data('cod');
-    //     $.ajax({
-    //         async:true,
-    //         type:"GET",
-    //         url:"php/controlador_categorias.php",
-    //         data:{
-    //             cod:codi,
-    //             opcion:"buscar"
-    //         },
-    //         success:function(respuesta){
-    //             // console.log(respuesta);
-    //             var registros=JSON.parse(respuesta);
-    //             $('#namcamo').html("¿ESTA SEGURO DE DESHABILITAR LA CATEGORIA "+registros[0].nom+" ?");
-    //             $('#idce').val(registros[0].cod);
-    //             $('#estadocategoriamo').val(registros[0].esc);
-    //         }
-    //     })
-    // })
-    // // boton para cancelar la habilitacion o la deshabilitacion de una categoria
-    // $(document).on('click','#bcamo',function(){
-    //     $('#sombra_modal_cat').css("display","none");
-    //     $('#caja_modal_cat').css("margin-top","-90%");
-    // })
+    // boton para eliminar una categoria 
+    $(document).on('click','#bir',function(){
+        $('#sombra_modal_per').css("display","block");
+        $('#caja_modal_per').css("margin-top","-30%");
+        const codi = $(this).data('cod');
+        // alert(codi);
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_personal.php",
+            data:{
+                cod:codi,
+                opcion:"buscar"
+            },
+            success:function(respuesta){
+                // console.log(respuesta);
+                var registros=JSON.parse(respuesta);
+                $('#namcamo').html("¿ESTA SEGURO DE DESACTVAR A "+registros[0].nom+' '+registros[0].ape+" ?");
+                $('#idce').val(registros[0].dni);
+                $('#estadocategoriamo').val(registros[0].estado);
+            }
+        })
+    })
+    // boton para cancelar la habilitacion o la deshabilitacion de una categoria
+    $(document).on('click','#bcamo',function(){
+        $('#sombra_modal_per').css("display","none");
+        $('#caja_modal_per').css("margin-top","-90%");
+    })
 
-    // // boton para aceptar la habilitacion o la deshabilitacion de una categoria
-    // $(document).on('click','#bamo',function(){
-    //     // const codi = $(this).data('cod');
-    //     let codeli=null;
-    //     let esteli=null;
-    //     codeli=$('#idce').val();
-    //     esteli=$('#estadocategoriamo').val();
-    //     // console.log(codeli);
-    //     // console.log(esteli);
-    //     $.ajax({
-    //         async:true,
-    //         type:"GET",
-    //         url:"php/controlador_categorias.php",
-    //         data:{
-    //             code:codeli,
-    //             esta:esteli,
-    //             opcion:"deshabilitar"
-    //         },
-    //         success:function(respuestas){
-    //             alert(respuestas);
-    //             $('#sombra_modal_cat').css("display","none");
-    //             $('#caja_modal_cat').css("margin-top","-90%");
-    //             listar_categorias();
+    // boton para aceptar la habilitacion o la deshabilitacion de una categoria
+    $(document).on('click','#bamo',function(){
+        // const codi = $(this).data('cod');
+        let codeli=null;
+        let esteli=null;
+        codeli=$('#idce').val();
+        esteli=$('#estadocategoriamo').val();
+        // console.log(codeli);
+        // console.log(esteli);
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_personal.php",
+            data:{
+                code:codeli,
+                esta:esteli,
+                opcion:"deshabilitar"
+            },
+            success:function(respuestas){
+
+                $('#sombra_modal_per').css("display","none");
+                $('#caja_modal_per').css("margin-top","-90%");
+                listar_personal();
                 
-    //         }
-    //     })
-    // })
+            }
+        })
+    })
 
 
-    // // boton para activar una categoria 
-    // $(document).on('click','#bact',function(){
-    //     $('#sombra_modal_cat').css("display","block");
-    //     $('#caja_modal_cat').css("margin-top","-30%");
-    //     const codi = $(this).data('cod');
-    //     $.ajax({
-    //         async:true,
-    //         type:"GET",
-    //         url:"php/controlador_categorias.php",
-    //         data:{
-    //             cod:codi,
-    //             opcion:"buscar"
-    //         },
-    //         success:function(respuesta){
-    //             // console.log(respuesta);
-    //             var registros=JSON.parse(respuesta);
-    //             $('#namcamo').html("¿ESTA SEGURO DE HABILITAR LA CATEGORIA "+registros[0].nom+" ?");
-    //             $('#idce').val(registros[0].cod);
-    //             $('#estadocategoriamo').val(registros[0].esc);
-    //             listar_categorias();
-    //         }
-    //     })
-    // })
+    // boton para activar una categoria 
+    $(document).on('click','#bact',function(){
+        $('#sombra_modal_per').css("display","block");
+        $('#caja_modal_per').css("margin-top","-30%");
+        const codi = $(this).data('cod');
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_personal.php",
+            data:{
+                cod:codi,
+                opcion:"buscar"
+            },
+            success:function(respuesta){
+                // console.log(respuesta);
+                var registros=JSON.parse(respuesta);
+                $('#namcamo').html("¿ESTA SEGURO DE HABILITAR LA CATEGORIA "+registros[0].nom+" ?");
+                $('#idce').val(registros[0].dni);
+                $('#estadocategoriamo').val(registros[0].estado);
+                listar_categorias();
+            }
+        })
+    })
 
     // // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
     // $('.MT').on('input', function() {

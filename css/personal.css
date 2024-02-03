@@ -100,7 +100,13 @@ td{
     padding: 10px 40px 10px 40px;
     margin: 30px 0px 10px 0px;
     border: 0;
-
+}
+#ttipo{
+    background:#EAEBEF;
+    width: 100%;
+    padding: 10px 40px 10px 40px;
+    margin: 30px 0px 10px 0px;
+    border: 0;
 }
 .cajas{
     width: 90%;
@@ -205,4 +211,18 @@ display: none;
     text-align: center;
     pointer-events: none;
     border: 0;
+}
+#icono{
+    position: absolute;
+    cursor: pointer;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 64%;
+    right: 4%;
+}
+#slash{
+    position: absolute;
+    display: none;
 }

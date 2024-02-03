@@ -19,7 +19,7 @@ if($opcion=="listar"){
             while($f=mysqli_fetch_array($res)){
                 $json[]=array(
                     "dni"=>$f['dni_per'],
-                    "per"=>$f['nom_per'],
+                    "per"=>$f['nom_per'].' '.$f['ape_per'],
                     "car"=>$f['tipo_per'],
                     "estado"=>$f['estado_per'],
                     "clave"=>$f['clave_per']
@@ -39,21 +39,24 @@ if($opcion=="listar"){
 //         echo "Categoria registrada correctamente";
 // }
     
-// //buscar categoria a modificar
-// if($opcion=="buscar"){
-//     $cod=$_GET['cod'];
-//     $buscar="SELECT* FROM categoria WHERE id_cat='$cod'";
-//     $res=mysqli_query($cnn,$buscar);
-//     $num=mysqli_num_rows($res);
-//     while($f=mysqli_fetch_array($res)){
-//             $json[]=array(
-//                 "cod"=>$f['id_cat'],
-//                 "nom"=>$f['nom_cat'],
-//                 "esc"=>$f['estado']
-//             );}
-//     $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
-//     echo $jsonresponse;
-// }
+//buscar categoria a modificar
+if($opcion=="buscar"){
+    $cod=$_GET['cod'];
+    $buscar="SELECT* FROM personal WHERE dni_per='$cod'";
+    $res=mysqli_query($cnn,$buscar);
+    $num=mysqli_num_rows($res);
+    while($f=mysqli_fetch_array($res)){
+            $json[]=array(
+                "dni"=>$f['dni_per'],
+                "ape"=>$f['ape_per'],
+                "nom"=>$f['nom_per'],
+                "estado"=>$f['estado_per'],
+                "car"=>$f['tipo_per'],
+                "cla"=>$f['clave_per']
+            );}
+    $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
+    echo $jsonresponse;
+}
     
     
 //     //Actualizar categoria
@@ -64,19 +67,18 @@ if($opcion=="listar"){
 //         mysqli_query($cnn,$modificar)or die("Error en modificar categoria");
 //         echo "Categoria Actualizado";
 //     }
-//     if($opcion=="deshabilitar"){
-//         $code=$_GET['code'];
-//         $esta=$_GET['esta'];
-//         if($esta==1){
-//             $modificarc="update categoria set estado=0 where id_cat='$code'";
-//             $msj="CATEGORIA HABILITADA CORRECTAMENTE";
-//         }elseif($esta==0){
-//             $modificarc="update categoria set estado=1 where id_cat='$code'";
-//             $msj="CATEGORIA DESHABILITADA CORRECTAMENTE";
-//         }
+    if($opcion=="deshabilitar"){
+        $code=$_GET['code'];
+        $esta=$_GET['esta'];
+        if($esta=="ACTIVO"){
+            $modificarc="UPDATE personal set estado_per='INACTIVO' where dni_per='$code'";
+            $msj="PERSONAL DESACTIVADO CORRECTAMENTE";
+        }elseif($esta=="INACTIVO"){
+            $modificarc="UPDATE personal set estado_per='ACTIVO' where dni_per='$code'";
+            $msj="PERSONAL ACTIVADO CORRECTAMENTE";
+        }
 
-//         mysqli_query($cnn,$modificarc)or die("Error en modificar categoria");
-//         echo $msj;
-//     }
+        mysqli_query($cnn,$modificarc)or die("ERROR EN ACTUALIZAR ESTADO");
+    }
 
 ?>
