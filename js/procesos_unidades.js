@@ -9,6 +9,7 @@ $(document).ready(function(){
             type:'GET',
             data:{nombre:parametro,opcion:'listar'},
             success: function(response){
+                response = response.trim();
                 //console.log(response)
                 if(response=='vacio'){
                     $('#cuerpo_tabla_unidades').html('');

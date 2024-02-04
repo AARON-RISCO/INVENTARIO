@@ -10,6 +10,7 @@ $(document).ready(function(){
             data:{nombre:parametro,opcion:'listar'},
             success: function(response){
                 //console.log(response)
+                response = response.trim();
                 if(response=='vacio'){
                     $('#cuerpo_tabla_categorias').html('');
                 }else{

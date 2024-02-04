@@ -8,6 +8,7 @@ $(document).ready(function(){
             url:"php/controlador_vcompras.php",
             data:{name:name,fe1:fe1,opcion:"listar"},
             success:function(response){
+                response = response.trim();
                 console.log(response);
                 if(response=='vacio'){
                     $('#cuerpo_tabla_vcompras').html('');
@@ -116,7 +117,12 @@ $(document).on('click','#bcavv',function(){
 // codigo para buscar por nombre de personal
 $(document).on('keyup','#bus_nom',function(){
     var valor=$(this).val();
-    listar_compras(valor);
+    if(valor==""){
+        listar_compras();
+    }else{
+        listar_compras(valor);
+    }
+    
 })
 
 

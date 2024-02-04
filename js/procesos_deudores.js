@@ -14,6 +14,7 @@ $(document).ready(function(){
                 opcion:'listar'
             },
             success: function(response){
+                response = response.trim();
                 if(response=='vacio' || response=='[{"cod":null,"nom":null,"ape":null,"deu":null}]'){
                     $('#cuerpo_tabla_deudores').html('');
                 }else{

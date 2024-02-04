@@ -14,6 +14,7 @@ $(document).ready(function(){
             },
             success:function(response){
                 // console.log(response);
+                response = response.trim();
                 if(response=='vacio'){
                     $('#cuerpo_tabla_reve').html('');
                 }else{
@@ -64,7 +65,7 @@ $(document).ready(function(){
     
     //--------------------------------------imprimir reporte
     $(document).on('click','#bimprimirv',function(){    
-        if($('#titrpv').val()===""){
+        if($('#titrpv').val()==""){
             alert("POR FAVOR AGREGA TITULO A TU REPORTE");
                 return;
         }
@@ -88,7 +89,7 @@ $(document).ready(function(){
     $(document).on('input','#titrpv',function(){
         let valor=$(this).val();
         $('#vtit_rpv').html(''+valor+'');
-        if(valor==""){
+        if(valor===""){
             $('#titrpv').css('border','1px solid red');
         }else{
             $('#titrpv').css('border','1px solid green');   

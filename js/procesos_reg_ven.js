@@ -87,6 +87,8 @@ function listar_productos(parametro){
         type:'GET',
         data:{nombre:parametro,espa:es,opcion:'listar'},
         success: function(response){
+            // console.log(response);
+            response = response.trim();
             if(response=='vacio'){
                 $('#cuerpo_tabla_productos').html('');
             }else{

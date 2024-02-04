@@ -16,6 +16,7 @@ $(document).ready(function(){
             },
             success:function(response){
                 // console.log(response);
+                response = response.trim();
                 if(response=='vacio'){
                     $('#cuerpo_tabla_reve').html('');
                 }else{

@@ -5,10 +5,11 @@ $(document).ready(function(){
     llenar_unidades();
     BloquearCajas();
     function listar_productos(parametro,espa,cat,sab){
-        if(espa==null){
-            espa=$('#tdesa').val();
+        let es=espa
+        if(es==null){
+            es=$('#tdesa').val();
         }
-        // console.log(cat);
+        // alert(espa);
         // console.log(parametro);
         $.ajax({
             async:true,
@@ -16,13 +17,14 @@ $(document).ready(function(){
             type:'GET',
             data:{
                 nombre:parametro,
-                espa:espa,
+                espa:es,
                 cate:cat,
                 sabo:sab,
                 opcion:'listar'
             },
             success: function(response){
-                // console.log(response)
+                console.log(response);
+                response = response.trim();
                 if(response=='vacio'){
                     $('#cuerpo_tabla_productos').html('');
                 }else{
@@ -80,22 +82,22 @@ $(document).ready(function(){
         });
     }
     //buscar en la caja de texto
-    $(document).on('keyup','#bus_nom',function(){
-        var valor=$(this).val();
-        // if(valor !=""){
-            listar_productos(valor);
-        // }else{
-        //     listar_productos();
-        // }
+    $(document).on('input','#bus_nom',function(){
+        let valore=$(this).val();
+        if(valore == ""){
+            listar_productos('',$('#tdesa').val());
+        }else{
+            listar_productos(valore,$('#tdesa').val());
+        }
     })
     //buscar en la caja de texto sabores    
     $(document).on('keyup','#bus_sa',function(){
         var valor=$(this).val();
-
-        if(valor !=""){
-            listar_productos('',null,null,valor);
-        }else{
+        if(valor ===""){
             listar_productos();
+        }else{
+            
+            listar_productos('',$('#tdesa').val(),null,valor);
         }
     })
     //buscar prouctos por categorias

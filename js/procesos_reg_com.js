@@ -21,6 +21,7 @@ llenar_categorias();
             type:'GET',
             data:{nombre:parametro,opcion:'listar'},
             success: function(response){
+                response = response.trim();
                 if(response=='vacio'){
                     $('.añadir').css('display','block');
                     $('#cuerpo_tabla_productos').html('');
@@ -67,6 +68,7 @@ llenar_categorias();
             type: 'GET',
             data: { opcion: 'listar_temporal' },
             success: function(response) {
+                response = response.trim();
                 if (response == 'vacio') {
                     $('#cuerpo_tabla_temporal_com').html('');
                 } else {

@@ -17,6 +17,7 @@ $(document).ready(function(){
                 opcion:'listar'
             },
             success: function(response){
+                response = response.trim();
                 if(response=='vacio'){
                     $('#cuerpo_tabla_personal').html('');
                 }else{

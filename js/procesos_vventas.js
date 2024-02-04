@@ -8,7 +8,8 @@ $(document).ready(function(){
             url:"php/controlador_vventas.php",
             data:{esta:est,name:name,fe1:fe1,tp:tp,opcion:"listar"},
             success:function(response){
-                // console.log(response);
+                // console.log(response);-
+                response = response.trim();
                 if(response=='vacio'){
                     $('#cuerpo_tabla_vventas').html('');
                 }else{
