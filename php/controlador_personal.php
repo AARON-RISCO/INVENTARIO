@@ -13,16 +13,16 @@ if($opcion=="listar"){
         
         if ($dni != '') {
             // Búsqueda solo por dni
-            $con_listar .= " AND dni_per LIKE '" . $dni . "%'";
+            $con_listar .= " AND dni_per LIKE '%" . $dni . "%'";
         } elseif ($apellido != '') {
             // Búsqueda solo por apellido
-            $con_listar .= " AND ape_per LIKE '" . $apellido . "%'";
+            $con_listar .= " AND ape_per LIKE '%" . $apellido . "%'";
         } elseif ($nombre != '') {
             // Búsqueda solo por nombre
-            $con_listar .= " AND nom_per LIKE '" . $nombre . "%'";
-        }elseif ($cargo != '') {
+            $con_listar .= " AND nom_per LIKE '%" . $nombre . "%'";
+        } elseif ($cargo != '') {
             // Búsqueda solo por cargo
-            $con_listar .= " AND tipo_per LIKE '" . $cargo . "%'";
+            $con_listar .= " AND tipo_per LIKE '%" . $cargo . "%'";
         }
             
         $res=mysqli_query($cnn,$con_listar);

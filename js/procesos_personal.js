@@ -4,49 +4,51 @@ $(document).ready(function(){
     BloquearCajas();
     $('#tdni_usu').prop('disabled', true);
     $('#ttipo').val(0);
-    function listar_personal(dni='',ape='',nom='',car=''){
+    function listar_personal(dni='', ape='', nom='', car='') {
         $.ajax({
-            async:true,
-            url:'php/controlador_personal.php',
-            type:'GET',
-            data:{
-                dni:dni,
-                ape:ape,
-                nom:nom,
-                car:car,
-                opcion:'listar'
+            async: true,
+            url: 'php/controlador_personal.php',
+            type: 'GET',
+            data: {
+                dni: dni,
+                ape: ape,
+                nom: nom,
+                car: car,
+                opcion: 'listar'
             },
-            success: function(response){
-                response = response.trim();
-                if(response=='vacio'){
+            success: function(response) {
+                response = response.trim(); // Considera si realmente necesitas esto
+                if (response === 'vacio') {
                     $('#cuerpo_tabla_personal').html('');
-                }else{
-                    var registro=JSON.parse(response);
-                    var template='';
-                    for(z in registro){
-
-                        var est=registro[z].estado;
-                        var el=""; var ac="";
-
+                } else {
+                    var registro = JSON.parse(response);
+                    var template = '';
+    
+                    for (var z in registro) {
+                        var est = registro[z].estado;
                         if(est=="ACTIVO"){el="block";  ac="none";}else{el="none";  ac="block";} 
-
-                        template+=
-                        '<tr><td>'+registro[z].dni+
-                        '</td><td>'+registro[z].per+
-                        '</td><td>'+registro[z].car+   
-                        '</td><td>'+est+      
-                        '</td><td>'+'<input type="password" value="'+registro[z].clave+'" class="password">'+   
-                        '</td><td id="icon" style="display:flex; justify-content: center;"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].dni+'"><img src="img/eliminar.svg" style="display:'+el+';" width="40" id="bir" class="color" data-cod="'+registro[z].dni+'"><img src="img/activar.svg" style="display:'+ac+';" width="40" id="bact" class="color" data-cod="'+registro[z].dni+'"></td></tr>';
-                        // cambiarBotonEstado(cod, est);
+    
+                        template +=
+                            `<tr>
+                                <td>${registro[z].dni}</td>
+                                <td>${registro[z].per}</td>
+                                <td>${registro[z].car}</td>
+                                <td>${est}</td>
+                                <td><form ><input type="password" value="${registro[z].clave}" class="password" autocomplete="off"></form></td>
+                                <td id="icon" style="display:flex; justify-content: center;">
+                                    <img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="${registro[z].dni}">
+                                    <img src="img/eliminar.svg" style="display:${el};" width="40" id="bir" class="color" data-cod="${registro[z].dni}">
+                                    <img src="img/activar.svg" style="display:${ac};" width="40" id="bact" class="color" data-cod="${registro[z].dni}">
+                                </td>
+                            </tr>`;
                     }
+    
                     $('#cuerpo_tabla_personal').html(template);
-                    
-
                 }
             }
-
-        })
+        });
     }
+    
     
     //buscar por dni
     $(document).on('keyup','#bus_dni',function(){
@@ -359,7 +361,7 @@ $(document).ready(function(){
                 $('#namcamo').html("¿ESTA SEGURO DE HABILITAR LA CATEGORIA "+registros[0].nom+" ?");
                 $('#idce').val(registros[0].dni);
                 $('#estadocategoriamo').val(registros[0].estado);
-                listar_categorias();
+                listar_personal();
             }
         })
     })
