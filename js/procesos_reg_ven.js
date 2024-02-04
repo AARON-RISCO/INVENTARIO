@@ -67,6 +67,28 @@ function EstadoVenta(){
 $(document).on('change','#est_pago',function(){
     EstadoVenta();
 })
+$(document).on('change','#tdeudores',function(){
+    const deu = $(this).val();
+    const datos={
+        deu:deu,
+        opcion:'nofiar'
+    }
+    $.get('php/controlador_reg_ven.php',datos,function(response){
+        response = response.trim();
+        if (response==='Nada') {
+
+        }else{
+        const registro = JSON.parse(response);
+        console.log(registro);
+        if (registro[0].tot>=10) {
+            alert(registro[0].nom+' '+registro[0].ape+' '+'LLEGO AL LIMITE')
+            $('#tdeudores').val(0);
+            return;
+        } 
+        }
+    })
+})
+
 
 //Abrir modal de registrar nuevo deudor
 $(document).on('click', '.reg_deudores', function() {
@@ -133,6 +155,7 @@ function listar_temporal() {
         type: 'GET',
         data: { opcion: 'listar_temporal' },
         success: function(response) {
+            response = response.trim();
             if (response == 'vacio') {
                 $('#cuerpo_tabla_temporal').html('');
             } else {

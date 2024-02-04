@@ -60,6 +60,30 @@ if ($opcion=="deudores") {
     }
 }
 
+if ($opcion == "nofiar") {
+    $deu=$_GET['deu'];
+    $buscar = "SELECT t1.id_deudor, t1.nom_deudor, t1.apellidos_deudor, t1.estado, ROUND(SUM(t2.deuda), 2) as total
+            FROM deudores t1
+            JOIN venta t2 ON t2.id_deudor = t1.id_deudor 
+            WHERE t1.estado = 0 AND t1.id_deudor=$deu  
+            GROUP BY t1.id_deudor, t1.nom_deudor, t1.apellidos_deudor, t1.estado";
+    $res=mysqli_query($cnn,$buscar);
+    $num=mysqli_num_rows($res);
+    if($num>=1){
+    while($f=mysqli_fetch_array($res)){
+            $json[]=array(
+                "nom"=>$f['nom_deudor'],
+                "ape"=>$f['apellidos_deudor'],
+                "tot"=>$f['total']
+            );
+        }
+    $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
+    }else{
+        $jsonresponse="Nada";
+    }
+    echo $jsonresponse;
+}
+
 // Buscar producto en promociones
 if ($opcion == "buscar_promocion") {
     $cod =$_GET['cod'];
