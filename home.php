@@ -187,7 +187,7 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
                     </li> -->
 
                     <li class="list_inside">
-                        <label class="nav_link nav_link--inside">Margen de ganancia</label >
+                        <label id="marga" class="nav_link nav_link--inside">Margen de ganancia</label >
                     </li>
                 </ul>
             </li>

@@ -77,6 +77,12 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });
+
+    $('#marga').click(function(){
+        $('.contenedor').load("margen_ganancia.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
     // $('#mhome').click(function(){
     //     $('body').load("home.php");
     //     $('#nav').css("margin-left","-90%");
