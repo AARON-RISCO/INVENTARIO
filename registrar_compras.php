@@ -87,15 +87,22 @@ if($_SESSION['cargo']=='VENDEDOR')
     <!--Ventana modal de agregar nuevo producto-->
     <div class="modal">
         <img src="img/cerrar2.svg" alt="" class="cerrar_modal">
-        <label>Registrar Nuevo deudor</label><br>
+        <label>Registrar Nuevo Producto</label><br>
         <select name="tcat" id="tcat" class="cajas-modal"></select></select><div id="ir_cat" class="ir_cat ir"> <img src="img/agregar.png" id="icon-suma" ></div>
-        <input type="text" id="tnom" class="cajas_modal" placeholder="Ingrese nombre">
-        <input type="text" id="tsa" class="cajas_modal" placeholder="Ingrese sabor">
-        <input type="text" id="tpre" class="cajas_modal" placeholder="Ingrese precio de venta">        
+        <input type="text" id="tnom" class="cajas_modal MT" placeholder="Ingrese nombre">
+        <input type="text" id="tsa" class="cajas_modal MT" placeholder="Ingrese sabor">
+        <input type="text" id="tmin" class="cajas_modal INT" placeholder="Ingrese stock Minimo">
+        <input type="text" id="tpre" class="cajas_modal NUMP" placeholder="Ingrese precio de venta">        
         <div class="botones">
         <input type="button" value="Guardar" class="btn-guardar btn" id="bguardar_pro">
         </div>
-
+    </div>
+    <!-- Registrar nueva categoria-->
+    <div class="modal_cat">
+        <img src="img/cerrar2.svg" alt="" class="cerrar_modal_cat">
+        <label>Agregar nueva categoria</label><br>
+        <input type="text" name="tnom_cat" id="tnom_cat" placeholder="Ingrese Nombre de categoria" class="cajas_modal MT" ><br>
+        <input type="button" value="Guardar" id="bguardar_cat">
     </div>
 </body>
 </html>

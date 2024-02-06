@@ -276,6 +276,12 @@ llenar_categorias();
     $(document).on('click', '.cerrar_modal', function() {
         $('.fondo').css('display','none');
         $('.modal').css('margin-top','-90%');
+        limpiacajas();
+    });
+    $(document).on('click', '.cerrar_modal_cat', function() {
+        $('.modal').css('margin-top','-10%');
+        $('.modal_cat').css('margin-top','-90%');
+        $('#tnom_cat').val('');
     });
 
     //llenar categorias en modal
@@ -306,7 +312,7 @@ llenar_categorias();
         const sabor = $('#tsa').val().trim();
         const uni = 1;
         const pre = $('#tpre').val().trim();
-        const minimo = 10;
+        const minimo =  $('#tmin').val().trim();
         const actual= 0;
         
         //Validaciones
@@ -327,12 +333,17 @@ llenar_categorias();
             $('#tsa').focus();
             return;
         }
+        if (minimo==="") {
+            alert('Ingrese Stock Minimo!');
+            $('#tmin').focus();
+            return;
+        }
 
         if (pre==="") {
             alert('Ingrese Precio del Producto!');
             $('#tpre').focus();
             return;
-            }
+        }
         
             
         // Crear el objeto de datos para enviar la solicitud
@@ -358,7 +369,55 @@ llenar_categorias();
             $(".añadir").css("display","none");
             $("#bus_nom").val('');
           });
+    })
+
+    $(document).on('click', '#icon-suma', function() {
+        $('.fondo').css('display','block');
+        $('.modal_cat').css('margin-top','-10%');
+        $('.modal').css('margin-top','-90%');
+    });
+
+    $(document).on('click', '#bguardar_cat', function() {
+        const nom=$('#tnom_cat').val().trim();
+        //Validar
+        if (nom==="") {
+            alert("Ingrese Nombre de Categoria");
+            $('#tnom_cat').focus();
+            return;
+        }
+        //Crear objeto de datos para enviar la solicitud
+        const datos ={
+            nom:nom,
+            opcion:'agregar'
+        };
+        //Enviar la solicitud a ajax
+        $.get('php/controlador_categorias.php',datos,function(response){
+            alert(response);
+            $('#tnom_cat').val("");
+            $('.modal_cat').css('margin-top','-90%');
+            $('.modal').css('margin-top','-10%');
+            llenar_categorias();
         })
+    })
     
-    
+        // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
+        $('.MT').on('input', function() {
+            let currentValue = $(this).val();
+            let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ]/g, '');
+            $(this).val(newValue.toUpperCase());
+        });
+
+        $('.NUMP').on('input', function() {
+            // Obtener el valor actual del input
+            let currentValue = $(this).val();
+        
+            // Remover caracteres no permitidos (que no son números, puntos ni comas)
+            let newValue = currentValue.replace(/[^0-9.,]/g, '');
+        
+            // Reemplazar comas por puntos (si las hay)
+            newValue = newValue.replace(/,/g, '.');
+        
+            // Actualizar el valor del input en mayúsculas
+            $(this).val(newValue.toUpperCase());
+        });
 })
