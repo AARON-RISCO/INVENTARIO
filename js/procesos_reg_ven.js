@@ -80,11 +80,15 @@ $(document).on('change','#tdeudores',function(){
         }else{
         const registro = JSON.parse(response);
         console.log(registro);
-        if (registro[0].tot>=10) {
-            alert(registro[0].nom+' '+registro[0].ape+' '+'LLEGO AL LIMITE')
+        if (registro[0].tot>=10 && registro[0].tot<15) {
+            alert(registro[0].nom+' '+registro[0].ape+' '+'ESTA POR LLEGAR AL LIMITE, TIENE UNA DEUDA DE : ' + ' ' +registro[0].tot)
+            
+        } else if (registro[0].tot>=15) {
+            alert(registro[0].nom+' '+registro[0].ape+' '+'LLEGO AL LIMITE, TIENE UNA DEUDA DE : ' + ' ' +registro[0].tot)
             $('#tdeudores').val(0);
-            return;
-        } 
+        }else{
+            
+        }
         }
     })
 })
