@@ -285,6 +285,7 @@ $(document).ready(function(){
             $('#tsabor').val(registro[0].sabor);
             $('#tuni').val(registro[0].uni);
             $('#tpre').val(registro[0].pre);
+            $('#tprec').val(registro[0].prec);
             $('#tstock_min').val(registro[0].minimo);
             $('#tstock').val(registro[0].actual);
         });
@@ -298,6 +299,7 @@ $(document).ready(function(){
         const sabor = $('#tsabor').val().trim();
         const uni = $('#tuni').val().trim();
         const pre = $('#tpre').val().trim();
+        const prec = $('#tprec').val().trim();
         const minimo = $('#tstock_min').val().trim();
         const actual= $('#tstock').val().trim();
         //Validaciones
@@ -327,10 +329,16 @@ $(document).ready(function(){
         }
 
         if (pre==="") {
-            alert('Ingrese Precio del Producto!');
+            alert('Ingrese Precio de Venta del Producto!');
             $('#tpre').focus();
             return;
         }
+        if (prec==="") {
+            alert('Ingrese Precio de Compra del Producto!');
+            $('#tprec').focus();
+            return;
+        }
+
 
         if (minimo==="") {
             alert('Ingrese Stock Minimo del Producto!');
@@ -352,6 +360,7 @@ $(document).ready(function(){
             sabor : sabor,
             uni: uni,
             pre: pre,
+            prec: prec,
             minimo: minimo,
             actual: actual,
             opcion: 'actualizar'

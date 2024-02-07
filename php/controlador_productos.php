@@ -104,6 +104,7 @@ if($opcion=="buscar"){
                 "cat"=>$f['id_cat'],
                 "uni"=>$f['id_uni'],
                 "pre"=>$f['pre_uni'],
+                "prec" => $f['pre_co'],
                 "minimo"=>$f['stock_min'],
                 "actual"=>$f['stock_actual'],
                 "esc"=>$f['estado']
@@ -121,11 +122,12 @@ if($opcion=="actualizar"){
     $cat=$_GET['cat'];
     $uni=$_GET['uni'];
     $pre=$_GET['pre'];
+    $prec=$_GET['prec'];
     $minimo=$_GET['minimo'];
     $actual=$_GET['actual'];
     $modificar="update producto set nom_pro='$nom',sabores='$sabor',
                 id_cat='$cat', id_uni='$uni', pre_uni='$pre', stock_min='$minimo',
-                stock_actual='$actual' where id_pro='$cod'";
+                stock_actual='$actual', pre_co='$prec' where id_pro='$cod'";
     mysqli_query($cnn,$modificar)or die("Error en modificar producto");
     echo "PRODUCTO ACTUALIZADO";
 }
