@@ -8,11 +8,13 @@ $(document).ready(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
         $('.fil').css("background-color","white");
+        $('.bus_promo').css('z-index','1');
     });
     $('#mostrar_menu').click(function(){
         $('#nav').css("margin-left","0%");
         $('#opacar2').css("display","block");
         $('.fil').css("background-color","transparent");
+        $('.bus_promo').css('z-index','-1');
     });
     $('#mpro').click(function(){
         $('.contenedor').load("productos.php");
@@ -80,6 +82,12 @@ $(document).ready(function(){
 
     $('#marga').click(function(){
         $('.contenedor').load("margen_ganancia.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
+
+    $('#mvcaja').click(function(){
+        $('.contenedor').load("vcaja.php");
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
     });

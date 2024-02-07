@@ -155,7 +155,7 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
                 </div>
                 <ul class="list_show">
                     <li class="list_inside">
-                        <label class="nav_link nav_link--inside">Ver cajas</label >
+                        <label id="mvcaja" class="nav_link nav_link--inside">Ver cajas</label >
                     </li>
 
                     <li class="list_inside">
