@@ -132,6 +132,7 @@ $(document).ready(function(){
         $('#tuni').css('pointer-events', 'none');
         $('.ir_uni').prop('disabled', true);
         $('#tpre').prop('disabled', true);
+        $('#tprec').prop('disabled', true);
         $('#tstock_min').prop('disabled', true);
         $('#tstock').prop('disabled', true);
     }
@@ -143,6 +144,7 @@ $(document).ready(function(){
         $('#tuni').css('pointer-events', 'auto');
         $('.ir_uni').prop('disabled', false);
         $('#tpre').prop('disabled', false);
+        $('#tprec').prop('disabled', false);
         $('#tstock_min').prop('disabled', false);
         $('#tstock').prop('disabled', false);
     }
@@ -152,6 +154,7 @@ $(document).ready(function(){
         $('#tsabor').val('');
         $('#tuni').val(0);
         $('#tpre').val('');
+        $('#tprec').val('');
         $('#tstock_min').val('');
         $('#tstock').val('');
     }
@@ -183,6 +186,7 @@ $(document).ready(function(){
         const sabor = $('#tsabor').val().trim();
         const uni = $('#tuni').val().trim();
         const pre = $('#tpre').val().trim();
+        const prec = $('#tprec').val().trim();
         const minimo = $('#tstock_min').val().trim();
         const actual= $('#tstock').val().trim();
         
@@ -212,11 +216,15 @@ $(document).ready(function(){
         }
 
         if (pre==="") {
-            alert('Ingrese Precio del Producto!');
+            alert('Ingrese Precio de Venta del Producto!');
             $('#tpre').focus();
             return;
         }
-
+        if (prec==="") {
+            alert('Ingrese Precio de Compra del Producto!');
+            $('#tprec').focus();
+            return;
+        }
         if (minimo==="") {
             alert('Ingrese Stock Minimo del Producto!');
             $('#tstock_min').focus();
@@ -237,6 +245,7 @@ $(document).ready(function(){
             sabor : sabor,
             uni: uni,
             pre: pre,
+            prec: prec,
             minimo: minimo,
             actual: actual,
             opcion: 'agregar'

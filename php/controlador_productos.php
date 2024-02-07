@@ -81,10 +81,11 @@ if($opcion=="agregar"){
     $cat=$_GET['cat'];
     $uni=$_GET['uni'];
     $pre=$_GET['pre'];
+    $prec=$_GET['prec'];
     $minimo=$_GET['minimo'];
     $actual=$_GET['actual'];
     $agregar="insert into producto
-    values(' ', '$nom','$sabor',$cat,$uni,$pre,$minimo,$actual,' ')";
+    values(' ', '$nom','$sabor',$cat,$uni,$pre,$minimo,$actual,'',$prec)";
     mysqli_query($cnn,$agregar)or die("Error en registrar producto");
     echo "PRODUCTO REGISTRADO CORRECTAMENTE";
 }

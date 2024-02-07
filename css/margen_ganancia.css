@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+}
+.conteiner{
+    width: 100%;
+    display: flex;
+}
+.datos_reporte_ventas{
+    background-color: rgb(251, 250, 250);
+    margin: 10px;
+    width: 27%;
+    border-radius: 4px;
+    padding: 20px;
+    height: 88vh;
+
+}
+.datos_reporte_ventas h5{
+    margin-bottom: -10px;
+
+}
+.datos_det_ven{
+    background-color: rgb(251, 250, 250);
+    margin: 10px;
+    width: 73%;
+    border-radius: 4px;
+    padding: 20px;
+    height: 88vh;
+}
+.cajas_ven{
+    background:#EAEBEF;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    margin: 15px 0px 10px 0px;
+    border: 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+.cajas_ven2{
+    background:#EAEBEF;
+    width: 48%;
+    padding: 10px 10px 10px 10px;
+    margin: 15px 0px 10px 0px;
+    border: 0;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+.ccajas_ven{
+    display: flex;
+    gap: 4%;
+}
+
+
+#est_pago{
+    background:#EAEBEF;
+    width: 100%;
+    padding: 10px 10px 10px 10px;
+    margin: 15px 0px 10px 0px;
+    border: 0;
+    text-align: center;
+}
+#tdeudores{
+    background:#EAEBEF;
+    width: 85%;
+    padding: 10px 20px 10px 20px;
+    margin: 15px 0px 10px 0px;
+    border: 0;
+    text-align: center;
+}
+.reg_deudores{
+    width:30px;
+    cursor: pointer;
+    margin-left: 6px;
+    margin-bottom: -10px;
+}
+.botones{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    gap:10%;
+}
+
+.btn{
+    padding: 8px 15px 8px 15px;
+    width: 45%;
+    border: 0px;
+    cursor: pointer;
+    margin: 1px;
+}
+.btn-guardar{
+    background-color: rgb(1, 163, 1);
+    color: white;
+}
+.btn-cancelar{
+    background-color: rgb(217, 6, 6);
+    color: white;
+}
+
+.filtro_rpve{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 128, 0, 0.475);
+    /* flex-direction: column; */
+}   
+/* .bus{
+    margin: 10px 10px 10px 10px;
+    padding: 5px 10px 5px 10px;
+    width: 30%;
+    text-align: center;
+} */
+#listado{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin: 10px;
+    margin-left: -0px;
+    border: 1px solid rgba(0, 128, 0, 0.475);
+    flex-direction: column;
+    padding: 10px 10px 10px 10px;
+    display: none;
+}
+#listado_reve{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    max-height: 60vh;
+    margin: 10px;
+    margin-left: -0px;
+    /* border: 1px solid rgba(0, 128, 0, 0.475); */
+    flex-direction: column;
+    padding: 10px 10px 10px 10px;
+    overflow: auto;
+}
+table{
+    width: 100%;
+    font-family: 'Gruppo', sans-serif;
+    text-align: center;
+}
+th{
+  background-color: green;
+  padding: 8px;
+  border-radius: 2px;
+  color: white;
+  font-family: 'Gruppo', sans-serif;
+}
+td{
+  background-color: white;
+  padding: 8px;
+  border-bottom: 1px solid green;
+}   
+.oculto{
+    display: none;
+}
+.bloquear{
+    pointer-events: none;
+}
+.debe{
+    display: none;
+}
+.fondo{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.478);
+    position: fixed; 
+    display:none;
+}
+/* .modal{
+    position: absolute;
+    background-color: #EAEBEF;
+    height: 250px;
+    width: 380px;
+    text-align: center;
+    padding: 30px 0 0 0;
+    margin-top: -90%;
+    transition: 0.5s;
+}
+.cajas_modal{
+    margin: 15px 20px 15px 20px;
+    padding: 5px 10px 5px 10px;
+    width: 85%;
+    background-color: white;
+    border: 0;
+    text-align: center;
+    
+} */
+/* #bguardar_deudor{
+    background-color: green;
+    color: white;
+    border: 0;
+    padding: 5px 10px 5px 10px;
+    width: 40%;
+    margin-top: 10px;
+}
+.cerrar_modal{
+    position: absolute;
+    margin-left: 67%;
+    top: 5px;
+    cursor: pointer;
+}
+#bcarrito{
+    cursor: pointer;
+} */
+
+/* #bhelado{
+    background-color: rgba(0, 255, 255, 0.314); 
+} */
+/* #bhelado:hover{
+    background-color: rgb(0, 255, 255); 
+} */
+/* #bir{ 
+    background-color: rgba(255, 0, 0, 0.31);  
+}
+#bir:hover{ 
+    background-color: rgb(255, 0, 0);  
+}
+.color{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+#ttot{
+    pointer-events: none;
+} */
+
+#filtro_rpve img{
+    width: 50px;
+    height: auto;
+}
+
+.fec_rep{
+    width: 30%;
+    
+    display: flex;
+    justify-content: flex-end;
+}
+.fec_rep input{
+    border: none;
+    font-size: 15px;
+    width: 250px;
+    text-align: end;
+    /* background-color: aquamarine; */
+    padding-right: 5px;
+}
+.logo_repv{
+    /* background-color: none; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 70%;
+    font-size: 30px;
+    padding: 5px 0px 15px 5px;
+}
+.titulo_rpve{
+    text-align: center;
+    padding:10px ;
+    width: 100%;
+    height: auto;
+    /* background-color: aquamarine; */
+}
