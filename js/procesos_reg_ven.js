@@ -106,7 +106,7 @@ $(document).on('click', '.cerrar_modal', function() {
 })
 
 function listar_productos(parametro){
-    var es=0;
+    var es="";
     $.ajax({
         async:true,
         url:'php/controlador_reg_com.php',

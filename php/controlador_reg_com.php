@@ -87,6 +87,9 @@ if($opcion=="agregar_temporal"){
     mysqli_query($cnn,$agregar)or die("Error en registrar producto");
     echo("Producto agregado correctamente");
 
+
+
+
 }
 
 if($opcion=="listar_temporal"){
@@ -155,7 +158,8 @@ if($opcion=="agregar_compra"){
     while($f=mysqli_fetch_array($rre)) {
         $cod_pro=$f['id_pro'];
         $can_pro=$f['cantidad'];
-        $actualizar="UPDATE producto SET stock_actual=stock_actual+$can_pro WHERE id_pro='$cod_pro'";
+        $prec=$f['pre_compra'];
+        $actualizar="UPDATE producto SET stock_actual=stock_actual+$can_pro, pre_co=$prec WHERE id_pro='$cod_pro'";
         mysqli_query($cnn,$actualizar)or die("Error en act. stock");
     }
 }

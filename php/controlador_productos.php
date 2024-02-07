@@ -3,8 +3,9 @@ include "../conexion/conexion.php";
 $opcion=$_GET['opcion'];
 //LISTAR TODOS LOS PRODUCTOS Y FILTRAR POR NOMBRE
 if ($opcion == "listar") {
-    $esi = $_GET['espa'];
+    
     if (isset($_GET['sabo'])) {
+        $esi = $_GET['espa'];
         $sabo = $_GET['sabo'];
         $con_listar = "SELECT t1.*, t2.nom_cat, t3.tipo_uni
                        FROM producto t1, categoria t2, unidad_medida t3
@@ -16,6 +17,7 @@ if ($opcion == "listar") {
         mysqli_stmt_execute($stmt);
 
     }else if(isset($_GET['cate'])){
+        $esi = $_GET['espa'];
         $cat = $_GET['cate'];
         $con_listar=" SELECT t1.*, t2.nom_cat, t3.tipo_uni
                       FROM producto t1, categoria t2, unidad_medida t3
@@ -27,6 +29,7 @@ if ($opcion == "listar") {
         mysqli_stmt_execute($stmt);
 
     }else if (isset($_GET['nombre'])) {
+        $esi = $_GET['espa'];
         $nombre = $_GET['nombre'];
         $con_listar = "SELECT t1.*, t2.nom_cat, t3.tipo_uni
                        FROM producto t1, categoria t2, unidad_medida t3
@@ -37,7 +40,19 @@ if ($opcion == "listar") {
         mysqli_stmt_bind_param($stmt, 'si', $nombre,$esi);
         mysqli_stmt_execute($stmt);
 
+    }else if (isset($_GET['nombre']) && $esi = $_GET['espa']=="") {
+        $nombre = $_GET['nombre'];
+        $con_listar = "SELECT t1.*, t2.nom_cat, t3.tipo_uni
+                       FROM producto t1, categoria t2, unidad_medida t3
+                       WHERE nom_pro LIKE CONCAT(?, '%') AND t1.id_cat = t2.id_cat AND t1.id_uni = t3.id_uni";
+
+        // Utilizar parámetros preparados para evitar inyección de SQL
+        $stmt = mysqli_prepare($cnn, $con_listar);
+        mysqli_stmt_bind_param($stmt, 's', $nombre);
+        mysqli_stmt_execute($stmt);
+
     }else{
+        $esi = $_GET['espa'];
         $con_listar = "SELECT t1.*, t2.nom_cat, t3.tipo_uni
                        FROM producto t1, categoria t2, unidad_medida t3
                        WHERE t1.estado = ? AND t1.id_cat = t2.id_cat AND t1.id_uni = t3.id_uni";
