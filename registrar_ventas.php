@@ -49,7 +49,7 @@ if (empty($_SESSION['dni'])){
         <div class="datos_det_ven">
                 <div class="filtro">
                     <label for="">Ingrese Nombre del Producto</label>
-                    <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus" placeholder="Buscar por Nombre"></div>
+                    <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MAYP" placeholder="Buscar por Nombre"></div>
                 </div>
 
                 <div id="listado"> 

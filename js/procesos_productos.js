@@ -4,7 +4,7 @@ $(document).ready(function(){
     llenar_categorias();
     llenar_unidades();
     BloquearCajas();
-    function listar_productos(parametro,espa,cat,sab){
+    function listar_productos(parametro,espa="",cat,sab){
         let es=espa
         if(es==null){
             es=$('#tdesa').val();
@@ -23,7 +23,6 @@ $(document).ready(function(){
                 opcion:'listar'
             },
             success: function(response){
-                console.log(response);
                 response = response.trim();
                 if(response=='vacio'){
                     $('#cuerpo_tabla_productos').html('');

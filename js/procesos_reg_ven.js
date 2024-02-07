@@ -2,6 +2,7 @@ $(document).ready(function(){
 $(document).off("click","**");
 numerodeventa();
 ClienteGeneral();
+listar_temporal();
 //bloquear tipo de pago
 $('#ttipo_pago').css('pointer-events','none');
 //Mostrar codigo de venta
@@ -92,7 +93,6 @@ $(document).on('change','#tdeudores',function(){
         }
     })
 })
-
 
 //Abrir modal de registrar nuevo deudor
 $(document).on('click', '.reg_deudores', function() {
@@ -424,5 +424,26 @@ $(document).on('click', '#bguardar_deudor', function () {
     })
 }); 
 
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
+    $('.MAYP').on('input', function() {
+        let currentValue = $(this).val();
+        // Ahora la expresión regular permite letras, números, espacios, puntos y comas
+        let newValue = currentValue.replace(/[^a-zA-Z0-9\sÑñ.,]/g, '');
+        $(this).val(newValue.toUpperCase());
+    });
+
+    
+    // ---------------------------------------------------------------- CODIGO PARA VALIDAR EL NO INGRESO DE NUMEROS
+    $('.MAYP').on('keydown', function(event) {
+        // Obtener el código de la tecla presionada
+        // Obtener el código de la tecla presionada
+        var keyCode = event.which;
+    
+        // Validar si la tecla presionada es un número del teclado principal o del teclado numérico
+        if ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105)) {
+            // Prevenir la acción predeterminada (no permitir que se escriba el número)
+            event.preventDefault();
+        }
+      });
 
 })
