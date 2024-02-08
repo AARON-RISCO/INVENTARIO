@@ -28,28 +28,25 @@ if($_SESSION['cargo']=='VENDEDOR')
 
             <label for=""><b>MARGEN DE GANANCIA</b></label>
             <input type="text" class="cajas_ven MAYR" placeholder="Ingresa Titulo De tu Reporte" id="titrpv">
-            <label for="rangoFechas"><h5>selecciona rango de fecha</h5></label>
-            <div class="ccajas_ven"><input type="date" id="rangoFechas" class="cajas_ven2"><input type="date" id="rangoFechas2" class="cajas_ven2"></div>
             
+            <h5>Filtro por Nombre de Producto</h5>
+            <input type="text" id="fnomp" class="cajas_ven MAYR" placeholder="Ingrese nombre de producto">
             
-
-            <select name="" id="cvrp" class="cajas_ven">
-                
-            </select>
-            
-            <!-- <input type="text" class="oculto" placeholder="Ingrese DNI del cliente" value="11111111" id="dni"> -->
-            <!-- <input type="text" class="cajas_ven" placeholder="Cliente" id="cliente"> -->
             <select name="" id="est_pago">
-                <option value="">SELECCCIONE ESTADO DE VENTA(opcional)</option>
-                <option value="1">PAGADA</option>
-                <option value="2">PENDIENTE</option>
+                <option value="">SLECCIONE RANGO DE STOCK(opcional)</option>
+                <option value="1"> MAYOR O IGUAL A STOCK MINIMO</option>
+                <option value="2"> MENOR O IGUAL A STOCK MINIMO</option>
             </select>
-            <select name="" id="ttipo_pago" class="cajas_ven">
-                <option value="">SELECCCIONE TIPO DE PAGO(opcional)</option>
-                <option value="EFECTIVO">EFECTIVO</option>
-                <option value="YAPE">YAPE</option>
-                <option value="PENDIENTE">PENDIENTE</option>
+            <select name="" id="tcatpro" class="cajas_ven">
+
             </select>
+
+            <select name="" id="testado" class="cajas_ven">
+                <option value="">SELECCCIONE ESTADO(opcional)</option>
+                <option value="0">HABILITADO</option>
+                <option value="1">DESHABILITADO</option>
+            </select>
+
             <!-- <div class="debe">
             <select name="" id="tdeudores"></select><img src="img/agregar.png" class="reg_deudores"> 
             </div> -->
@@ -76,7 +73,7 @@ if($_SESSION['cargo']=='VENDEDOR')
                     <table >
                         <thead>
                             <tr>
-                                <th>COD.</th>
+                                <th>#.</th>
                                 <th>PRODUCTO</th>
                                 <th>PRE.VENTA</th>
                                 <th>CANT.</th>
