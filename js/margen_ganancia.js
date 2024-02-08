@@ -36,11 +36,11 @@ $(document).ready(function(){
                         template+=
                         '<tr><td>'+registro[z].idp+
                         '</td><td>'+registro[z].nomp+
-                        '</td><td>S/.'+registro[z].prep+
+                        '</td><td>S/. '+registro[z].prep+
                         '</td><td>'+registro[z].stop+
-                        '</td><td>S/.'+registro[z].prec+
-                        '</td><td> S/.'+mar+
-                        '</td><td>S/.'+net+
+                        '</td><td>S/. '+registro[z].prec+
+                        '</td><td> S/. '+mar.toFixed(1)+
+                        '</td><td>S/. '+net.toFixed(1)+
                         '</td></tr>';
                     }
                     $('#cuerpo_tabla_rema').html(template);
