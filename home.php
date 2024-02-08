@@ -98,9 +98,9 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
                         <label id="mpromo" class="nav_link nav_link--inside">Promociones</label >
                     </li>
 
-                    <li class="list_inside">
+                    <!-- <li class="list_inside">
                         <label id="msp" class="nav_link nav_link--inside">Stock / Precios</label >
-                    </li>
+                    </li> -->
                 </ul>
             </li>
 

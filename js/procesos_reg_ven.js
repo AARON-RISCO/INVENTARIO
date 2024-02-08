@@ -184,6 +184,7 @@ function listar_temporal() {
                         '</td><td>' + registro[z].tot +
                         '</td><td id="icon"><img src="img/helado.svg" width="40" id="'+registro[z].item+'" class="color frio" data-cod="'+registro[z].item+'" style="background-color:'+fondo+';"><img src="img/eliminar.svg" width="40" id="bir" class="color" data-cod="'+registro[z].item+'"></td></tr>';
                         $('#ttot').val(totven.toFixed(2)); 
+                        $('#ttot2').val(totven.toFixed(2)); 
                     }
                     
                 $('#cuerpo_tabla_temporal').html(template);
@@ -423,6 +424,25 @@ $(document).on('click', '#bguardar_deudor', function () {
     EstadoVenta();
     })
 }); 
+
+$(document).on('keyup', '#pago', function() {
+    var valor = $(this).val();
+    if (valor !== "") {
+        if (/^[0-9.]*$/.test(valor)) {
+            const total = parseFloat(valor).toFixed(2) - parseFloat($('#ttot2').val()).toFixed(2); 
+            $('#tvuelto').val(total.toFixed(2)); 
+            // Si el valor es válido, elimina la clase de error
+            $(this).removeClass('error');
+        } else {
+            // Si el valor contiene letras o caracteres no numéricos, agrega la clase de error
+            $(this).addClass('error');
+        }
+    } else {
+        $('#tvuelto').val('0.00');
+        // Si el campo está vacío, elimina la clase de error
+        $(this).removeClass('error');
+    }
+});
 
     // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
     $('.MAYP').on('input', function() {

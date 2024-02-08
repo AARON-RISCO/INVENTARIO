@@ -49,7 +49,7 @@ if (empty($_SESSION['dni'])){
         <div class="datos_det_ven">
                 <div class="filtro">
                     <label for="">Ingrese Nombre del Producto</label>
-                    <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MAYP" placeholder="Buscar por Nombre"></div>
+                    <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MAYP" placeholder="Buscar por Nombre"></div> 
                 </div>
 
                 <div id="listado"> 
@@ -99,5 +99,16 @@ if (empty($_SESSION['dni'])){
         <input type="text" name="tape_deu" id="tape_deu" class="cajas_modal" placeholder="Ingrese Apellidos"><br>
         <input type="button" value="Guardar" id="bguardar_deudor">
     </div>
+
+    <div class="floating-button">
+        <img src="img/calcular.svg" alt="">
+    </div>
+    <div class="calcular">
+        <input type="text" name="" id="pago"><label for="">-</label><br>
+        <input type="text" name="" id="ttot2"><br>
+        <hr>
+        <input type="text" name="" id="tvuelto" value="0.00"><br>
+    </div>
+    
 </body>
 </html>

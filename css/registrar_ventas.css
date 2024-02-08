@@ -213,6 +213,40 @@ td{
     padding: 5px;
     cursor: pointer;
 }
-#ttot{
+#ttot, #ttot2, #tvuelto{
     pointer-events: none;
 }
+
+
+.floating-button {
+    position: fixed;
+    bottom: 20px; /* Cambia este valor para ajustar la posición vertical */
+    right: 20px; /* Cambia este valor para ajustar la posición horizontal */
+    cursor: pointer;
+    border: 1px solid rgb(0, 251, 255);
+    padding-top: 5px;
+  }
+
+.calcular{
+    position: fixed;
+    bottom: 70px; /* Ajusta la posición vertical según sea necesario */
+    right: 20px; /* Ajusta la posición horizontal según sea necesario */
+    background-color: #ebf8f8; /* Color de fondo del "mensajito" */
+    border: 1px solid #ced4da; /* Borde del "mensajito" */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno del "mensajito" */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para dar efecto de elevación */
+}
+.calcular input{
+    width: 50px;
+    padding: 5px;
+    margin: 2px;
+    text-align: right;
+    border: 1px solid rgb(231, 231, 231);
+    background: white;
+}
+
+.error {
+    border: 1px solid red;
+}
+  
