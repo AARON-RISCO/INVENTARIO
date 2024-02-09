@@ -104,8 +104,8 @@ if (empty($_SESSION['dni'])){
         <img src="img/calcular.svg" alt="">
     </div>
     <div class="calcular">
-        <input type="text" name="" id="pago"><label for="">-</label><br>
-        <input type="text" name="" id="ttot2"><br>
+        <input type="text" name="" id="pago" value="0.00"><label for="">-</label><br>
+        <input type="text" name="" id="ttot2" value="0.00"><br>
         <hr>
         <input type="text" name="" id="tvuelto" value="0.00"><br>
     </div>

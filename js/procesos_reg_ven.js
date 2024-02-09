@@ -276,6 +276,7 @@ $(document).on('click', '#bir', function() {
     $.get('php/controlador_reg_ven.php', datos, function(response) {
         alert(response);
         $('#ttot').val('');
+        $('#ttot2').val("0.00");
         listar_temporal();
     });
 })
@@ -362,6 +363,9 @@ $(document).on('click', '#bguardar_ven', function () {
         $("#est_pago").val(0);
         $("#ttipo_pago").val(0);
         $("#ttot").val('');
+        $("#ttot2").val('0.00');
+        $("#pago").val('0.00');
+        $("#tvuelto").val('0.00');
         $("#bus_nom").val('');
         $("#deudores").val(0);
         $(".debe").css('display','none');
@@ -391,58 +395,62 @@ $(document).on('click', '#bcancelar_ven', function() {
         $("#deudores").val(0);
         $(".debe").css('display','none');
         $("#ttot").val('');
+        $("#ttot2").val('0.00');
+        $("#pago").val('0.00');
+        $("#tvuelto").val('0.00');
         $("#bus_nom").val('');
         $('#listado').css('display','none');
     });
 });
 
 //registrar venta
-$(document).on('click', '#bguardar_deudor', function () {
-    const nom=$('#tnom_deu').val().trim();
-    const ape=$('#tape_deu').val().trim();
-    if (nom=="") {
-        alert("INGRESE NOMBRES");
-        $('#tnom_deu').focus()
-        return;
+let click =true;
+$(document).on('click', '.floating-button', function () {
+    if (click == true) {
+        $('.calcular').css('display', 'block')
+        click = false;
+    } else {
+        $('.calcular').css('display', 'none')
+        click = true;
     }
-    if (ape=="") {
-        alert("INGRESE APELLIDOS");
-        $('#tape_deu').focus()
-        return;
-    }
-    const datos = {
-        nom:nom,
-        ape:ape,
-        opcion:'reg_deudor'
-    }
-    $.get('php/controlador_reg_ven.php', datos, function(response) {
-    alert(response);
-    $('#tnom_deu').val("");
-    $('#tape_deu').val("");
-    $('.fondo').css('display','none');
-    $('.modal').css('margin-top','-90%');
-    EstadoVenta();
-    })
+
 }); 
 
 $(document).on('keyup', '#pago', function() {
     var valor = $(this).val();
+    var num = parseFloat($('#ttot2').val());
     if (valor !== "") {
-        if (/^[0-9.]*$/.test(valor)) {
+        if (/^[0-9.]*$/.test(valor) && valor > num) {
             const total = parseFloat(valor).toFixed(2) - parseFloat($('#ttot2').val()).toFixed(2); 
             $('#tvuelto').val(total.toFixed(2)); 
-            // Si el valor es válido, elimina la clase de error
-            $(this).removeClass('error');
+            $(this).css('border','1px solid rgb(231, 231, 231)');
         } else {
-            // Si el valor contiene letras o caracteres no numéricos, agrega la clase de error
-            $(this).addClass('error');
+            $(this).css('border','1px solid red');
         }
     } else {
         $('#tvuelto').val('0.00');
-        // Si el campo está vacío, elimina la clase de error
-        $(this).removeClass('error');
+        $(this).css('border','1px solid red');
     }
 });
+
+$(document).on('keyup', '#pago', function() {
+    var valor = $(this).val();
+    var num = parseFloat($('#ttot2').val());
+    if (valor !== "") {
+        if (/^[0-9.]*$/.test(valor) && valor > num) {
+            const total = parseFloat(valor).toFixed(2) - parseFloat($('#ttot2').val()).toFixed(2); 
+            $('#tvuelto').val(total.toFixed(2)); 
+            $(this).css('border','1px solid rgb(231, 231, 231)');
+        } else {
+            $(this).css('border','1px solid red');
+        }
+    } else {
+        $('#tvuelto').val('0.00');
+        $(this).css('border','1px solid red');
+    }
+});
+
+
 
     // ---------------------------------------------------------------- CODIGO PARA VALIDAR MAYUSCULAS
     $('.MAYP').on('input', function() {
