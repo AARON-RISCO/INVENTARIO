@@ -214,7 +214,15 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
         <img src="img/menu.svg" id="mostrar_menu" ><label for="">Inventario ACADEMIA ÉLITE</label> 
         </div>
         <div class="usuario" id="usuario">
-        <img src="img/user.svg" id="mostrar_menu"><label class="user"><?php echo $_SESSION['nom'].' '.$_SESSION['ape'] . ' '. ' / '. ' '.$_SESSION['cargo']; ?></label> <label> <?php echo date('Y-m-d')?></label>
+        <?php
+        // Establecer la zona horaria de Perú
+        date_default_timezone_set('America/Lima');
+
+        // Obtener la fecha actual en la zona horaria especificada
+        $fecha_actual = date('Y-m-d');
+        ?>
+        
+        <img src="img/user.svg" id="mostrar_menu"><label class="user"><?php echo $_SESSION['nom'].' '.$_SESSION['ape'] . ' '. ' / '. ' '.$_SESSION['cargo']; ?></label> <label> <?php echo $fecha_actual ?></label>
         </div>
     </div>
     

@@ -20,8 +20,15 @@ if($_SESSION['cargo']=='VENDEDOR')
 <body>
     <div class="conteiner">
         <div class="datos_reporte_ventas">
+        <?php
+        // Establecer la zona horaria de Perú
+        date_default_timezone_set('America/Lima');
 
-            <input type="hidden" class="cajas_ven" value="<?php echo date('Y-m-d') ?>" id="fecha">
+        // Obtener la fecha actual en la zona horaria especificada
+        $fecha_actual = date('Y-m-d');
+        $fecha_actual2 = strftime('%A %e de %B del %Y');
+        ?>
+            <input type="hidden" class="cajas_ven" value="<?php $fecha_actual ?>" id="fecha">
             <input type="hidden" value="<?php echo $_SESSION['dni']; ?>" id="dni_per">
             <input type="hidden" class="cajas_ven" value="<?php echo $_SESSION['nom'].' '.$_SESSION['ape'] ?>">
 
@@ -43,7 +50,7 @@ if($_SESSION['cargo']=='VENDEDOR')
                 <div class="filtro_rpve" id="filtro_rpve">
                     <div class="logo_repv"><img src="img/logo.png" ><label>Academia Élite</label></div>    
 
-                    <div class="fec_rep"><input type="text"  value="<?php  echo strftime('%A, %e %B %Y'); ?>" id="fecha" disabled></div>
+                    <div class="fec_rep"><input type="text"  value="<?php  echo $fecha_actual2; ?>" id="fecha" disabled></div>
                 </div>
                 <div class="titulo_rpve" id="titulo_rpve">
                     <h1 class="vtit_rpv" id="vtit_rpv"></h1>

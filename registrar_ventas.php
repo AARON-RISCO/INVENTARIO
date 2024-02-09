@@ -19,7 +19,15 @@ if (empty($_SESSION['dni'])){
             <label for="">Registrar Nueva Venta</label><br>
             <input type="text" class="oculto" id="cod_ven">
             <input type="text" class="cajas_ven bloquear" placeholder="" id="id_cod">
-            <input type="text" class="cajas_ven bloquear" value="<?php echo date('Y-m-d') ?>" id="fecha" >
+            <?php
+            // Establecer la zona horaria de Perú
+            date_default_timezone_set('America/Lima');
+
+            // Obtener la fecha actual en la zona horaria especificada
+            $fecha_actual = date('Y-m-d');
+            ?>
+
+            <input type="text" class="cajas_ven bloquear" value="<?php echo $fecha_actual ?>" id="fecha" >
             <input type="text" class="oculto" value="<?php echo $_SESSION['dni']; ?>" id="dni_per">
             <input type="text" class="cajas_ven bloquear" value="<?php echo $_SESSION['nom'].' '.$_SESSION['ape'] ?>">
             <input type="text" class="oculto" placeholder="Ingrese DNI del cliente" value="11111111" id="dni">
