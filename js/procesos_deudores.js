@@ -106,6 +106,7 @@ $(document).ready(function(){
             opcion:'listar_ventas'
         }
         $.get('php/controlador_deudores.php', datos, function(response) {
+            response = response.trim();
             if(response=='vacio'){
                 $('#cuerpo_tabla_detalle_deudores').html('');
             }else{
@@ -143,6 +144,7 @@ $(document).ready(function(){
         };
     
         $.get('php/controlador_deudores.php', datos, function(response) {
+            response = response.trim();
             var registro = JSON.parse(response);
             $('.oculto').val(registro[0].deu);
     
@@ -163,6 +165,7 @@ $(document).ready(function(){
                     opcion:'pagar'
                 }
                 $.get('php/controlador_deudores.php', datos2, function(response) {
+                    response = response.trim();
                     alert(response);
                     listar_deudores();
                     const datos3={
@@ -170,6 +173,7 @@ $(document).ready(function(){
                         opcion:'listar_ventas'
                     }
                     $.get('php/controlador_deudores.php', datos3, function(response) {
+                        response = response.trim();
                         if(response=='vacio'){
                             $('#cuerpo_tabla_detalle_deudores').html('');
                                 $('#ruta').html('');
