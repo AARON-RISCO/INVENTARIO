@@ -22,13 +22,8 @@ if (empty($_SESSION['dni'])) {
 <?php
 
 if ($_SESSION['cargo'] == "VENDEDOR") {
-    $valor = 1;
 
-    if ($valor == 1) {
         echo '<script>
-                var valorDesdePHP = ' . json_encode($valor) . ';
-                console.log("Valor desde PHP:", valorDesdePHP);
-
                 // Cargar contenido en contenedor usando jQuery
                 $(document).ready(function() {
                     $(".contenedor").load("registrar_ventas.php");
@@ -36,9 +31,18 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
                     $("#opacar2").css("display", "none");
                 });
               </script>';
-    } else {
-        header("location: home.php");
-    }
+
+}else if ($_SESSION['cargo'] == "ADMINISTRADOR"){
+
+        echo '<script>
+        // Cargar contenido en contenedor usando jQuery
+        $(document).ready(function() {
+            $(".contenedor").load("inicio.php");
+            $("#nav").css("margin-left", "-90%");
+            $("#opacar2").css("display", "none");
+        });
+        </script>';
+
 }
 ?>
  <!-- Ventana modal de caja inicial-->
