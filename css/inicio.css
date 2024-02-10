@@ -14,23 +14,27 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 2fr); /* 2 columnas con igual anchura */
     gap: 40px; /* Espacio entre las tarjetas */
-    padding: 80px;
+    padding: 120px;
 }
 
 .hijos {
     position: relative;
-    background-color: white;
-    border-radius: 10px;
+    background-color: rgb(248, 248, 248);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 300px;
-    height: 100px;
-    margin-left: 40px;
+    height: 150px;
+    margin-left: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: -1;
     color: green;
+    cursor: pointer;
+}
+.hijos:hover{
+    background-color: rgba(255, 255, 0, 0.104);
+    transform: scale(0.9);
+    transition: 0.5s;
 }
 
 /* Opcional: Estilos para el texto dentro de las tarjetas */
@@ -40,7 +44,7 @@ body {
 }
 
 .hijos label {
-    background-color:green;
+    background-color:rgba(30, 128, 0, 0.748);
     font-size: 15px;
     position: absolute;
     text-align: right;
@@ -50,6 +54,5 @@ body {
     padding-top: 2px;
     height: 30px;
     left: 0;
-    border-radius: 0px 0px 10px 0px;
     color: white;
 }
