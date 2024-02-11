@@ -16,6 +16,7 @@
     border-radius: 4px;
     padding: 20px;
     height: 85vh;
+    overflow: auto;
 }
 
 .filtros_deudores{
@@ -72,6 +73,13 @@ td{
   padding: 20px;
   border-bottom: 1px solid rgb(128, 0, 0);
 }
+
+#icon{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
 .amarillo{
     background-color: rgba(0, 255, 255, 0.314); 
 }
@@ -97,6 +105,12 @@ td{
 }
 #bver:hover{ 
     background-color: yellow;  
+}
+.red{ 
+    background-color: rgba(255, 0, 0, 0.31);  
+}
+.red:hover{ 
+    background-color: rgb(255, 0, 0);  
 }
 
 .color{

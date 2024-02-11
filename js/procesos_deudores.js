@@ -21,13 +21,14 @@ $(document).ready(function(){
                     var registro=JSON.parse(response);
                     var template='';
                     for(z in registro){
-                        var cod=registro[z].cod;
-
+                        let deuda = registro[z].deu;
+                        if(deuda>0){ var el="block";  ac="none"; }
+                        if(deuda==0){ var el="none"; ac="block";}
                         template+=
                         '<tr><td>'+registro[z].nom+
                         '</td><td>'+registro[z].ape+  
                         '</td><td>'+registro[z].deu+   
-                        '</td><td id="icon"><img src="img/pagar.svg" class="color amarillo bpagar" id="'+registro[z].nom+" "+registro[z].ape+'" data-cod="'+registro[z].cod+'" alt="Pagar"></td></tr>';
+                        '</td><td id="icon"><img src="img/pagar.svg" class="color amarillo bpagar" style="display:'+el+';" id="'+registro[z].nom+" "+registro[z].ape+'" data-cod="'+registro[z].cod+'" alt="Pagar"><img src="img/eliminar.svg" class="color red beliminar" style="display:'+ac+';" data-cod="'+registro[z].cod+'" ></td></tr>';
                     }
                     $('#cuerpo_tabla_deudores').html(template);
                     
@@ -260,6 +261,18 @@ $(document).ready(function(){
             }
         });
         // alert("funciona ver ");
+    });
+
+    $(document).on('click','.beliminar',function(){
+        const cod = $(this).data('cod');
+        const datos={
+            cod:cod,
+            opcion:'eliminar'
+        }
+        $.get('php/controlador_deudores.php',datos,function(response){
+            alert(response);
+            listar_deudores();
+        })
     });
 
 

@@ -7,10 +7,10 @@ if ($opcion == "listar") {
     $nombre = $_GET['nom'];
     $apellido = $_GET['ape'];
 
-    $con_listar = "SELECT t1.id_deudor, t1.nom_deudor, t1.apellidos_deudor, t1.estado, ROUND(SUM(t2.deuda), 2) as total
+    $con_listar = "SELECT t1.id_deudor, t1.nom_deudor, t1.apellidos_deudor, t1.estado, ROUND(SUM(IFNULL(t2.deuda, 0)), 2) AS total
     FROM deudores t1
-    JOIN venta t2 ON t2.id_deudor = t1.id_deudor 
-    WHERE t1.estado = 0 AND t2.deuda > 0";
+    LEFT JOIN venta t2 ON t2.id_deudor = t1.id_deudor
+    WHERE t1.estado = 0";
 
     if ($nombre != '') {
         // Búsqueda solo por nombre
@@ -20,8 +20,11 @@ if ($opcion == "listar") {
         $con_listar .= " AND t1.apellidos_deudor LIKE '" . $apellido . "%'";
     }
 
-    // Agrega GROUP BY al final de la consulta
+    // Agrega GROUP BY justo antes de la finalización de la consulta
     $con_listar .= " GROUP BY t1.id_deudor, t1.nom_deudor, t1.apellidos_deudor, t1.estado";
+
+    // Ordenar por total en orden descendente
+    $con_listar .= " ORDER BY total DESC";
 
     $res = mysqli_query($cnn, $con_listar);
     $num = mysqli_num_rows($res);
@@ -40,6 +43,7 @@ if ($opcion == "listar") {
     }
     echo $jsonresponse;
 }
+
 // Listar ventas
 if ($opcion == "listar_ventas") {
     $cod = $_GET['cod'];
@@ -108,4 +112,10 @@ if ($opcion == "pagar") {
     }
 }
 
+if ($opcion=="eliminar") {
+    $cod=$_GET['cod'];
+    $eliminar="DELETE FROM deudores WHERE id_deudor=$cod";
+    mysqli_query($cnn,$eliminar)or die("ERROR EN ELIMINAR DEUDOR");
+    echo("DEUDOR ELIMINADO CORRECTAMENTE");
+}
 ?>

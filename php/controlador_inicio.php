@@ -33,7 +33,7 @@ if ($opcion=='contarCom') {
     echo $jsonresponse;
 }
 if ($opcion=='contarDeu') {
-    $contar="SELECT COUNT(*) as total_deu FROM deudores";
+    $contar="SELECT COUNT(*) as total_deu FROM deudores WHERE estado=0";
     $res=mysqli_query($cnn,$contar);
     $num=mysqli_fetch_array($res);
     $json[]=array(
