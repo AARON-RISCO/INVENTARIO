@@ -56,7 +56,6 @@ $(document).ready(function(){
         if (fechaf.length > 0 && fechai.length > 0 && fechai <= fechaf) {
             listar_ventas(fechai,fechaf,$('#cvrp').val(),$('#est_pago').val(),$('#ttipo_pago').val());
             $('#rangoFechas2').css('border','1px solid green');
-            console.log(fechai+" ---"+fechaf);
         } else {
             // listar_ventas('');
             $('#cuerpo_tabla_reve').html('');
