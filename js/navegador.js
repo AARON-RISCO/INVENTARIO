@@ -1,24 +1,23 @@
 $(document).ready(function(){
-    // $('.hijos').css('z-index','-1');
     $(document).off("click","**");
     $('#continuar').click(function(){
-        $('#opacar').css("display","none");
-        $('#caja').css("margin-top","-100%");
-        $('.hijos').css('z-index','1');
+    $('#opacar').css("display","none");
+    $('#caja').css("margin-top","-100%");
+$('.hijos').css('z-index','1');
     });
     $('.cerrar').click(function(){
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
         $('.fil').css("background-color","white");
         $('.bus_promo').css('z-index','1');
-        $('.hijos').css('z-index','1');
+$('.hijos').css('z-index','1');
     });
     $('#mostrar_menu').click(function(){
         $('#nav').css("margin-left","0%");
         $('#opacar2').css("display","block");
         $('.fil').css("background-color","transparent");
         $('.bus_promo').css('z-index','-1');
-        $('.hijos').css('z-index','-1');
+$('.hijos').css('z-index','-1');
     });
     $('#mpro').click(function(){
         $('.contenedor').load("productos.php");
@@ -27,10 +26,10 @@ $(document).ready(function(){
     });
     $('#mpro2').click(function(){
         $('.contenedor').load("productos.php");
-    });
+        });
     $('#mven2').click(function(){
         $('.contenedor').load("ver_ventas.php");
-    });
+        });
     $('#mcom2').click(function(){
         $('.contenedor').load("ver_compras.php");
     });
@@ -109,9 +108,9 @@ $(document).ready(function(){
         $('#opacar2').css("display","none");
     });
     $('#mhome').click(function(){
-        $('.contenedor').load("inicio.php");
-        $('#nav').css("margin-left","-90%");
-        $('#opacar2').css("display","none");
-        $('.hijos').css('z-index','1');
+    $('.contenedor').load("inicio.php");
+    $('#nav').css("margin-left","-90%");
+    $('#opacar2').css("display","none");
+    $('.hijos').css('z-index','1');
     });
 });
