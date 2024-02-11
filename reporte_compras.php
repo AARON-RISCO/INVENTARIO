@@ -15,6 +15,7 @@ if($_SESSION['cargo']=='VENDEDOR')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reportes_ventas.css">
     <script src="js/procesos_rcompras.js"></script>
+    <script src="js/cdnjs.cloudflare.com_ajax_libs_jQuery.print_1.6.0_jQuery.print.min.js"></script>
     <title>Document</title>
 </head>
 <body>
