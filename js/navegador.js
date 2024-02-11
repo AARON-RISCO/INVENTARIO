@@ -1,8 +1,10 @@
 $(document).ready(function(){
+    // $('.hijos').css('z-index','-1');
     $(document).off("click","**");
     $('#continuar').click(function(){
         $('#opacar').css("display","none");
         $('#caja').css("margin-top","-100%");
+        $('.hijos').css('z-index','1');
     });
     $('.cerrar').click(function(){
         $('#nav').css("margin-left","-90%");
@@ -110,5 +112,6 @@ $(document).ready(function(){
         $('.contenedor').load("inicio.php");
         $('#nav').css("margin-left","-90%");
         $('#opacar2').css("display","none");
+        $('.hijos').css('z-index','1');
     });
 });

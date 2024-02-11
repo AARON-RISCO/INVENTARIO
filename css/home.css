@@ -138,6 +138,7 @@ margin: 0 auto;
     background-color: rgba(0, 0, 0, 0.478);
     position: fixed; 
     display:block;
+    z-index: 1;
 }
 #opacar2{
     width: 100%;
@@ -161,6 +162,7 @@ margin: 0 auto;
     height: 30% ;
     margin-top: 10%;
     transition: 1s;
+    z-index: 2;
 }
 .input_caja{    
     width: 100%;
