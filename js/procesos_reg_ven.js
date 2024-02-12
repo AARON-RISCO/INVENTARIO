@@ -116,7 +116,7 @@ function listar_productos(parametro){
             // console.log(response);
             response = response.trim();
             if(response=='vacio'){
-                $('#cuerpo_tabla_productos').html('');
+                $('#cuerpo_tabla_productos2').html('');
             }else{
                 var registro=JSON.parse(response);
                 var template='';
@@ -131,7 +131,7 @@ function listar_productos(parametro){
                     '</td><td id="icon"><img src="img/añadiralcarrito.svg" width="40" id="bcarrito" data-cod="'+registro[z].cod+'"></td></tr>';
                 }
                 
-                $('#cuerpo_tabla_productos').html(template);
+                $('#cuerpo_tabla_productos2').html(template);
 
             }
         }

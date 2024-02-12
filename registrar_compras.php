@@ -39,7 +39,7 @@ if($_SESSION['cargo']=='VENDEDOR')
                                 <th>Seleccionar</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpo_tabla_productos">
+                        <tbody id="cuerpo_tabla_productos3">
                             
                         </tbody>
                     </table>

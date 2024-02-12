@@ -24,7 +24,7 @@ llenar_categorias();
                 response = response.trim();
                 if(response=='vacio'){
                     $('.añadir').css('display','block');
-                    $('#cuerpo_tabla_productos').html('');
+                    $('#cuerpo_tabla_productos3').html('');
                 }else{
                     $('.añadir').css('display','none');
                     var registro=JSON.parse(response);
@@ -40,7 +40,7 @@ llenar_categorias();
                         '</td><td id="icon"><img src="img/comprar.svg" width="40" id="bcarrito" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
                     
-                    $('#cuerpo_tabla_productos').html(template);
+                    $('#cuerpo_tabla_productos3').html(template);
     
                 }
             }

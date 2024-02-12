@@ -106,28 +106,36 @@ if($opcion=="agregar"){
 }
 
 //buscar producto a modificar
-if($opcion=="buscar"){
-    $cod=$_GET['cod'];
-    $buscar="SELECT* FROM producto WHERE id_pro='$cod'";
-    $res=mysqli_query($cnn,$buscar);
-    $num=mysqli_num_rows($res);
-    while($f=mysqli_fetch_array($res)){
-            $json[]=array(
-                "cod"=>$f['id_pro'],
-                "nom"=>$f['nom_pro'], 
-                "sabor"=>$f['sabores'], 
-                "cat"=>$f['id_cat'],
-                "uni"=>$f['id_uni'],
-                "pre"=>$f['pre_uni'],
-                "prec" => $f['pre_co'],
-                "minimo"=>$f['stock_min'],
-                "actual"=>$f['stock_actual'],
-                "esc"=>$f['estado']
-            );}
-    $jsonresponse=json_encode($json ,JSON_UNESCAPED_UNICODE);
+if ($opcion == "buscar") {
+    $cod = $_GET['cod'];
+    $buscar = "SELECT * FROM producto WHERE id_pro='$cod'";
+    $res = mysqli_query($cnn, $buscar);
+    $num = mysqli_num_rows($res);
+    
+    // Inicializar $json como un array vacío
+    $json = array();
+    
+    while ($f = mysqli_fetch_array($res)) {
+        $json[] = array(
+            "cod" => $f['id_pro'],
+            "nom" => $f['nom_pro'],
+            "sabor" => $f['sabores'],
+            "cat" => $f['id_cat'],
+            "uni" => $f['id_uni'],
+            "pre" => $f['pre_uni'],
+            "prec" => $f['pre_co'],
+            "minimo" => $f['stock_min'],
+            "actual" => $f['stock_actual'],
+            "esc" => $f['estado']
+        );
+    }
+    
+    // Codificar los resultados en JSON
+    $jsonresponse = json_encode($json, JSON_UNESCAPED_UNICODE);
+    
+    // Devolver la respuesta JSON
     echo $jsonresponse;
 }
-
 
 //Actualizar producto
 if($opcion=="actualizar"){

@@ -72,7 +72,7 @@ if (empty($_SESSION['dni'])){
                                 <th>Seleccionar</th>
                             </tr>
                         </thead>
-                        <tbody id="cuerpo_tabla_productos">
+                        <tbody id="cuerpo_tabla_productos2">
                             
                         </tbody>
                     </table>
