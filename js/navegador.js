@@ -39,8 +39,11 @@ $('.hijos').css('z-index','-1');
     $('#mper2').click(function(){
         $('.contenedor').load("personal.php");
     });
-    $('#minf').click(function(){
-        // $('.contenedor').load("categorias.php");
+    $('#minfo').click(function(){
+        $('#overlay').css("display","block");
+    });
+    $('.close-btn').click(function(){
+        $('#overlay').css("display","none");
     });
     $('#muni').click(function(){
         $('.contenedor').load("unidades_medida.php");

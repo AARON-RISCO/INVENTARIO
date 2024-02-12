@@ -30,5 +30,12 @@
             <img src="img/info.svg" alt=""><div class="count">INF SISTEMA<label for="" id="info"></label></div>
         </div>
     </div>
+    <div class="overlay" id="overlay">
+        <div class="alert-box" id="alertBox">
+            <span class="close-btn" onclick="closeAlert()">&times;</span>
+            <h2>¡Alerta!</h2>
+            <p>Este es un mensaje de alerta personalizado.</p>
+        </div>
+    </div>
 </body>
 </html>
