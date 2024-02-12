@@ -4,6 +4,20 @@ $(document).ready(function(){
     BloquearCajas();
     $('#tdni_usu').prop('disabled', true);
     $('#ttipo').val(0);
+    let toque = true;
+    $(document).on('click', '#icono2', function () {
+        if (toque == true) {
+            $('#slash').css('display', 'block');
+            $('#clave').attr('type', 'password');
+            toque = false;
+        } else {
+            $('#slash').css('display', 'none');     
+            $('#clave').attr('type', 'text');
+            toque = true;
+        }
+    });
+     
+
     function listar_personal(dni='', ape='', nom='', car='') {
         $.ajax({
             async: true,
@@ -48,7 +62,6 @@ $(document).ready(function(){
             }
         });
     }
-    
     
     //buscar por dni
     $(document).on('keyup','#bus_dni',function(){

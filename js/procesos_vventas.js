@@ -1,6 +1,6 @@
 $(document).ready(function(){
     listar_ventas(0);
-    function listar_ventas(est,name,fe1,tp){
+    function listar_ventas(est="",name,fe1,tp){
         
         $.ajax({
             async:true,
