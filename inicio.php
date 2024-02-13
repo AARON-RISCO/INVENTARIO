@@ -32,7 +32,7 @@
     </div>
     <div class="overlay" id="overlay">
         <div class="alert-box" id="alertBox">
-            <span class="close-btn" onclick="closeAlert()">&times;</span>
+            <span class="close-btn">&times;</span>
             <h2>¡Alerta!</h2>
             <p>Este es un mensaje de alerta personalizado.</p>
         </div>
