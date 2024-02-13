@@ -33,8 +33,11 @@
     <div class="overlay" id="overlay">
         <div class="alert-box" id="alertBox">
             <span class="close-btn">&times;</span>
-            <h2>¡Alerta!</h2>
-            <p>Este es un mensaje de alerta personalizado.</p>
+            <h2>INVENTARIO DE VENTAS</h2>
+            <p>Nuestro Sistema de Inventario de Ventas es una herramienta fácil de usar que te permite gestionar tus productos, controlar las existencias y realizar ventas de manera eficiente. ¡Optimiza la gestión de tu inventario y mejora la eficiencia de tu negocio con nosotros!</p>
+            <label for="" style="color : red ;">DESARROLADO POR: </label><br><br>
+            <label for="">Risco Coveñas Jhonatan Aaron</label><br>
+            <label for="">De las Cruz Llenque Miguel Angel</label>
         </div>
     </div>
 </body>
