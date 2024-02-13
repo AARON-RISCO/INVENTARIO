@@ -16,6 +16,7 @@ if($_SESSION['cargo']=='VENDEDOR')
     <title>Document</title>
     <link rel="stylesheet" href="css/margen_ganancia.css">
     <script src="js/margen_ganancia.js"></script>
+    <script src="js/cdnjs.cloudflare.com_ajax_libs_jQuery.print_1.6.0_jQuery.print.min.js"></script>
 </head>
 <body>
 <div class="conteiner">
