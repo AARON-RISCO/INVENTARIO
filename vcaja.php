@@ -70,10 +70,18 @@ if($_SESSION['cargo']=='VENDEDOR')
        </div>
        <div class="mantenimiento">
                 <label>Registro de Movimientos de Caja</label>
+                <input type="hidden" name="" id="id_de_caja">
                 <input type="hidden" name="" id="dni_per" value="<?php echo $_SESSION['dni']; ?>">
                 <div><h5>Nro caja</h5><input type="text" id="nro_caja" disabled></div>
                 <div><h5>Personal</h5><input type="text" id="id_perso" value="<?php echo $_SESSION["nom"]." ".$_SESSION["ape"];?>" disabled></div>
-                <div><h5>Tipo de Movimiento</h5><input type="text" id="tipo_mov" value="OTROS" disabled></div>
+                <div><h5>Tipo de Movimiento</h5>
+                    <select id="tipo_mov" class="caja1t" >
+                        <option value="0">SELECCIONA TIPO DE MOVIMIENTO</option>
+                        <option value="EGRESO">EGRESO</option>
+                        <option value="INGRESO">INGRESO</option>
+                    </select>
+                    <input type="text" id="tvoc" class="caja2t" disabled>
+                </div>
                 <div><h5>Motivo de Movimiento</h5><input type="text" id="motivo_m"  placeholder="Ingrese Motivo de Movimiento"></div>
                 <div><h5>Monto de Movimiento</h5><input type="text" id="total_mo"  placeholder="Ingrese Monto de Movimiento"></div>
                 
