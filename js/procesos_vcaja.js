@@ -1,10 +1,8 @@
 $(document).ready(function(){
     $(document).off("click","**");
-    control(true,true);
-    function control(a,b){
-        $("#tipo_mov").css("disabled",a);
-        $("#motivo_m").css("disabled",b);
-        $("#total_mo").css("disabled",b);
+    control(true);
+    function control(b){
+        $(".bloc").css('disabled',b);
     }
     
     listar_detalle_caja();
