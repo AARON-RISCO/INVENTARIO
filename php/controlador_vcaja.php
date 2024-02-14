@@ -53,13 +53,31 @@ if($opcion=="apertura_caja"){
     echo "caja aperturada";
 }
 
+if($opcion=="actualizar_totales"){
+    $idca=$_GET['id'];
+      // codigo para hallar el total de ingresos y egresos
+      $obtener_total = "SELECT SUM(total) AS suma FROM detalle_caja WHERE tipo_movimiento IN ('VENTA', 'INGRESO')";
+      $resultado_ingresos = mysqli_query($cnn, $obtener_total);
+      $total_ingresos = mysqli_fetch_assoc($resultado_ingresos)['suma'];
+  
+      $obtener_total = "SELECT SUM(total) AS suma FROM detalle_caja WHERE tipo_movimiento IN ('COMPRA', 'EGRESO')";
+      $resultado_egresos = mysqli_query($cnn, $obtener_total);
+      $total_egresos = mysqli_fetch_assoc($resultado_egresos)['suma'];
+  
+      //codigo para actualizar el total de ingresos y egresos, tambien el total
+      $total_caja = $total_ingresos - $total_egresos;
+      $actualizar_caja = "UPDATE caja SET ingresos = $total_ingresos, egresos = $total_egresos, total = $total_caja + apertura WHERE id_caja = $idca";
+      mysqli_query($cnn, $actualizar_caja) or die("Error al actualizar la caja");
+      echo "Actualizado correctamente";
+}
+
 if($opcion=="listar_detalle_caja"){
     $listar_detalle="SELECT dc.*,pe.nom_per,pe.ape_per,ca.fecha_caja
                      FROM detalle_caja as dc, personal as pe, caja as ca
                      WHERE pe.dni_per=dc.dni_per 
                      AND  ca.id_caja=dc.id_caja
                      AND ca.fecha_caja='$fecha_actual'
-                     ORDER BY dni_per";
+                     ORDER BY dc.nro_mov";
     $res=mysqli_query($cnn,$listar_detalle);
     $num=mysqli_num_rows($res);
     if($num>0){
@@ -128,10 +146,8 @@ if($opcion=="registrar_detalle"){
     $mont=$_GET['mont'];
     $idca=$_GET['idca'];
     $dnip=$_GET['dnip'];
-
     $insertar_de="INSERT INTO detalle_caja VALUES($idca,'','$dnip','$moti',$mont,'$tipo')";
     mysqli_query($cnn,$insertar_de)or die("error en registrar detalle de caja");
     echo "registrado correctamente";
-    
 }
 ?>

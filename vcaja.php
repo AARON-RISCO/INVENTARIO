@@ -44,9 +44,9 @@ if($_SESSION['cargo']=='VENDEDOR')
                         <div><h5>Apertura</h5><input type="text" id="taper" disabled></div>
                         <div><h5>Ingresos</h5><input type="text" id="tingr" disabled></div>
                         <div><h5>Egresos</h5><input type="text" id="tegre" disabled></div>
-                        <div><h5>Total</h5><input type="text" id="ttot" disabled></div>
+                        <div><h5>Total en Caja</h5><input type="text" id="ttot" disabled></div>
                     </div>
-                    <div id="listado"> 
+                    <div id="listado_contenido"> 
                         <table >
                             <thead>
                                 <tr>
@@ -75,15 +75,15 @@ if($_SESSION['cargo']=='VENDEDOR')
                 <div><h5>Nro caja</h5><input type="text" id="nro_caja" disabled></div>
                 <div><h5>Personal</h5><input type="text" id="id_perso" value="<?php echo $_SESSION["nom"]." ".$_SESSION["ape"];?>" disabled></div>
                 <div><h5>Tipo de Movimiento</h5>
-                    <select id="tipo_mov" class="caja1t bloc" >
+                    <select id="tipo_mov" class="caja1t bloc2" disabled>
                         <option value="0">SELECCIONA TIPO DE MOVIMIENTO</option>
                         <option value="EGRESO">EGRESO</option>
                         <option value="INGRESO">INGRESO</option>
                     </select>
-                    <input type="text" id="tvoc" class="caja2t" disabled>
+                    <input type="text" id="tvoc" class="caja2t bloc" disabled>
                 </div>
-                <div><h5>Motivo de Movimiento</h5><input type="text" id="motivo_m bloc"  placeholder="Ingrese Motivo de Movimiento"></div>
-                <div><h5>Monto de Movimiento</h5><input type="text" id="total_mo bloc"  placeholder="Ingrese Monto de Movimiento"></div>
+                <div><h5>Motivo de Movimiento</h5><input type="text" id="motivo_m" class="bloc"  placeholder="Ingrese Motivo de Movimiento" disabled></div>
+                <div><h5>Monto de Movimiento</h5><input type="text" id="total_mo" class="bloc" placeholder="Ingrese Monto de Movimiento" disabled></div>
                 
                 
                
