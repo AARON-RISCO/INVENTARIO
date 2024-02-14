@@ -10,7 +10,7 @@
 }
 .listado{
     background-color: rgb(255, 255, 255);
-    width: 59%; 
+    width: 69%; 
     height: 95%;
     border-radius: 3px;
     padding: 20px;
@@ -77,7 +77,7 @@
 
 .mantenimiento{
     background-color: rgb(255, 255, 255);
-    width: 39%;
+    width: 29%;
     height: 95%;
     border-radius: 3px;
     padding: 20px;
@@ -98,12 +98,46 @@
     width: 100%;
     display: flex;
     gap: 10px;
+    justify-content: center;
+    padding-top: 20px;
 }
 
 .botones input[type="button"]{
-    width: 25%;
+    width: 50%;
     border: none;
     border-radius: 3px;
     padding: 10px;
     cursor: pointer;
+}
+#bnuevo_ca{
+    background-color: rgba(0, 255, 255, 0.648);
+    /* display: none; */
+}
+#bnuevo_ca:hover{
+    background-color: aqua;
+    /* display: none; */
+}
+#bguardar_ca{
+    background-color: rgba(79, 208, 56, 0.727);
+    display: none;
+}
+#bguardar_ca:hover{
+    background-color: rgb(79, 208, 56);
+    display: none;
+}
+#bmodificar_ca{
+    background-color: rgba(209, 209, 50, 0.695);
+    display: none;
+}
+#bmodificar_ca:hover{
+    background-color: rgba(209, 209, 50, 0.99);
+    display: none;
+}
+#bcancelar_ca{
+    background-color: rgba(255, 0, 0, 0.695);
+    display: none;
+}
+#bcancelar_ca{
+    background-color: rgb(255, 0, 0);
+    display: none;
 }

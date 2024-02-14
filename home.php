@@ -61,6 +61,7 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
     <div class="caja" id="caja">
         <label>Ingrese monto de caja inicial</label>
         <div>
+            <input type="hidden" id="id_pero" value="<?php echo $_SESSION['dni']; ?>">
             <input type="text" id="tinicio" class="input_caja">
         </div>
         <button id="continuar">Continuar</button>

@@ -18,6 +18,14 @@ if($_SESSION['cargo']=='VENDEDOR')
     <script src="https://kit.fontawesome.com/03a89292db.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
+<?php
+            // Establecer la zona horaria de Perú
+            date_default_timezone_set('America/Lima');
+
+            // Obtener la fecha actual en la zona horaria especificada
+            $fecha_actual = date('Y-m-d');
+            ?>
+<input type="hidden" value="<?php echo $fecha_actual ?>" id="fecha_hoy" >
 <body>
 
     <div id="conteiner">
@@ -27,12 +35,13 @@ if($_SESSION['cargo']=='VENDEDOR')
                     <div class="filtros">
                         <fieldset class="filtros_per">
                                 <legend>Filtros</legend>
-                                <div class="buscar_per"><input type="text" name="bus_dni" id="bus_dni" class="bus SN" placeholder="Buscar por Personal"></div>
-                                <div class="buscar_per"><input type="date" name="bus_nom" id="bus_nom" class="bus MT" placeholder="Buscar por Fecha"></div>
+                                <div class="buscar_per"><input type="text" id="bus_dni"  placeholder="Buscar por Personal"></div>
+                                <div class="buscar_per"><input type="date" id="bus_nom" placeholder="Buscar por Fecha"></div>
                         </fieldset>
                     </div>
                     <div class="encabezado">
-                        <div><h5>Fecha</h5><input type="date" name="" id="" disabled></div>
+                        <input type="hidden" name="" id="id_cabecera_caja">
+                        <div><h5>Fecha</h5><input type="date" name="" id="" value="<?php echo $fecha_actual ?>" disabled></div>
                         <div><h5>Apertura</h5><input type="text" disabled></div>
                         <div><h5>Ingresos</h5><input type="text" disabled></div>
                         <div><h5>Egresos</h5><input type="text" disabled></div>
@@ -44,8 +53,8 @@ if($_SESSION['cargo']=='VENDEDOR')
                                 <tr>
                                     <th>#</th>
                                     <th>Personal</th>
-                                    <th>Ingresos</th>
-                                    <th>Egresos</th>
+                                    <th>Movimiento</th>
+                                    <th>Motivo</th>
                                     <th>Total</th>
                                     <th>Opciones</th>
                                 </tr>
@@ -61,27 +70,22 @@ if($_SESSION['cargo']=='VENDEDOR')
             </div>
        </div>
        <div class="mantenimiento">
-                <label>Mantenimiento caja</label>
-                <div><img src="" alt=""  class="da-usu"><input type="text" name="tdni_usu" id="tdni_usu" class="cajas-usu SN" ></div>
-                <div><img src="" alt=""  class="da-usu"><input type="text" name="tape_usu" id="tape_usu" class="cajas-usu MT" ></div>
-                <div><img src="" alt=""  class="da-usu"><input type="text" name="tnom_usu" id="tnom_usu" class="cajas-usu MT" ></div>
-                <div>
-                    <!-- <img src="" alt=""  class="da-usu"> -->
-                    <select name="" id="ttipo">
-                        <option value="0">SELECCIONE CARGO</option>
-                        <option value="ADMINISTRADOR">ADMINISTRADOR</option>
-                        <option value="VENDEDOR">VENDEDOR</option>
-                    </select>
-                </div>
-                <div><img src="" alt=""  class="da-usu"><input type="text" name="tclave" id="clave" class="cajas-usu " placeholder="Ingrese Contraseña"></div>
+                <label>Registro de Movimientos de Caja</label>
+                <input type="hidden" name="" id="dni_per" value="<?php echo $_SESSION['dni']; ?>">
+                <div><h5>Nro caja</h5><input type="text" name="tdni_usu" id="nro_caja" class="cajas-usu SN" value="" disabled></div>
+                <div><h5>Personal</h5><input type="text" name="tape_usu" id="id_perso" class="cajas-usu MT" value="<?php echo $_SESSION["nom"]." ".$_SESSION["ape"];?>" disabled></div>
+                <div><h5>Tipo de Movimiento</h5><input type="text" name="tnom_usu" id="tipo_mov" class="cajas-usu MT" value="OTROS" disabled></div>
+                <div><h5>Motivo de Movimiento</h5><input type="text" name="tnom_usu" id="motivo_m" class="cajas-usu MT" placeholder="Ingrese Motivo de Movimiento"></div>
+                <div><h5>Monto de Movimiento</h5><input type="text" name="tnom_usu" id="total_mo" class="cajas-usu MT" placeholder="Ingrese Monto de Movimiento"></div>
+                
                 
                
                 <!--Botones-->
                 <div class="botones">
-                    <input type="button" value="Nuevo" class="btn-nuevo  btn" id="bnuevo_usu">
-                    <input type="button" value="Guardar" class="btn-guardar btn" id="bguardar_usu">
-                    <input type="button" value="Actualizar" class="btn-modificar btn" id="bmodificar_usu">
-                    <input type="button" value="Cancelar" class="btn-cancelar btn" id="bcancelar_usu">
+                    <input type="button" value="Nuevo" class="btn-nuevo  btn" id="bnuevo_ca">
+                    <input type="button" value="Guardar" class="btn-guardar btn" id="bguardar_ca">
+                    <input type="button" value="Actualizar" class="btn-modificar btn" id="bmodificar_ca">
+                    <input type="button" value="Cancelar" class="btn-cancelar btn" id="bcancelar_ca">
                 </div>  
                 
        </div> 

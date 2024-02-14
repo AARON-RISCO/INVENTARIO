@@ -1,9 +1,51 @@
 $(document).ready(function(){
     $(document).off("click","**");
-    $('#continuar').click(function(){
-    $('#opacar').css("display","none");
-    $('#caja').css("margin-top","-100%");
-$('.hijos').css('z-index','1');
+    caja();
+    function caja(){
+        $.ajax({
+            asyn:true,
+            type:"GET",
+            url:"php/controlador_vcaja.php",
+            data:{
+                opcion:"llenar_apertura" 
+            },success:function(response){
+                response.trim();
+                if(response=="aparecer"){
+                    $('#opacar').css("display","flex");
+                    $('#caja').css("margin-top","0");
+                }else if(response=="ocultar"){
+                    $('#opacar').css("display","none");
+                    $('#caja').css("margin-top","-100%");
+                    $('.hijos').css('z-index','1');
+                };
+            }
+        })
+    }
+    $(document).on('click','#continuar',function(){
+        let per=$('#id_pero').val();
+        let monto=$('#tinicio').val();
+        if(monto==""){
+            alert("INGRESA MONTO DE APERTURA");
+            return;
+        }
+        
+        $.ajax({
+            asyn:true,
+            type:"GET",
+            url:"php/controlador_vcaja.php",
+            data:{
+                per:per,
+                monto:monto,
+                opcion:"apertura_caja" 
+            },success:function(response){
+                console.log(response);
+                $('#opacar').css("display","none");
+                $('#caja').css("margin-top","-100%");
+                $('.hijos').css('z-index','1');
+                
+            }
+        })
+        
     });
     $('.cerrar').click(function(){
         $('#nav').css("margin-left","-90%");
