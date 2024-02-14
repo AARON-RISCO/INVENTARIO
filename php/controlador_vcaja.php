@@ -20,7 +20,7 @@ $fecha_actual = date('Y-m-d');
 
 if($opcion=="llenar_apertura"){
     
-    $buscar="SELECT* FROM caja WHERE fecha_caja=$fecha_actual";
+    $buscar="SELECT* FROM caja WHERE fecha_caja='$fecha_actual'";
     $res=mysqli_query($cnn,$buscar);
     $num=mysqli_num_rows($res);
     if($num>=1){

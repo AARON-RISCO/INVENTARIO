@@ -9,17 +9,18 @@ $(document).ready(function(){
             data:{
                 opcion:"llenar_apertura" 
             },success:function(response){
-                response.trim();
-                if(response=="aparecer"){
+                let respuesta=response.trim();
+                console.log(respuesta);
+                if(respuesta=="aparecer"){
                     $('#opacar').css("display","flex");
                     $('#caja').css("margin-top","0");
-                }else if(response=="ocultar"){
+                }else if(respuesta=="ocultar"){
                     $('#opacar').css("display","none");
                     $('#caja').css("margin-top","-100%");
                     $('.hijos').css('z-index','1');
                 };
             }
-        })
+        });
     }
     $(document).on('click','#continuar',function(){
         let per=$('#id_pero').val();
@@ -38,7 +39,7 @@ $(document).ready(function(){
                 monto:monto,
                 opcion:"apertura_caja" 
             },success:function(response){
-                console.log(response);
+                // console.log(response);
                 $('#opacar').css("display","none");
                 $('#caja').css("margin-top","-100%");
                 $('.hijos').css('z-index','1');
