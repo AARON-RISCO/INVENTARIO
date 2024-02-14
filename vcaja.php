@@ -40,12 +40,11 @@ if($_SESSION['cargo']=='VENDEDOR')
                         </fieldset>
                     </div>
                     <div class="encabezado">
-                        <input type="hidden" name="" id="id_cabecera_caja">
-                        <div><h5>Fecha</h5><input type="date" name="" id="" value="<?php echo $fecha_actual ?>" disabled></div>
-                        <div><h5>Apertura</h5><input type="text" disabled></div>
-                        <div><h5>Ingresos</h5><input type="text" disabled></div>
-                        <div><h5>Egresos</h5><input type="text" disabled></div>
-                        <div><h5>Total</h5><input type="text" disabled></div>
+                        <div><h5>Fecha</h5><input type="date" name="" id="fecha_caja" disabled></div>
+                        <div><h5>Apertura</h5><input type="text" id="taper" disabled></div>
+                        <div><h5>Ingresos</h5><input type="text" id="tingr" disabled></div>
+                        <div><h5>Egresos</h5><input type="text" id="tegre" disabled></div>
+                        <div><h5>Total</h5><input type="text" id="ttot" disabled></div>
                     </div>
                     <div id="listado"> 
                         <table >
@@ -72,11 +71,11 @@ if($_SESSION['cargo']=='VENDEDOR')
        <div class="mantenimiento">
                 <label>Registro de Movimientos de Caja</label>
                 <input type="hidden" name="" id="dni_per" value="<?php echo $_SESSION['dni']; ?>">
-                <div><h5>Nro caja</h5><input type="text" name="tdni_usu" id="nro_caja" class="cajas-usu SN" value="" disabled></div>
-                <div><h5>Personal</h5><input type="text" name="tape_usu" id="id_perso" class="cajas-usu MT" value="<?php echo $_SESSION["nom"]." ".$_SESSION["ape"];?>" disabled></div>
-                <div><h5>Tipo de Movimiento</h5><input type="text" name="tnom_usu" id="tipo_mov" class="cajas-usu MT" value="OTROS" disabled></div>
-                <div><h5>Motivo de Movimiento</h5><input type="text" name="tnom_usu" id="motivo_m" class="cajas-usu MT" placeholder="Ingrese Motivo de Movimiento"></div>
-                <div><h5>Monto de Movimiento</h5><input type="text" name="tnom_usu" id="total_mo" class="cajas-usu MT" placeholder="Ingrese Monto de Movimiento"></div>
+                <div><h5>Nro caja</h5><input type="text" id="nro_caja" disabled></div>
+                <div><h5>Personal</h5><input type="text" id="id_perso" value="<?php echo $_SESSION["nom"]." ".$_SESSION["ape"];?>" disabled></div>
+                <div><h5>Tipo de Movimiento</h5><input type="text" id="tipo_mov" value="OTROS" disabled></div>
+                <div><h5>Motivo de Movimiento</h5><input type="text" id="motivo_m"  placeholder="Ingrese Motivo de Movimiento"></div>
+                <div><h5>Monto de Movimiento</h5><input type="text" id="total_mo"  placeholder="Ingrese Monto de Movimiento"></div>
                 
                 
                

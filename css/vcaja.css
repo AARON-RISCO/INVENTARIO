@@ -29,6 +29,10 @@
     padding: 10px;
     border-radius: 3px;
 }
+.encabezado div{
+    width: 20%;
+
+}
 .encabezado input{
     border: 1px solid rgba(0, 0, 0, 0.479);
     outline: none;
@@ -140,4 +144,21 @@
 #bcancelar_ca{
     background-color: rgb(255, 0, 0);
     display: none;
+}
+
+/* estilos para boton de opciones */
+#op{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+}
+#bcatu{
+    background-color: rgba(248, 248, 40, 0.432);
+    padding: 10px;
+    border-radius: 3px;
+}
+#bcatu:hover{
+    background-color: rgb(248, 248, 40);
+    cursor: pointer;
 }
