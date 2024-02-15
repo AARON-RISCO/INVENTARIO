@@ -2,22 +2,13 @@
 include("../conexion/conexion.php");
 $opcion=$_GET['opcion'];
 
-// if($opcion=="autocompletarid"){
-//     $consultar="SELECT MAX(id_caja) as max_id FROM caja";
-//     $result=mysqli_query($cnn,$consultar)or die("error en buscar numero mayor");
-//     if ($result->num_rows > 0) {
-//         $row = $result->fetch_assoc();
-//         $next_id = $row["max_id"] + 1;
-//     } else {
-//         $next_id = 1;
-//     }
-//     echo $next_id;
-
-// }
 // obtener fecha actual
 date_default_timezone_set('America/Lima');
 $fecha_actual = date('Y-m-d');
 
+$sacaridca="SELECT id_caja as cajita FROM caja WHERE fecha_caja='$fecha_actual'";
+$ressacar=mysqli_query($cnn,$sacaridca);
+$idcajahoy=mysqli_fetch_assoc($ressacar)['cajita'];
 
 if($opcion=="llenar_apertura"){
     
@@ -54,21 +45,40 @@ if($opcion=="apertura_caja"){
 }
 
 if($opcion=="actualizar_totales"){
-    $idca=$_GET['id'];
+    // $idca=$_GET['id'];
       // codigo para hallar el total de ingresos y egresos
-      $obtener_total = "SELECT SUM(total) AS suma FROM detalle_caja WHERE tipo_movimiento IN ('VENTA', 'INGRESO')";
-      $resultado_ingresos = mysqli_query($cnn, $obtener_total);
-      $total_ingresos = mysqli_fetch_assoc($resultado_ingresos)['suma'];
+      $obtener_total= "SELECT SUM(total) AS suma FROM detalle_caja WHERE tipo_movimiento IN ('VENTA', 'INGRESO') AND id_caja = $idcajahoy";
+      $resultado_ingresos= mysqli_query($cnn, $obtener_total);
+      $total_ingresos= mysqli_fetch_assoc($resultado_ingresos)['suma'];
   
-      $obtener_total = "SELECT SUM(total) AS suma FROM detalle_caja WHERE tipo_movimiento IN ('COMPRA', 'EGRESO')";
-      $resultado_egresos = mysqli_query($cnn, $obtener_total);
-      $total_egresos = mysqli_fetch_assoc($resultado_egresos)['suma'];
+      $obtener_total= "SELECT SUM(total) AS suma FROM detalle_caja WHERE tipo_movimiento IN ('COMPRA', 'EGRESO') AND id_caja = $idcajahoy";
+      $resultado_egresos= mysqli_query($cnn, $obtener_total);
+      $total_egresos= mysqli_fetch_assoc($resultado_egresos)['suma'];
   
       //codigo para actualizar el total de ingresos y egresos, tambien el total
       $total_caja = $total_ingresos - $total_egresos;
-      $actualizar_caja = "UPDATE caja SET ingresos = $total_ingresos, egresos = $total_egresos, total = $total_caja + apertura WHERE id_caja = $idca";
+      $actualizar_caja = "UPDATE caja SET ingresos = $total_ingresos, egresos = $total_egresos, total = $total_caja + apertura WHERE id_caja = $idcajahoy";
       mysqli_query($cnn, $actualizar_caja) or die("Error al actualizar la caja");
       echo "Actualizado correctamente";
+}
+
+if($opcion=="actualizar_ventas_compras"){
+    // $idca=$_GET['idca'];
+
+    $actu_v="SELECT ROUND(SUM(neto - deuda),1) AS suven FROM venta WHERE fecha_venta='$fecha_actual'";
+    $resav=mysqli_query($cnn,$actu_v);
+    $suven=mysqli_fetch_assoc($resav)['suven'];
+
+    $actu_v="SELECT ROUND(SUM(total_general),1) AS sucom FROM compra WHERE fecha_compra='$fecha_actual'";
+    $resav=mysqli_query($cnn,$actu_v);
+    $sucom=mysqli_fetch_assoc($resav)['sucom'];
+    
+    $actualizando_v="UPDATE detalle_caja SET total = $suven WHERE id_caja=$idcajahoy AND tipo_movimiento='VENTA'";
+    mysqli_query($cnn,$actualizando_v);     
+
+    $actualizando_c="UPDATE detalle_caja SET total=$sucom WHERE id_caja=$idcajahoy AND tipo_movimiento='COMPRA'";
+    mysqli_query($cnn,$actualizando_c);
+    // echo $idca;
 }
 
 if($opcion=="listar_detalle_caja"){
@@ -118,6 +128,7 @@ if($opcion=="listar_cabe_caja"){
     }
     echo $jsonresponse;
 }
+
 if($opcion=="buscar"){
     $cod=$_GET['cod'];
     
@@ -149,5 +160,15 @@ if($opcion=="registrar_detalle"){
     $insertar_de="INSERT INTO detalle_caja VALUES($idca,'','$dnip','$moti',$mont,'$tipo')";
     mysqli_query($cnn,$insertar_de)or die("error en registrar detalle de caja");
     echo "registrado correctamente";
+}
+
+if($opcion=="modificar_caja"){
+    $nroc=$_GET['nroc'];
+    $moti=$_GET['moti'];
+    $tota=$_GET['tota'];
+
+    $conactu="UPDATE detalle_caja SET motivo='$moti' , total=$tota WHERE nro_mov=$nroc";
+    mysqli_query($cnn,$conactu);
+    echo "ACTUALIZACION REALIZA CORRECTAMENTE";
 }
 ?>

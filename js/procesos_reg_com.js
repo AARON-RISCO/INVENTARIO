@@ -2,6 +2,7 @@ $(document).ready(function(){
 llenar_categorias();
     $(document).off("click","**");
     numerodecompra();
+    act_comven();
     listar_temporal();
     function numerodecompra(){
         const datos={
@@ -13,7 +14,21 @@ llenar_categorias();
                 $('#cod_com').val(registro[0].cod);
         })
     }
-                  
+    
+    // funcion para sumar en caja
+    function act_comven(){
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_vcaja.php",
+            data:{
+                opcion:"actualizar_ventas_compras"
+            },success:function(response){
+                // console.log(response);
+            }
+        })
+    }              
+
     function listar_productos(parametro){
         $.ajax({
             async:true,
@@ -245,6 +260,7 @@ llenar_categorias();
             };
             $.get('php/controlador_reg_com.php', datos, function (response) {
                 listar_temporal();
+                act_comven();
             });
 
         });

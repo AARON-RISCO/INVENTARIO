@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $(document).off("click","**");
+    // $('.caja1t').css('pointer-events','none');
     listar_detalle_caja();
     function listar_detalle_caja(parametro){
         $.ajax({
@@ -52,29 +53,37 @@ $(document).ready(function(){
                 $('#tegre').val('S/. '+respues[0].egres);
                 $('#ttot').val('S/. '+respues[0].total);
                 $('#nro_caja').val(respues[0].id_ca);
+                $('#id_deca').val(respues[0].id_ca);
             }
         })
     }
-    actualizar_cabe($("#nro_caja").val());
-    function actualizar_cabe(id){
-
+    // actualizar_cabe($('#nro_caja').val());
+    act_comven();
+    actualizar_cabe();
+    function actualizar_cabe(){
+        // console.log(id);
         $.ajax({
             async:true,
             type:"GET",
             url:"php/controlador_vcaja.php",
             data:{
-                id:id,
                 opcion:"actualizar_totales"
             },success:function(response){
+                
+            }
+        })
+    }
+    
+    
+    function act_comven(){
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_vcaja.php",
+            data:{
+                opcion:"actualizar_ventas_compras"
+            },success:function(response){
                 // console.log(response);
-                // let respuesta=response.trim();
-                // let respues=JSON.parse(respuesta);
-                // $('#fecha_caja').val(respues[0].fecha);
-                // $('#taper').val('S/. '+respues[0].apert);
-                // $('#tingr').val('S/. '+respues[0].ingre);
-                // $('#tegre').val('S/. '+respues[0].egres);
-                // $('#ttot').val('S/. '+respues[0].total);
-                // $('#nro_caja').val(respues[0].id_ca);
             }
         })
     }
@@ -125,10 +134,12 @@ $(document).ready(function(){
             },success:function(response){
                 // console.log(response);
                 let respuesta=response.trim();
-                console.log(respuesta);
+                // console.log(respuesta);
                 actualizar_cabe($("#nro_caja").val());
                 listar_cabecera();
                 listar_detalle_caja();
+                act_comven();
+                actualizar_cabe();
                 bloquear(true);
                 $('.bloc').val('');
                 $('.bloc2').val(0);
@@ -154,20 +165,33 @@ $(document).ready(function(){
             alert("INGRESA MONTO DE MOVIMIENTO");
             return;
         }
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_vcaja.php",
+            data:{
+                nroc:$("#id_de_caja").val(),
+                moti:$("#motivo_m").val(),
+                tota:$("#total_mo").val(),
+                opcion:"modificar_caja"
+            },success:function(response){
+                alert(response);
+                $('#bmodificar_ca').css("display","none");
+                $('#bcancelar_ca').css("display","none");
+                $('#bnuevo_ca').css("display","block");
 
-        $('#bmodificar_ca').css("display","none");
-        $('#bcancelar_ca').css("display","none");
-        $('#bnuevo_ca').css("display","block");
-
-
-        $("#tipo_mov").css("display","block");
-        $("#tvoc").css("display","none");
-        bloquear(true);
-        actualizar_cabe($("#nro_caja").val());
-        listar_cabecera();
-        listar_detalle_caja();
-        $('.bloc').val('');
-        $('.bloc2').val(0);
+                $("#tipo_mov").css("display","block");
+                $("#tvoc").css("display","none");
+                bloquear(true);
+                listar_cabecera();
+                act_comven();
+                actualizar_cabe();
+                listar_detalle_caja();
+                $('.bloc').val('');
+                $('.bloc2').val(0);
+            }
+        })
+        
     })
     $('#bcancelar_ca').click(function(){
         $('#bguardar_ca').css("display","none");
@@ -182,10 +206,10 @@ $(document).ready(function(){
         $('.bloc2').val(0);
     })
 
-    // boton de actualizar datos de detalle de caja
+    // boton par abuscar datos de actualizar en detalle de caja
     $(document).on('click','#bcatu',function(){
         const cod = $(this).data('cod');
-        console.log(cod)
+        // console.log(cod)
         $.ajax({
             async:true,
                 type:"GET",
@@ -207,12 +231,14 @@ $(document).ready(function(){
                     $("#tvoc").css("display","block");
                     $("#tvoc").val(respuesta[0].tipom);
                     $("#tipo_mov").css("display","none");
-                    $("#tvoc").css("disabled",true);
+                    // $("#tvoc").css("disabled",true);
                    }else{
                     $("#tipo_mov").css("display","block");
                     $("#tvoc").css("display","none");
                     $("#tipo_mov").val(respuesta[0].tipom);
-                    $("#tipo_mov").css("disabled",true);
+                    // $("#tipo_mov").css("disabled",true);
+                    bloquear(false);
+                    $("#tipo_mov").prop("disabled",true);
                     
                    }
                    

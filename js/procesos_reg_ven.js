@@ -193,6 +193,19 @@ function listar_temporal() {
         }
     });
 }
+// funcion para actualizar caja
+function act_comven(){
+        $.ajax({
+            async:true,
+            type:"GET",
+            url:"php/controlador_vcaja.php",
+            data:{
+                opcion:"actualizar_ventas_compras"
+            },success:function(response){
+                // console.log(response);
+            }
+        })
+    }
 
 //AÑADIR AL CARRITO
 $(document).on('click', '#bcarrito', function() {
@@ -359,7 +372,8 @@ $(document).on('click', '#bguardar_ven', function () {
 
     $.get('php/controlador_reg_ven.php', datos, function (response) {
         alert(response);
-        console.log(response);
+        // console.log(response);
+        
         $("#est_pago").val(0);
         $("#ttipo_pago").val(0);
         $("#ttot").val('');
@@ -376,6 +390,7 @@ $(document).on('click', '#bguardar_ven', function () {
         $.get('php/controlador_reg_ven.php', datos, function (response) {
             listar_temporal();
             numerodeventa();
+            act_comven();
         });
 
         });

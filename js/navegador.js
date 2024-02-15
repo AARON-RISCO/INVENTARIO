@@ -10,7 +10,7 @@ $(document).ready(function(){
                 opcion:"llenar_apertura" 
             },success:function(response){
                 let respuesta=response.trim();
-                console.log(respuesta);
+                // console.log(respuesta);
                 if(respuesta=="aparecer"){
                     $('#opacar').css("display","flex");
                     $('#caja').css("margin-top","0");

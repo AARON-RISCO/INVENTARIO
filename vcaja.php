@@ -73,9 +73,10 @@ if($_SESSION['cargo']=='VENDEDOR')
                 <input type="hidden" name="" id="id_de_caja">
                 <input type="hidden" name="" id="dni_per" value="<?php echo $_SESSION['dni']; ?>">
                 <div><h5>Nro caja</h5><input type="text" id="nro_caja" disabled></div>
+                <input type="hidden" name="" id="id_deca">
                 <div><h5>Personal</h5><input type="text" id="id_perso" value="<?php echo $_SESSION["nom"]." ".$_SESSION["ape"];?>" disabled></div>
                 <div><h5>Tipo de Movimiento</h5>
-                    <select id="tipo_mov" class="caja1t bloc2" disabled>
+                    <select id="tipo_mov" class="caja1t bloc2">
                         <option value="0">SELECCIONA TIPO DE MOVIMIENTO</option>
                         <option value="EGRESO">EGRESO</option>
                         <option value="INGRESO">INGRESO</option>

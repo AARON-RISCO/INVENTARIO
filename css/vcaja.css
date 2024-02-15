@@ -62,9 +62,9 @@
     border-bottom: 1px solid green;
   } 
 #listado_contenido{
-    overflow-y: auto;
+    overflow: auto;
     width: 100%;
-    height: 50%;
+    max-height: 45%;
 }
 .filtros_per{
     display: flex;
