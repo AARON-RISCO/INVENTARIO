@@ -53,4 +53,26 @@ if ($opcion=='contarPer') {
     echo $jsonresponse;
 }
 
+if ($opcion == "listar") {
+
+    $con_listar = "SELECT id_pro,nom_pro, stock_actual 
+	                FROM producto 
+	                WHERE stock_min >= stock_actual";
+
+    $res = mysqli_query($cnn, $con_listar);
+    $num = mysqli_num_rows($res);
+    if ($num >= 1) {
+        while ($f = mysqli_fetch_array($res)) {
+            $json[] = array(
+                "id" => $f['id_pro'],
+                "pro" => $f['nom_pro']
+            );
+        }
+        $jsonresponse = json_encode($json, JSON_UNESCAPED_UNICODE);
+    } else {
+        $jsonresponse = "vacio";
+    }
+    echo $jsonresponse;
+}
+
 ?>

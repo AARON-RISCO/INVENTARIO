@@ -1,6 +1,7 @@
 $(document).ready(function(){
 $(document).off("click","**");
 contar();
+buscar_min();
 function contar(){
     const datos={
         opcion:'contarPro'
@@ -39,5 +40,36 @@ function contar(){
     })
 }
 
+function buscar_min(){
+    $.ajax({
+        async:true,
+        url:'php/controlador_inicio.php',
+        type:'GET',
+        data:{opcion:'listar'},
+        success: function(response){
+            //console.log(response)
+            response = response.trim();
+            if(response=='vacio'){
+                alert="ninguno";
+            }else{
+                var registro=JSON.parse(response);
+                var template='';
+                for(z in registro){
+                    template+=
+                   '<div class="al" id="'+registro[z].id+'">'+registro[z].pro+'<img src="img/cerrar.svg" class="cerrar5"  id="'+registro[z].id+'">'+'</div>';
+                }
+                $('.alertas').html(template);
+                }
+            }
+
+            })
+}
+
+$(document).on('click', '.cerrar5', function() {
+    const item = $(event.target).attr('id');
+    $('#'+item).css('margin-top','-100%');
+    $('#'+item).css('display','none');
+    
+})
 
 })
