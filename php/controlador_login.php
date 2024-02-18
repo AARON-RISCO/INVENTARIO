@@ -15,6 +15,7 @@ if (!empty($_POST["bacceder"])) {
             $_SESSION["estado"]=$datos->estado_per;
             $_SESSION["cargo"]=$datos->tipo_per;
             $_SESSION["nivel"]=1;
+            $_SESSION["nivel2"]=1;
             if($_SESSION["estado"]=="ACTIVO"){
               header("location:home.php");
             }else{

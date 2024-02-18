@@ -100,25 +100,3 @@ h2{
 .alert-box label{
     margin: 10px;
 }
-.alertas{
-    position: absolute;
-    z-index: 2;
-    right: 0;
-    top:70px;
-}
-.al{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(230, 2, 2);
-    margin: 10px;
-    width: 300px;
-    padding: 10px 10px 10px 10px;
-    color: white;
-    border-radius: 5px;
-}
-.cerrar5{
- position: absolute;
- right: 20px;
- cursor: pointer;
-}

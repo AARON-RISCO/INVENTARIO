@@ -1,7 +1,9 @@
 let listElements = document.querySelectorAll('.list_button--click');
 let cerrarMenu = document.querySelectorAll('.cerrar');
-document.getElementById('usuario').style.marginRight="0%"
-
+document.getElementById('usuario').style.marginRight="0%";
+// document.addEventListener('DOMContentLoaded', function() {
+//     document.getElementById('alertas').style.marginRight = "0%";
+// });
 listElements.forEach(listElement => {
     listElement.addEventListener('click', ()=>{
         listElement.classList.toggle('arrow');

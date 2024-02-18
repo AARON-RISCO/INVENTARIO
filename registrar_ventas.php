@@ -117,6 +117,5 @@ if (empty($_SESSION['dni'])){
         <hr>
         <input type="text" name="" id="tvuelto" value="0.00"><br>
     </div>
-    
 </body>
 </html>

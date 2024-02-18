@@ -26,7 +26,7 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
         echo '<script>
                 // Cargar contenido en contenedor usando jQuery
                 $(document).ready(function() {
-                    $(".contenedor").load("registrar_ventas.php");
+                    $(".contenedor").load("inicio.php");
                     $("#nav").css("margin-left", "-90%");
                     $("#opacar2").css("display", "none");
                 });
@@ -231,6 +231,9 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
         </div>
     </div>
     
+    <div class="alertas" id="alertas">
+        
+    </div>
     <!-- Contenedor -->
     <div class="contenedor">
     </div>

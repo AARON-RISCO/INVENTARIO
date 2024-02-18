@@ -10,9 +10,6 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="alertas">
-        
-    </div>
     <div class="padre">
         <div class="hijos" id="mpro2">
             <img src="img/productos.svg" alt=""><div class="count">PRODUCTOS<label for="" id="pro"></label></div>
