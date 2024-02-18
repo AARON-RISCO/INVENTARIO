@@ -195,6 +195,12 @@ $(document).ready(function(){
         $('#opacar2').css("display","none");
     });
 
+    $('#mcat').click(function(){
+        $('.contenedor').load("categorias.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
+
     $('#marga').click(function(){
         $('.contenedor').load("margen_ganancia.php");
         $('#nav').css("margin-left","-90%");
