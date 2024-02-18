@@ -65,7 +65,7 @@ $(document).ready(function(){
                     var template='';
                     for(z in registro){
                         template+=
-                       '<div class="al" id="'+registro[z].id+'">'+registro[z].pro+'<img src="img/cerrar.svg" class="cerrar5"  id="'+registro[z].id+'">'+'</div>';
+                       '<div class="al" id="'+registro[z].id+'">'+'<img src="img/alert.svg" id="icon_alert">'+'<label>'+registro[z].pro+'</label><img src="img/cerrar.svg" class="cerrar5"  id="'+registro[z].id+'">'+'</div>';
                     }
                     $('.alertas').html(template);
                     }

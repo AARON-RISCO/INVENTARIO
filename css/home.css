@@ -226,7 +226,7 @@ button{
     margin: 10px;
     width: 135px;
     padding: 10px 5px 10px 5px;
-    color: rgb(0, 0, 0);
+    color: red;
     border-radius: 5px;
     font-size: 12px;
     box-shadow: 5px 5px 5px 2px rgb(207, 206, 206);
@@ -237,3 +237,16 @@ button{
  cursor: pointer;
  width: 20px;
 }
+
+#icon_alert{
+    position: absolute;
+    left: 20px;
+    cursor: pointer;
+    width: 20px;
+    border-radius: 100%;
+    filter: drop-shadow(2px 2px 3px red);
+}
+.al label{
+    filter: drop-shadow(1px 1px 1px yellow);
+}
+
