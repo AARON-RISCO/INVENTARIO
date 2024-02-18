@@ -118,4 +118,15 @@ if ($opcion=="eliminar") {
     mysqli_query($cnn,$eliminar)or die("ERROR EN ELIMINAR DEUDOR");
     echo("DEUDOR ELIMINADO CORRECTAMENTE");
 }
+
+if($opcion=="agregar_deu"){
+    $nom=$_GET['nom'];
+    $ape=$_GET['ape'];
+    $agregar="insert into deudores
+    values(' ', '$nom','$ape',' ')";
+    mysqli_query($cnn,$agregar)or die("ERROR DEUDOR");
+    echo "REGISTRADO CORRECTAMENTE";
+}
+
+
 ?>

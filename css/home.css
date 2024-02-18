@@ -8,6 +8,9 @@ body{
     background:#EAEBEF;
     font-family: 'Poppins', sans-serif;
 }
+input[type='text']{
+    outline: none;
+}
 .nav{
     width: 300px;
     position: absolute;

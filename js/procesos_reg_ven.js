@@ -448,21 +448,39 @@ $(document).on('keyup', '#pago', function() {
     }
 });
 
-$(document).on('keyup', '#pago', function() {
-    var valor = $(this).val();
-    var num = parseFloat($('#ttot2').val());
-    if (valor !== "") {
-        if (/^[0-9.]*$/.test(valor) && valor > num) {
-            const total = parseFloat(valor).toFixed(2) - parseFloat($('#ttot2').val()).toFixed(2); 
-            $('#tvuelto').val(total.toFixed(2)); 
-            $(this).css('border','1px solid rgb(231, 231, 231)');
-        } else {
-            $(this).css('border','1px solid red');
-        }
-    } else {
-        $('#tvuelto').val('0.00');
-        $(this).css('border','1px solid red');
+$(document).on('click', '#bguardar_deudor', function() {
+   const nom = $('#tnom_deu').val();
+   const ape = $('#tape_deu').val();
+   
+    if (nom=='') {
+        alert('Ingrese Nombre');
+        $('#tnom_deu').focus();
+        return;
     }
+
+    if (ape=='') {
+        alert('Ingrese Apellidos');
+        $('#tape_deu').focus();
+        return;
+    }
+
+    // Crear el objeto de datos para enviar la solicitud
+    const datos = {
+        ape: ape,
+        nom: nom,
+        opcion: 'agregar_deu'
+    };
+
+    // Enviar la solicitud AJAX
+    $.get('php/controlador_deudores.php', datos, function(response) {
+        alert(response);
+        $('#tnom_deu').val("");
+        $('#tape_deu').val("");
+        $('.fondo').css('display','none');
+        $('.modal').css('margin-top','-90%');
+        EstadoVenta();
+    });
+ 
 });
 
 
