@@ -220,6 +220,7 @@ button{
     right: 0;
     top:70px;
     transition: 1s;
+
 }
 .al{
     display: flex;
@@ -251,5 +252,19 @@ button{
 }
 .al label{
     filter: drop-shadow(1px 1px 1px yellow);
+}
+.msg{
+    font-size: 10px;
+    position: absolute; 
+    right: 160px;
+    margin-left: -400px;
+    margin-top: 5px;
+    width: auto;
+    background-color: transparent;
+    box-shadow: 1px 1px 1px 1px gray;
+    padding: 5px;
+    border-radius: 2px;
+    display: none;
+    text-align: center;
 }
 

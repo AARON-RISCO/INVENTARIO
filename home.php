@@ -230,9 +230,9 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
         <img src="img/user.svg" id="mostrar_menu"><label class="user"><?php echo $_SESSION['nom'].' '.$_SESSION['ape'] . ' '. ' / '. ' '.$_SESSION['cargo']; ?></label> <label> <?php echo $fecha_actual ?></label>
         </div>
     </div>
+
     
     <div class="alertas" id="alertas">
-        
     </div>
     <!-- Contenedor -->
     <div class="contenedor">

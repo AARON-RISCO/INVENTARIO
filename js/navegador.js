@@ -65,7 +65,7 @@ $(document).ready(function(){
                     var template='';
                     for(z in registro){
                         template+=
-                       '<div class="al" id="'+registro[z].id+'">'+'<img src="img/alert.svg" id="icon_alert">'+'<label>'+registro[z].pro+'</label><img src="img/cerrar.svg" class="cerrar5"  id="'+registro[z].id+'">'+'</div>';
+                       '<div class="msg">El producto esta por agotarce ! <br> stock ='+registro[z].stock+' </div><div class="al" id="'+registro[z].id+'">'+'<img src="img/alert.svg" id="icon_alert">'+'<label>'+registro[z].pro+'</label><img src="img/cerrar.svg" class="cerrar5"  id="'+registro[z].id+'">'+'</div>';
                     }
                     $('.alertas').html(template);
                     }
@@ -81,6 +81,13 @@ $(document).ready(function(){
         
     })
 
+    $(document).on('mouseenter', '.al', function() {
+        $(this).prev('.msg').css('display', 'block');
+    });
+    
+    $(document).on('mouseleave', '.al', function() {
+        $(this).prev('.msg').css('display', 'none');
+    });
 
 
 
