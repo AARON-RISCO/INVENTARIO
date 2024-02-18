@@ -164,7 +164,7 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
                     </li>
 
                     <li class="list_inside">
-                        <label  class="nav_link nav_link--inside">Ingresos / Egresos</label >
+                        <label id="mvieca"  class="nav_link nav_link--inside">Ingresos / Egresos</label >
                     </li>
                 </ul>
             </li>

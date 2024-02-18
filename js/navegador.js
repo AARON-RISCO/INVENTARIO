@@ -213,6 +213,12 @@ $(document).ready(function(){
         $('#opacar2').css("display","none");
     });
 
+    $('#mvieca').click(function(){
+        $('.contenedor').load("ingresos_egresos.php");
+        $('#nav').css("margin-left","-90%");
+        $('#opacar2').css("display","none");
+    });
+
     $('#mhome').click(function(){
     $('.contenedor').load("inicio.php");
     $('#nav').css("margin-left","-90%");
