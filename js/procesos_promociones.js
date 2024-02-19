@@ -54,7 +54,7 @@ $(document).ready(function(){
                     template+=
                     '<tr><td>'+registro[z].nom+
                     '</td><td>'+registro[z].sa+  
-                    '</td><td>'+registro[z].pre+   
+                    '</td><td>S/. '+registro[z].pre+   
                     '</td><td id="icon"><img src="img/activar.svg" class="color amarillo" id="bselec" data-cod="'+registro[z].cod+'" ></td></tr>';
                 }
                 $('#cuerpo_tabla_productos').html(template);

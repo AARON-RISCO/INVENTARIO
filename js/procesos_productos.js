@@ -43,7 +43,7 @@ $(document).ready(function(){
                         '</td><td style="background-color:'+esta+'">'+registro[z].nom+
                         '</td><td style="background-color:'+esta+'">'+registro[z].sa+
                         '</td><td style="background-color:'+esta+'">'+registro[z].uni+
-                        '</td><td style="background-color:'+esta+'">'+registro[z].pre+
+                        '</td><td style="background-color:'+esta+'">S/. '+registro[z].pre+
                         '</td><td style="background-color:'+esta+'">'+registro[z].actual+
                         '</td><td id="icon" style="display:flex; justify-content: center;"><img src="img/editar.svg" width="40" id="bmod" class="color" data-cod="'+registro[z].cod+'"><img src="img/eliminar.svg" style="display:'+el+';" width="40" id="bir" class="color" data-cod="'+registro[z].cod+'"><img src="img/activar.svg" style="display:'+ac+';" width="40" id="bact" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                     }

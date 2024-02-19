@@ -16,6 +16,7 @@
     border-radius: 4px;
     padding: 20px;
     height: 85vh;
+    overflow: auto;
 }
 .mantenimiento{
     background-color: rgb(251, 250, 250);

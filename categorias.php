@@ -22,10 +22,10 @@ if($_SESSION['cargo']=='VENDEDOR')
         <div class="listado">
         <div class="todos">
                     <label for="">Todas las categorias</label>
-                    <div class="filtros">
-                        <label for="" class="fil">Filtros</label>   
+                    <fieldset class="filtros">
+                        <legend>Filtros</legend>
                         <div class="buscar"><input type="text" name="bus_nom" id="bus_nom" class="bus MT" placeholder="Buscar por Nombre"></div>
-                    </div>
+                    </fieldset>
                     <div id="listado"> 
                     <table >
                         <thead>
