@@ -26,7 +26,7 @@ $(document).ready(function(){
 
                         template+=
                         '<tr><td>'+registro[z].cod+
-                        '</td><td>'+registro[z].nomc+
+                 
                         '</td><td>'+registro[z].fec+
                         '</td><td>'+registro[z].nomp+
                         '</td><td>'+registro[z].tpve+

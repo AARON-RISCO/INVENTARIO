@@ -43,7 +43,7 @@
                             <thead>
                                 <tr>
                                     <th>Nro.</th>
-                                    <th>Cliente</th>
+                                    
                                     <th>Fecha </th>
                                     <th>Personal </th>
                                     <th>Tipo Pago </th>
