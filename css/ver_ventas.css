@@ -108,11 +108,11 @@ td{
 #bir:hover{
     background-color: rgb(40, 143, 174);
 }
-#bmod{
+#bmodv{
     background-color: rgba(87, 187, 76, 0.352);
     padding: 5px;
 }
-#bmod:hover{
+#bmodv:hover{
     background-color: rgb(87, 187, 76);
 }
 

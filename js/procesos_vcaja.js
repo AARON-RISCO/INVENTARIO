@@ -4,9 +4,9 @@ $(document).ready(function(){
     act_comven();
     actualizar_cabe();
     listar_detalle_caja();
-    $('#id_perso').prop("disabled",true);
     listar_cabecera();
-    $('.encabe').prop("disabled",true);
+        $('#id_perso').css("pointer-events","none");
+        $('.encabe').css("pointer-events","none");
     function listar_detalle_caja(parametro){
         $.ajax({
             async:true,
@@ -116,7 +116,7 @@ $(document).ready(function(){
             alert("SELECCIONA TIPO DE MOVIMIENTO");
             return;
         }
-        if(moti==""){
+        if(moti=="" || $.isNumeric(moti)){
             alert("INGRESA MOTIVO DE MOVIMIENTO");
             return;
         }
@@ -156,6 +156,26 @@ $(document).ready(function(){
 
         
     })
+    $('.MAYR').on('input', function() {
+        let currentValue = $(this).val();
+        // Ahora la expresión regular permite letras, números, espacios, puntos y comas
+        let newValue = currentValue.replace(/[^a-zA-Z\sÑñ.,-]/g, '');
+        $(this).val(newValue.toUpperCase());
+    });
+
+    $('.NUMP').on('input', function() {
+        // Obtener el valor actual del input
+        let currentValue = $(this).val();
+        // Remover caracteres no permitidos (que no son números, puntos ni comas)
+        let newValue = currentValue.replace(/[^0-9.,]/g, '');
+    
+        // Reemplazar comas por puntos (si las hay)
+        newValue = newValue.replace(/,/g, '.');
+    
+        // Actualizar el valor del input en mayúsculas
+        $(this).val(newValue.toUpperCase());
+    });
+
     $('#bmodificar_ca').click(function(){
         // if( $("#tipo_mov").val()==0){
         //     alert("SELECCIONA UN TIPO DE MOVIMIENTO A REALIZAR");

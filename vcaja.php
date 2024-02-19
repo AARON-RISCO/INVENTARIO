@@ -29,15 +29,8 @@ if($_SESSION['cargo']=='VENDEDOR')
 
     <div id="conteiner">
         <div class="listado">
-            <div class="todos">
                     <label for="">Listado Detalle de Caja</label>
-                    <div class="filtros">
-                        <fieldset class="filtros_per">
-                                <legend>Filtros</legend>
-                                <div class="buscar_per"><input type="text" id="bus_dni"  placeholder="Buscar por Personal"></div>
-                                <div class="buscar_per"><input type="date" id="bus_nom" placeholder="Buscar por Fecha"></div>
-                        </fieldset>
-                    </div>
+                    
                     <div class="encabezado">
                         <div><h5>Fecha</h5><input type="date" name="" id="fecha_caja" class="encabe"></div>
                         <div><h5>Apertura</h5><input type="text" id="taper" class="encabe"></div>
@@ -62,7 +55,7 @@ if($_SESSION['cargo']=='VENDEDOR')
                             </tbody>
                         </table>
                     </div>
-            </div>
+            
             <div>
                 
             </div>
@@ -82,8 +75,8 @@ if($_SESSION['cargo']=='VENDEDOR')
                     </select>
                     <input type="text" id="tvoc" class="caja2t bloc" disabled>
                 </div>
-                <div><h5>Motivo de Movimiento</h5><input type="text" id="motivo_m" class="bloc"  placeholder="Ingrese Motivo de Movimiento" disabled></div>
-                <div><h5>Monto de Movimiento</h5><input type="text" id="total_mo" class="bloc" placeholder="Ingrese Monto de Movimiento" disabled></div>
+                <div><h5>Motivo de Movimiento</h5><input type="text" id="motivo_m" class="bloc MAYR"  placeholder="Ingrese Motivo de Movimiento" disabled></div>
+                <div><h5>Monto de Movimiento</h5><input type="text" id="total_mo" class="bloc NUMP" placeholder="Ingrese Monto de Movimiento" disabled></div>
                 
                 
                

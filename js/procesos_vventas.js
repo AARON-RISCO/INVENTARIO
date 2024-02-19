@@ -31,7 +31,7 @@ $(document).ready(function(){
                         '</td><td>'+registro[z].nomp+
                         '</td><td>'+registro[z].tpve+
                         '</td><td style="color:'+el+';">'+nomest+
-                        '</td><td id="icon" style="display:flex; justify-content: center; gap: 10px"><img src="img/pago.png" width="30" id="bmod" class="color" style="display:none;" data-cod="'+registro[z].cod+'"><img src="img/verv.svg" style="display:'+ac+';" width="30" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
+                        '</td><td id="icon" style="display:flex; justify-content: center; gap: 10px"><img src="img/pago.png" width="30" id="bmodv" class="color" style="display:none;" data-cod="'+registro[z].cod+'"><img src="img/verv.svg" style="display:'+ac+';" width="30" id="bir" class="color" data-cod="'+registro[z].cod+'"></td></tr>';
                     }
                     $('#cuerpo_tabla_vventas').html(template);
 
@@ -176,7 +176,7 @@ $(document).ready(function(){
     });
 
     // codigo para el pago de la deuda pendiente
-    $(document).on('click','#bmod',function(){
+    $(document).on('click','#bmodv',function(){
         // alert("funciona pagar ");
         $('#sombra_modal_vventas').css("display","block");
         $('#caja_modal_vventas').css("margin-top","-25%");

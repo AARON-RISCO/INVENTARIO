@@ -455,19 +455,7 @@ $(document).ready(function(){
         $(this).val(newValue.toUpperCase());
     });
 
-    $('.NUMP').on('input', function() {
-        // Obtener el valor actual del input
-        let currentValue = $(this).val();
     
-        // Remover caracteres no permitidos (que no son números, puntos ni comas)
-        let newValue = currentValue.replace(/[^0-9.,]/g, '');
-    
-        // Reemplazar comas por puntos (si las hay)
-        newValue = newValue.replace(/,/g, '.');
-    
-        // Actualizar el valor del input en mayúsculas
-        $(this).val(newValue.toUpperCase());
-    });
 
     $(document).on('click','#bir',function(){
         $('#sombra_modal_pro').css("display","block");
