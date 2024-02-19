@@ -47,7 +47,7 @@ if($opcion=="apertura_caja"){
 if($opcion=="actualizar_totales"){
     // $idca=$_GET['id'];
       // codigo para hallar el total de ingresos y egresos
-      $obtener_total= "SELECT SUM(total) AS suma FROM detalle_caja WHERE tipo_movimiento IN ('VENTA', 'INGRESO') AND id_caja = $idcajahoy";
+      $obtener_total= "SELECT SUM(total) AS suma FROM detalle_caja WHERE tipo_movimiento IN ('VENTA', 'INGRESO', 'PAGO DEUDA') AND id_caja = $idcajahoy";
       $resultado_ingresos= mysqli_query($cnn, $obtener_total);
       $total_ingresos= mysqli_fetch_assoc($resultado_ingresos)['suma'];
   

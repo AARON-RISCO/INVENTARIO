@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (empty($_SESSION['dni'])){
+    header("location: index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +16,8 @@
 <body>
 
     <div id="conteiner">
-        
+        <input type="hidden" name="" id="usedeu" value="<?php echo $_SESSION['dni']; ?>">
+        <input type="hidden" id="nomde" value="">
         <div class="listado">
         <div class="todos">
                     <label for="" id="todos_deudores">Todos los deudores</label> <label for="" id="ruta"></label>

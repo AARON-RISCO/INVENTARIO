@@ -54,7 +54,7 @@ $(document).ready(function(){
     //codigo para ver el tipo de filtro que desea hacer :v 
     $(document).on('change','#ttfil',function(){
         var valor=$(this).val();
-        console.log(valor);
+        // console.log(valor);
         if(valor==1){
             $(".uni").css("display","none");
             $(".uni3").css("display","none");
@@ -99,7 +99,7 @@ $(document).ready(function(){
         $(document).on('click','#bototp2',function(){
             $('#tdesav').val(0); 
             let valor = $(this).data('cod');
-            console.log(valor)
+            // console.log(valor)
             listar_ventas(0,'','',valor);
         })
 
@@ -253,7 +253,7 @@ $(document).ready(function(){
         } while (pago <= 0 || pago > de);
         let codv=$("#teve").val();
         let defi=de-pago;
-        console.log(defi);
+        // console.log(defi);
         $.ajax({
             async:true,
             type:"GET",

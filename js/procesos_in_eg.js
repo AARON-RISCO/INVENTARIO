@@ -58,7 +58,7 @@ $(document).ready(function(){
         $('#modal_caja').css('margin-top','0');
         $('#fondo_mc').css('display','block');
         let val=$(this).data('cod');
-        console.log(val)
+        // console.log(val)
         listar_detalle_c(val);
     })
 

@@ -27,7 +27,7 @@ if($opcion=="listar"){
         $name=$_GET['name'];
         $con_listar_v="SELECT t1.*,t2.ape_cli,t2.nom_cli,t3.ape_per,t3.nom_per, t4.nom_deudor,t4.apellidos_deudor
                        FROM venta as t1 , cliente as t2, personal as t3, deudores as t4
-                       WHERE t2.nom_cli LIKE CONCAT(?, '%')  and t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY t1.id_venta ASC";
+                       WHERE t3.nom_per LIKE CONCAT(?, '%')  and t2.dni_cli=t1.dni_cli and t3.dni_per=t1.dni_per and t4.id_deudor=t1.id_deudor ORDER BY t1.id_venta ASC";
 
         // Utilizar parámetros preparados para evitar inyección de SQL
         $stmt = mysqli_prepare($cnn, $con_listar_v);

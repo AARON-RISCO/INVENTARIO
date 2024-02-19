@@ -80,7 +80,7 @@ $(document).on('change','#tdeudores',function(){
 
         }else{
         const registro = JSON.parse(response);
-        console.log(registro);
+        // console.log(registro);
         if (registro[0].tot>=10 && registro[0].tot<15) {
             alert(registro[0].nom+' '+registro[0].ape+' '+'ESTA POR LLEGAR AL LIMITE, TIENE UNA DEUDA DE : ' + ' ' +registro[0].tot)
             
@@ -230,7 +230,7 @@ $(document).on('click', '#bcarrito', function() {
             const registro = JSON.parse(response);
             if (registro[0].ver==0) {
                 const registro2 = JSON.parse(response);
-                console.log(registro2);
+                // console.log(registro2);
                 nven = venta;
                 codp = (registro[0].cod);
                 nom = (registro[0].nom);
@@ -254,7 +254,7 @@ $(document).on('click', '#bcarrito', function() {
 
             }else{
                 const registro3 = JSON.parse(response);
-                console.log(registro3);
+                // console.log(registro3);
                 nven = venta;
                 codp = (registro[0].cod);
                 nom = (registro[0].nom);

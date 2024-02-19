@@ -53,10 +53,10 @@ if($_SESSION['cargo']=='VENDEDOR')
                 <label>Mantenimiento Promociones</label><br>
                 <input type="text" id="tcod">
                 <input type="text" id="tcod_pro" >
-                <img src="" alt=""  class="da-promo"><input type="text" name="tnom" id="tnom" class="cajas-promo MTU" placeholder="Producto"><img src="img/buscar.svg" alt=""  class="bus_promo">
-                <img src="" alt=""  class="da-promo"><input type="text" name="tsa" id="tsa" class="cajas-promo MTU" placeholder="Sabor">
-                <img src="" alt=""  class="da-promo"><input type="text" name="tcan" id="tcan" class="cajas-promo NUM" placeholder="Ingrese Cantidad">
-                <img src="" alt=""  class="da-promo"><input type="text" name="tpre" id="tpre" class="cajas-promo MPRE" placeholder="Ingrese Precio">
+                <h5>Producto</h5><input type="text" name="tnom" id="tnom" class="cajas-promo MTU" placeholder="Producto"><img src="img/buscar.svg" alt=""  class="bus_promo">
+                <h5>Sabor</h5><img src="" alt=""  class="da-promo"><input type="text" name="tsa" id="tsa" class="cajas-promo MTU" placeholder="Sabor">
+                <h5>Cantidad</h5><img src="" alt=""  class="da-promo"><input type="text" name="tcan" id="tcan" class="cajas-promo NUM" placeholder="Ingrese Cantidad">
+                <h5>Precio</h5><img src="" alt=""  class="da-promo"><input type="text" name="tpre" id="tpre" class="cajas-promo MPRE" placeholder="Ingrese Precio">
                 
                 <div class="botones">
                 <input type="button" value="Nuevo" class="btn-nuevo  btn" id="bnuevo_promo">

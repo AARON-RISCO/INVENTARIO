@@ -9,7 +9,7 @@ $(document).ready(function(){
             data:{name:name,fe1:fe1,opcion:"listar"},
             success:function(response){
                 response = response.trim();
-                console.log(response);
+                // console.log(response);
                 if(response=='vacio'){
                     $('#cuerpo_tabla_vcompras').html('');
                 }else{
@@ -94,7 +94,7 @@ $(document).on('click','#bcavv',function(){
  //codigo para ver el tipo de filtro que desea hacer :v 
  $(document).on('change','#ttfil',function(){
     var valor=$(this).val();
-    console.log(valor);
+    // console.log(valor);
     if(valor==1){
         $(".uni").css("display","none");
         $(".uni2").css("display","block"); 

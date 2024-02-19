@@ -1,12 +1,12 @@
 $(document).ready(function(){
     $(document).off("click","**");
     // $('.caja1t').css('pointer-events','none');
+    listar_detalle_caja();
     act_comven();
     actualizar_cabe();
-    listar_detalle_caja();
     listar_cabecera();
-        $('#id_perso').css("pointer-events","none");
-        $('.encabe').css("pointer-events","none");
+        // $('#id_perso').css("pointer-events","none");
+        // $('.encabe').css("pointer-events","none");
     function listar_detalle_caja(parametro){
         $.ajax({
             async:true,

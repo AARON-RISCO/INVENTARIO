@@ -88,6 +88,13 @@ if ($opcion == "buscar_deuda") {
     }
     echo $jsonresponse;
 }
+// obtener fecha actual y obetener el id de la caja de hoy
+date_default_timezone_set('America/Lima');
+$fecha_actual = date('Y-m-d');
+
+$sacaridca="SELECT id_caja as cajita FROM caja WHERE fecha_caja='$fecha_actual'";
+$ressacar=mysqli_query($cnn,$sacaridca);
+$idcajahoy=mysqli_fetch_assoc($ressacar)['cajita'];
 
 // Pagar
 if ($opcion == "pagar") {
@@ -98,6 +105,12 @@ if ($opcion == "pagar") {
     mysqli_query($cnn,$pagar)or die("Error en Pagar");
     echo "Pagado Correctamente";
 
+    $dniu=$_GET['dniu'];
+    $nomd=$_GET['nomd'];
+    $moti="PAGO DE ".$nomd;
+    // insertar pago en detalle caja
+    $con_cp="INSERT INTO detalle_caja VALUES($idcajahoy,'','$dniu','$moti',$pago,'PAGO DEUDA')";
+    mysqli_query($cnn, $con_cp);
     // Verificar si la deuda es ahora igual a 0 y actualizar el estado
     $verificar_deuda = "SELECT deuda FROM venta WHERE id_venta = '$cod'";
     $resultado = mysqli_query($cnn, $verificar_deuda) or die("Error al verificar deuda");

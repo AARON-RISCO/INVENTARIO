@@ -100,6 +100,7 @@ $(document).ready(function(){
 
         var deudor=$(event.target).attr('id');
         $('#ruta').html('>'+ " " + deudor);
+        $("#nomde").val(deudor);
         $('.todos_todos').css('display','none');
         $('.todos_detalle').css('display','block');
         const datos={
@@ -160,13 +161,20 @@ $(document).ready(function(){
                 return;
             } else {
                 //procede a descontar deuda
+                let dniuser=$("#usedeu").val();
+                let nomde=$("#nomde").val();
+                // console.log(dniuser);
+                // console.log(nomde);
                 const datos2={
+                    dniu:dniuser,
+                    nomd:nomde,
                     cod:cod,
                     pago:pago,
                     opcion:'pagar'
                 }
                 $.get('php/controlador_deudores.php', datos2, function(response) {
                     response = response.trim();
+                    // console.log(response);
                     alert(response);
                     listar_deudores();
                     const datos3={

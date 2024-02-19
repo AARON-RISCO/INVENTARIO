@@ -1,9 +1,9 @@
 $(document).ready(function(){
     listar_pro();
     function listar_pro(nombre,f1,f2,f3){
-        console.log(nombre);
-        console.log(f1);
-        console.log(f2);
+        // console.log(nombre);
+        // console.log(f1);
+        // console.log(f2);
         if(f3==""){
             f3=undefined;
         }
@@ -19,7 +19,7 @@ $(document).ready(function(){
                 opcion:"listar"
             },
             success:function(response){
-                console.log(response);
+                // console.log(response);
                 response = response.trim();
                 if(response=='vacio'){
                     $('#cuerpo_tabla_rema').html('');

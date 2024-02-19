@@ -45,7 +45,7 @@
 }
 #listado_contenido table{
     width: 100%;
-    height: 80%;
+    /* height: 80%; */
     margin-top: 15px;
     border-radius: 3px;
     /* background-color: aqua; */
