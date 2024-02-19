@@ -32,7 +32,7 @@ if (empty($_SESSION['dni'])){
                             <thead>
                                 <tr>
                                     <th>Nombres</th>
-                                    <th>Apllidos</th>
+                                    <th>Apellidos</th>
                                     <th>Total de Deuda</th>
                                     <th>Opciones</th>
                                 </tr>

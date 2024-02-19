@@ -261,6 +261,7 @@ llenar_categorias();
             $.get('php/controlador_reg_com.php', datos, function (response) {
                 listar_temporal();
                 act_comven();
+                numerodecompra();
             });
 
         });
