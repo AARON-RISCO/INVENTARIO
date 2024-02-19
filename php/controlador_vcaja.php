@@ -88,6 +88,7 @@ if($opcion=="listar_detalle_caja"){
                      AND  ca.id_caja=dc.id_caja
                      AND ca.fecha_caja='$fecha_actual'
                      ORDER BY dc.nro_mov";
+        
     $res=mysqli_query($cnn,$listar_detalle);
     $num=mysqli_num_rows($res);
     if($num>0){

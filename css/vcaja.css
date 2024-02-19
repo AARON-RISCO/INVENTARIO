@@ -12,7 +12,7 @@
 .listado{
     background-color: rgb(255, 255, 255);
     width: 69%; 
-    height: 95%;
+    height: 100%;
     border-radius: 3px;
     padding: 20px;
     display: flex;
@@ -21,7 +21,7 @@
 }
 .encabezado{
     width: 100%;
-    height: auto;
+    height: 10%;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -43,20 +43,21 @@
     width: 100%;
 
 }
-.listado table{
+#listado_contenido table{
     width: 100%;
-    /* background-color: blue; */
+    height: 60%;
     margin-top: 15px;
     border-radius: 3px;
+    /* background-color: aqua; */
 }
-.listado table th{
+#listado_contenido table th{
     background-color: green;
     padding: 8px;
     border-radius: 2px;
     color: white;
     font-family: 'Gruppo', sans-serif;
 }
-.listado table td{
+#listado_contenido table td{
     background-color: white;
     padding: 8px;
     border-bottom: 1px solid green;
@@ -64,7 +65,8 @@
 #listado_contenido{
     overflow: auto;
     width: 100%;
-    max-height: 45%;
+    height: 55%;
+    /* max-height: 65%; */
 }
 .filtros_per{
     display: flex;
@@ -84,11 +86,14 @@
     padding: 10px;
     width: 100%;
 }
+.filtros{
+    height: 10%;
+}
 
 .mantenimiento{
     background-color: rgb(255, 255, 255);
     width: 29%;
-    height: 95%;
+    height: 100%;
     border-radius: 3px;
     padding: 20px;
     display: flex;

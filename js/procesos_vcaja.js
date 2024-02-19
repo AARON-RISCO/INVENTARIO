@@ -1,7 +1,12 @@
 $(document).ready(function(){
     $(document).off("click","**");
     // $('.caja1t').css('pointer-events','none');
+    act_comven();
+    actualizar_cabe();
     listar_detalle_caja();
+    $('#id_perso').prop("disabled",true);
+    listar_cabecera();
+    $('.encabe').prop("disabled",true);
     function listar_detalle_caja(parametro){
         $.ajax({
             async:true,
@@ -13,7 +18,7 @@ $(document).ready(function(){
             },success:function(response){
                 // console.log(response);
                 let respues=response.trim();
-                if(response=='vacio'){
+                if(respues=='vacio'){
                     $('#cuerpo_tabla_caja').html('');
                 }else{
                     var registro=JSON.parse(respues);
@@ -35,7 +40,7 @@ $(document).ready(function(){
             }
         })
     }
-    listar_cabecera();
+    
     function listar_cabecera(){
         $.ajax({
             async:true,
@@ -58,8 +63,7 @@ $(document).ready(function(){
         })
     }
     // actualizar_cabe($('#nro_caja').val());
-    act_comven();
-    actualizar_cabe();
+    
     function actualizar_cabe(){
         // console.log(id);
         $.ajax({
@@ -133,13 +137,13 @@ $(document).ready(function(){
                 opcion:"registrar_detalle"
             },success:function(response){
                 // console.log(response);
-                let respuesta=response.trim();
+                // let respuesta=response.trim();
                 // console.log(respuesta);
-                actualizar_cabe($("#nro_caja").val());
-                listar_cabecera();
-                listar_detalle_caja();
                 act_comven();
                 actualizar_cabe();
+                listar_cabecera();
+                listar_detalle_caja();
+                
                 bloquear(true);
                 $('.bloc').val('');
                 $('.bloc2').val(0);

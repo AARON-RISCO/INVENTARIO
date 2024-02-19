@@ -21,7 +21,6 @@ if($_SESSION['cargo']=='VENDEDOR')
 <?php
             // Establecer la zona horaria de Perú
             date_default_timezone_set('America/Lima');
-
             // Obtener la fecha actual en la zona horaria especificada
             $fecha_actual = date('Y-m-d');
             ?>
@@ -40,11 +39,11 @@ if($_SESSION['cargo']=='VENDEDOR')
                         </fieldset>
                     </div>
                     <div class="encabezado">
-                        <div><h5>Fecha</h5><input type="date" name="" id="fecha_caja" disabled></div>
-                        <div><h5>Apertura</h5><input type="text" id="taper" disabled></div>
-                        <div><h5>Ingresos</h5><input type="text" id="tingr" disabled></div>
-                        <div><h5>Egresos</h5><input type="text" id="tegre" disabled></div>
-                        <div><h5>Total en Caja</h5><input type="text" id="ttot" disabled></div>
+                        <div><h5>Fecha</h5><input type="date" name="" id="fecha_caja" class="encabe"></div>
+                        <div><h5>Apertura</h5><input type="text" id="taper" class="encabe"></div>
+                        <div><h5>Ingresos</h5><input type="text" id="tingr" class="encabe"></div>
+                        <div><h5>Egresos</h5><input type="text" id="tegre" class="encabe"></div>
+                        <div><h5>Total en Caja</h5><input type="text" id="ttot" class="encabe"></div>
                     </div>
                     <div id="listado_contenido"> 
                         <table >
@@ -74,7 +73,7 @@ if($_SESSION['cargo']=='VENDEDOR')
                 <input type="hidden" name="" id="dni_per" value="<?php echo $_SESSION['dni']; ?>">
                 <div><h5>Nro caja</h5><input type="text" id="nro_caja" disabled></div>
                 <input type="hidden" name="" id="id_deca">
-                <div><h5>Personal</h5><input type="text" id="id_perso" value="<?php echo $_SESSION["nom"]." ".$_SESSION["ape"];?>" disabled></div>
+                <div><h5>Personal</h5><input type="text" id="id_perso" value="<?php echo $_SESSION["nom"]." ".$_SESSION["ape"];?>" ></div>
                 <div><h5>Tipo de Movimiento</h5>
                     <select id="tipo_mov" class="caja1t bloc2">
                         <option value="0">SELECCIONA TIPO DE MOVIMIENTO</option>
