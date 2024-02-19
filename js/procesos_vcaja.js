@@ -5,8 +5,8 @@ $(document).ready(function(){
     act_comven();
     actualizar_cabe();
     listar_cabecera();
-        // $('#id_perso').css("pointer-events","none");
-        // $('.encabe').css("pointer-events","none");
+        $('#id_perso').css("pointer-events","none");
+        $('.encabe').css("pointer-events","none");
     function listar_detalle_caja(parametro){
         $.ajax({
             async:true,
@@ -57,6 +57,7 @@ $(document).ready(function(){
                 $('#tingr').val('S/. '+respues[0].ingre);
                 $('#tegre').val('S/. '+respues[0].egres);
                 $('#ttot').val('S/. '+respues[0].total);
+                $('#ttota').val(respues[0].total);
                 $('#nro_caja').val(respues[0].id_ca);
                 $('#id_deca').val(respues[0].id_ca);
             }
@@ -111,7 +112,9 @@ $(document).ready(function(){
         // let nrod=$("#id_de_caja").val();
         let dnip=$("#dni_per").val();
         let idca=$("#nro_caja").val();
-        let mont=$("#total_mo").val();
+        let mont=$("#total_mo").val(); 
+        let toca=$("#ttota").val();
+        
         if(tipo==0){
             alert("SELECCIONA TIPO DE MOVIMIENTO");
             return;
@@ -124,6 +127,13 @@ $(document).ready(function(){
             alert("INGRESA MONTO DE MOVIMIENTO");
             return;
         }
+        if(tipo==="EGRESO" && mont>toca){
+            alert("INGRESASTE UN VALOR MAYOR AL DISPONIBLE");
+            $("#total_mo").val("");
+            $("#total_mo").focus();  
+            return;
+        };
+
         $.ajax({
             async:true,
             type:"GET",
@@ -136,20 +146,20 @@ $(document).ready(function(){
                 mont:mont,
                 opcion:"registrar_detalle"
             },success:function(response){
-                // console.log(response);
-                // let respuesta=response.trim();
-                // console.log(respuesta);
+                alert(response);
+                
+                listar_cabecera();
                 act_comven();
                 actualizar_cabe();
-                listar_cabecera();
                 listar_detalle_caja();
-                
-                bloquear(true);
-                $('.bloc').val('');
-                $('.bloc2').val(0);
                 $('#bguardar_ca').css("display","none");
                 $('#bcancelar_ca').css("display","none");
                 $('#bnuevo_ca').css("display","block");
+
+                bloquear(true);
+                
+                $('.bloc').val('');
+                $('.bloc2').val(0);
                 
             }
         })

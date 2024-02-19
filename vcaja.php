@@ -37,6 +37,7 @@ if($_SESSION['cargo']=='VENDEDOR')
                         <div><h5>Ingresos</h5><input type="text" id="tingr" class="encabe"></div>
                         <div><h5>Egresos</h5><input type="text" id="tegre" class="encabe"></div>
                         <div><h5>Total en Caja</h5><input type="text" id="ttot" class="encabe"></div>
+                        <input type="hidden" name="" id="ttota">
                     </div>
                     <div id="listado_contenido"> 
                         <table >
