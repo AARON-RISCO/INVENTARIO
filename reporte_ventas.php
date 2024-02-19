@@ -80,7 +80,7 @@ if($_SESSION['cargo']=='VENDEDOR')
                     <h1 class="vtit_rpv" id="vtit_rpv"></h1>
                 </div>
                 
-                <div id="listado_reve"> 
+                <div id="listado_reve" class="listado_reve"> 
                     <table >
                         <thead>
                             <tr>
@@ -98,18 +98,14 @@ if($_SESSION['cargo']=='VENDEDOR')
                             
                         </tbody>
                     </table>
+
+                    
                 </div>
+
+                <div><input type="text" id="totvenre"></div>
         </div>
     </div>
-    <!-- Registrar nuevo deudor -->
-    <!-- <div class="fondo"></div> -->
-    <!--Ventana modal de agregar nuevo deudor-->
-    <!-- <div class="modal">
-        <img src="img/cerrar2.svg" alt="" class="cerrar_modal">
-        <label>Agregar nuevo deudor</label><br>
-        <input type="text" name="tnom_deu" id="tnom_deu" class="cajas_modal" placeholder="Ingrese Nombres"><br>
-        <input type="text" name="tape_deu" id="tape_deu" class="cajas_modal" placeholder="Ingrese Apellidos"><br>
-        <input type="button" value="Guardar" id="bguardar_deudor">
-    </div> -->
+    
+  
 </body>
 </html>

@@ -144,6 +144,7 @@ body{
     flex-direction: column;
     padding: 10px 10px 10px 10px;
     overflow: auto;
+    position: relative;
 }
 table{
     width: 100%;
@@ -275,3 +276,14 @@ td{
     height: auto;
     /* background-color: aquamarine; */
 }
+#totvenre{
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    pointer-events: none;
+    border: none;
+    background-color: aliceblue;
+    text-align: end;
+    padding: 5px;
+    width: 150px;
+}   

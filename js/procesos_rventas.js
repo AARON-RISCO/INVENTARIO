@@ -21,16 +21,17 @@ $(document).ready(function(){
                     $('#cuerpo_tabla_reve').html('');
                 }else{
                     var registro=JSON.parse(response);
+                    let tot=0;
                     var template='';
                     for(z in registro){
                         
                         var est=registro[z].estd;
                         var nomest;
                         var clien;
-
+                        
                         if(est==1){  nomest="PAGADO"; clien=registro[z].nomc}
                         if(est==2){  nomest="PENDIENTE"; clien=registro[z].nomd}
-
+                        tot+=registro[z].neto;
                         template+=
                         '<tr><td>'+registro[z].cod+
                         '</td><td>'+registro[z].fec+
@@ -42,7 +43,7 @@ $(document).ready(function(){
                         '</td></tr>';
                     }
                     $('#cuerpo_tabla_reve').html(template);
-
+                    $("#totvenre").val("Total Venta: S/. "+tot);    
                 }
             }
         })
