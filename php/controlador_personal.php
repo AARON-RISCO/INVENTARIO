@@ -42,7 +42,7 @@ if($opcion=="listar"){
         }
         echo $jsonresponse;
 }
-//agregar nuevo categoria
+//agregar nuevo personal
 if($opcion=="agregar"){
         $dni=$_GET['dni'];
         $ape=$_GET['ape'];
@@ -50,12 +50,12 @@ if($opcion=="agregar"){
         $tipo=$_GET['tipo'];
         $clave=$_GET['clave'];
         $agregar="INSERT INTO personal
-        VALUES(' $dni','$ape','$nom','ACTIVO','$tipo','$clave')";
+        VALUES('$dni','$ape','$nom','ACTIVO','$tipo','$clave')";
         mysqli_query($cnn,$agregar)or die("ERROR EN REGISTRAR PERSONAL");
         echo "PERSONAL REGISTRADO CORRECTAMENTE";
 }
     
-//buscar categoria a modificar
+//buscar personal a modificar
 if($opcion=="buscar"){
     $cod=$_GET['cod'];
     $buscar="SELECT* FROM personal WHERE dni_per='$cod'";

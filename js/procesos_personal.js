@@ -155,59 +155,61 @@ $(document).ready(function(){
         const tipo = $('#ttipo').val();
         const clave = $('#clave').val();
 
-        //Validaciones
-        if(dni==""){
-            alert("ERROR, INGRESE DNI !");
-            $('#tdni_usu').focus();
-            return;
-        }
-        if (dni.length !== 8) {
-            alert("ERROR, INGRESE EXACTAMENTE 8 DÍGITOS !");
-            $('#tdni_usu').focus();
-            return;
-        }
-        if(ape==""){
-            alert("ERROR, INGRESE APELLIDOS !");
-            $('#tape_usu').focus();
-            return;
-        }
-        if(nom==""){
-            alert("ERROR, INGRESE NOMBRES !");
-            $('#tnom_usu').focus();
-            return;
-        }
-        if(tipo==0){
-            alert("ERROR, SELECCIONE CARGO !");
-            $('#ttipo').focus();
-            return;
-        }
-        if(clave==""){
-            alert("ERROR, INGRESE CLAVE !");
-            $('#clave').focus();
-            return;
-        } 
-                
-        // Crear el objeto de datos para enviar la solicitud
-        const datos = {
-            dni: dni,
-            ape: ape,
-            nom: nom,
-            tipo: tipo,
-            clave: clave,
-            opcion: 'agregar'
-          };
-        
-          // Enviar la solicitud AJAX
-          $.get('php/controlador_personal.php', datos, function(response) {
-            alert(response);
-            listar_personal();
-            limpiacajas();
-            BloquearCajas();
-            $('#bguardar_usu').css('display','none');
-            $('#bmodificar_usu').css('display','none');
-            $('#bcancelar_usu').css('display','none');
-            $('#bnuevo_usu').css('display','block');
-          });
+            //Validaciones
+            if(dni==""){
+                alert("ERROR, INGRESE DNI !");
+                $('#tdni_usu').focus();
+                return;
+            }
+            if (dni.length !== 8) {
+                alert("ERROR, INGRESE EXACTAMENTE 8 DÍGITOS !");
+                $('#tdni_usu').focus();
+                return;
+            }
+            if(ape==""){
+                alert("ERROR, INGRESE APELLIDOS !");
+                $('#tape_usu').focus();
+                return;
+            }
+            if(nom==""){
+                alert("ERROR, INGRESE NOMBRES !");
+                $('#tnom_usu').focus();
+                return;
+            }
+            if(tipo==0){
+                alert("ERROR, SELECCIONE CARGO !");
+                $('#ttipo').focus();
+                return;
+            }
+            if(clave==""){
+                alert("ERROR, INGRESE CLAVE !");
+                $('#clave').focus();
+                return;
+            } 
+                    
+            // Crear el objeto de datos para enviar la solicitud
+            const datos = {
+                dni: dni,
+                ape: ape,
+                nom: nom,
+                tipo: tipo,
+                clave: clave,
+                opcion: 'agregar'
+            };
+
+            
+            
+            // Enviar la solicitud AJAX
+            $.get('php/controlador_personal.php', datos, function(response) {
+                alert(response);
+                listar_personal();
+                limpiacajas();
+                BloquearCajas();
+                $('#bguardar_usu').css('display','none');
+                $('#bmodificar_usu').css('display','none');
+                $('#bcancelar_usu').css('display','none');
+                $('#bnuevo_usu').css('display','block');
+            });
     })
 
     //Seleccionar producto a modificar
