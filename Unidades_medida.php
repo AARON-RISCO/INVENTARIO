@@ -62,8 +62,8 @@ if($_SESSION['cargo']=='VENDEDOR')
     </div>
     <div id="caja_modal_uni" class="caja_modal_uni">
         <p id="namuni" class="msjmuni"> </p>
-        <button id="bacun" class="botoun bosu"> ACEPTAR</button>   
-        <button id="bcaun"class="botoun2 bosu"> CANCELAR</button>
+        <button id="bacun" class="botoun bosu">ACEPTAR</button>   
+        <button id="bcaun"class="botoun2 bosu">CANCELAR</button>
         <input type="hidden" name="" id="idunim">
         <input type="hidden" name="" id="estunimod">
     </div>
