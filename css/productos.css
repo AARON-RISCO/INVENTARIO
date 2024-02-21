@@ -22,7 +22,7 @@
     background-color: rgb(251, 250, 250);
     margin: 20px;
     width: 30%;
-    height: 600px;
+    height:85vh;
     border-radius: 4px;
     padding: 20px;
 }
@@ -109,9 +109,8 @@ td{
     background:#EAEBEF;
     width: 100%;
     padding: 10px 40px 10px 40px;
-    margin: 10px 0px 10px 0px;
+    margin: 0px 0px 10px 0px;
     border: 0;
-
 }
 .cajas{
     width: 90%;
@@ -132,9 +131,10 @@ td{
     display: flex;
     gap:15px;
     width: 100%;
-    height: 10%;
+    height: 8%;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
 
 .btn{
@@ -142,7 +142,7 @@ td{
     width: 150px;
     border: 0px;
     cursor: pointer;
-    margin-top: 50px;
+    /* margin-top: 10px; */
 }
 .btn-nuevo{
     background-color: rgb(13, 189, 189);

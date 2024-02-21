@@ -4,7 +4,6 @@ if($_SESSION['cargo']=='VENDEDOR')
 {
     // echo '<script>alert("Usted no tiene acceso a este espacio.");</script>';
     echo '<script>window.location.href = window.location.href;</script>';
-    
     exit;
 }
 ?>
@@ -61,14 +60,14 @@ if($_SESSION['cargo']=='VENDEDOR')
        <div class="mantenimiento">
                 <label>Mantenimiento Producto</label><br>
                 <input type="text" id="tcod">
-                <select name="tcat" id="tcat" class="cajas-pro cajas MAYP"></select></select><div id="ir_cat" class="ir_cat ir"> <img src="img/agregar.png" id="icon-suma" ></div>
-                <img src="" alt=""  class="da-pro"><input type="text" name="tnom_pro" id="tnom_pro" class="cajas-pro MAYP" placeholder="Ingrese nombre">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tsabor" id="tsabor" class="cajas-pro MAYP" placeholder="Ingrese sabor">
-                <select name="tuni" id="tuni" class="cajas-pro MAYP"></select></select>
-                <img src="" alt=""  class="da-pro"><input type="text" name="tpre" id="tpre" class="cajas-pro NUMP" placeholder="Ingrese precio de Venta">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tprec" id="tprec" class="cajas-pro NUMP" placeholder="Ingrese precio de Compra">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tstock_min" id="tstock_min" class="cajas-pro NUMP" placeholder="Ingrese Stock Minimo">
-                <img src="" alt=""  class="da-pro"><input type="text" name="tstock" id="tstock" class="cajas-pro NUMP" placeholder="Ingrese Stock">
+                <h6>CATEGORIA</h6><select name="tcat" id="tcat" class="cajas-pro cajas MAYP"></select></select><div id="ir_cat" class="ir_cat ir"> <img src="img/agregar.png" id="icon-suma" ></div>
+                <h6>PRODUCTO</h6><input type="text" name="tnom_pro" id="tnom_pro" class="cajas-pro MAYP" placeholder="Ingrese nombre">
+                <h6>SABOR</h6><input type="text" name="tsabor" id="tsabor" class="cajas-pro MAYP" placeholder="Ingrese sabor">
+                <h6>UNIDAD</h6><select name="tuni" id="tuni" class="cajas-pro MAYP"></select></select>
+                <h6>PRECIO VENTA</h6><input type="text" name="tpre" id="tpre" class="cajas-pro NUMP" placeholder="Ingrese precio de Venta">
+                <h6>PRECIO COMPRA</h6><input type="text" name="tprec" id="tprec" class="cajas-pro NUMP" placeholder="Ingrese precio de Compra">
+                <h6>STOCK MINIMO</h6><input type="text" name="tstock_min" id="tstock_min" class="cajas-pro NUMP" placeholder="Ingrese Stock Minimo">
+                <h6>STOCK</h6><input type="text" name="tstock" id="tstock" class="cajas-pro NUMP" placeholder="Ingrese Stock">
                 
                 <div class="botones">
                 <input type="button" value="Nuevo" class="btn-nuevo  btn" id="bnuevo_pro">  

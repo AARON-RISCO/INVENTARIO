@@ -22,7 +22,7 @@
     background-color: rgb(251, 250, 250);
     margin: 20px;
     width: 30%;
-    height: 350px;
+    height: 85vh;
     border-radius: 4px;
     padding: 20px;
 }
@@ -71,9 +71,12 @@ td{
     background:#EAEBEF;
     width: 100%;
     padding: 10px 40px 10px 40px;
-    margin: 10px 0px 10px 0px;
+    margin: 0px 0px 10px 0px;
     border: 0;
 
+}
+.mantenimiento h5{
+    margin: 5px 0px 0px 0px;
 }
 .botones{
     display: flex;
