@@ -32,11 +32,11 @@ if($_SESSION['cargo']=='VENDEDOR')
                     <label for="">Listado Detalle de Caja</label>
                     
                     <div class="encabezado">
-                        <div><h5>Fecha</h5><input type="date" name="" id="fecha_caja" class="encabe"></div>
-                        <div><h5>Apertura</h5><input type="text" id="taper" class="encabe"></div>
-                        <div><h5>Ingresos</h5><input type="text" id="tingr" class="encabe"></div>
-                        <div><h5>Egresos</h5><input type="text" id="tegre" class="encabe"></div>
-                        <div><h5>Total en Caja</h5><input type="text" id="ttot" class="encabe"></div>
+                        <div><h5>Fecha</h5><input type="date" id="fecha_caja" class="encabe"></div>
+                        <div><h5>Apertura</h5><p id="taper" class="encabe"></p></div>
+                        <div><h5>Ingresos</h5><p  id="tingr" class="encabe"></p></div>
+                        <div><h5>Egresos</h5><p id="tegre" class="encabe"></p></div>
+                        <div><h5>Total en Caja</h5><p id="ttot" class="encabe"></p></div>
                         <input type="hidden" name="" id="ttota">
                     </div>
                     <div id="listado_contenido"> 
@@ -78,8 +78,8 @@ if($_SESSION['cargo']=='VENDEDOR')
                 </div>
                 <div><h5>Motivo de Movimiento</h5><input type="text" id="motivo_m" class="bloc MAYR"  placeholder="Ingrese Motivo de Movimiento" disabled></div>
                 <div><h5>Monto de Movimiento</h5><input type="text" id="total_mo" class="bloc NUMP" placeholder="Ingrese Monto de Movimiento" disabled></div>
-                
-                
+                <input type="hidden" name="" id="total_mo_temp">
+
                
                 <!--Botones-->
                 <div class="botones">

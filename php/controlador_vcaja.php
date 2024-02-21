@@ -158,9 +158,22 @@ if($opcion=="registrar_detalle"){
     $mont=$_GET['mont'];
     $idca=$_GET['idca'];
     $dnip=$_GET['dnip'];
-    $insertar_de="INSERT INTO detalle_caja VALUES($idca,'','$dnip','$moti',$mont,'$tipo')";
-    mysqli_query($cnn,$insertar_de)or die("error en registrar detalle de caja");
-    echo "registrado correctamente";
+    // if ($moti == "EGRESO"){
+    //     $concual="SELECT total FROM caja WHERE id_caja=$idca";
+    //     $resultcon= mysqli_query($cnn, $concual);
+    //     $totalcaja = mysqli_fetch_assoc($resultcon)['total'];
+
+        // if($mont < $totalcaja){
+            $insertar_de="INSERT INTO detalle_caja VALUES($idca,'','$dnip','$moti',$mont,'$tipo')";
+            mysqli_query($cnn,$insertar_de)or die("error en registrar detalle de caja");
+            $impre = "MOVIMIENTO REGISTRADO CORRECTAMENTE";
+    //     }else if($mont> $totalcaja){
+    //         $impre = "EGRESO ES MAYOR AL MONTO TOTAL DE CAJA";
+    //     }
+    // }
+    echo $impre;    
+
+    
 }
 
 if($opcion=="modificar_caja"){
@@ -170,6 +183,6 @@ if($opcion=="modificar_caja"){
 
     $conactu="UPDATE detalle_caja SET motivo='$moti' , total=$tota WHERE nro_mov=$nroc";
     mysqli_query($cnn,$conactu);
-    echo "ACTUALIZACION REALIZA CORRECTAMENTE";
+    echo "MOVIMIENTO ACTUALIZADO CORRECTAMENTE";
 }
 ?>

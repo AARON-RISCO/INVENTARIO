@@ -9,7 +9,11 @@ if ($opcion=="listar_categorias") {
         while ($fila=mysqli_fetch_array($resultado)) {
            $cod=$fila['id_cat'];    
            $nom=$fila['nom_cat'];
-           echo "<option value='".$cod."'>".$nom."</option>";
+           $est=$fila['estado'];
+           if($est==0){
+            echo "<option value='".$cod."'>".$nom."</option>";
+           }
+           
         }
 }
 //Listar categorias

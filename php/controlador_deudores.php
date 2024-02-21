@@ -2,6 +2,14 @@
 include "../conexion/conexion.php";
 $opcion=$_GET['opcion'];
 
+// obtener fecha actual y obetener el id de la caja de hoy
+date_default_timezone_set('America/Lima');
+$fecha_actual = date('Y-m-d');
+
+$sacaridca="SELECT id_caja as cajita FROM caja WHERE fecha_caja='$fecha_actual'";
+$ressacar=mysqli_query($cnn,$sacaridca);
+$idcajahoy=mysqli_fetch_assoc($ressacar)['cajita'];
+
 // Listar deudores
 if ($opcion == "listar") {
     $nombre = $_GET['nom'];
@@ -88,13 +96,7 @@ if ($opcion == "buscar_deuda") {
     }
     echo $jsonresponse;
 }
-// obtener fecha actual y obetener el id de la caja de hoy
-date_default_timezone_set('America/Lima');
-$fecha_actual = date('Y-m-d');
 
-$sacaridca="SELECT id_caja as cajita FROM caja WHERE fecha_caja='$fecha_actual'";
-$ressacar=mysqli_query($cnn,$sacaridca);
-$idcajahoy=mysqli_fetch_assoc($ressacar)['cajita'];
 
 // Pagar
 if ($opcion == "pagar") {

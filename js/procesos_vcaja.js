@@ -5,8 +5,8 @@ $(document).ready(function(){
     act_comven();
     actualizar_cabe();
     listar_cabecera();
-        $('#id_perso').css("pointer-events","none");
-        $('.encabe').css("pointer-events","none");
+        // $('#id_perso').css("pointer-events","none");
+        // $('.encabe').css("pointer-events","none");
     function listar_detalle_caja(parametro){
         $.ajax({
             async:true,
@@ -53,10 +53,10 @@ $(document).ready(function(){
                 let respuesta=response.trim();
                 let respues=JSON.parse(respuesta);
                 $('#fecha_caja').val(respues[0].fecha);
-                $('#taper').val('S/. '+respues[0].apert);
-                $('#tingr').val('S/. '+respues[0].ingre);
-                $('#tegre').val('S/. '+respues[0].egres);
-                $('#ttot').val('S/. '+respues[0].total);
+                $('#taper').html('S/. '+respues[0].apert);
+                $('#tingr').html('S/. '+respues[0].ingre);
+                $('#tegre').html('S/. '+respues[0].egres);
+                $('#ttot').html('S/. '+respues[0].total);
                 $('#ttota').val(respues[0].total);
                 $('#nro_caja').val(respues[0].id_ca);
                 $('#id_deca').val(respues[0].id_ca);
@@ -113,7 +113,7 @@ $(document).ready(function(){
         let dnip=$("#dni_per").val();
         let idca=$("#nro_caja").val();
         let mont=$("#total_mo").val(); 
-        let toca=$("#ttota").val();
+   
         
         if(tipo==0){
             alert("SELECCIONA TIPO DE MOVIMIENTO");
@@ -127,12 +127,12 @@ $(document).ready(function(){
             alert("INGRESA MONTO DE MOVIMIENTO");
             return;
         }
-        if(tipo==="EGRESO" && mont>toca){
+        if(tipo == "EGRESO" && mont > $("#ttota").val()){
             alert("INGRESASTE UN VALOR MAYOR AL DISPONIBLE");
             $("#total_mo").val("");
             $("#total_mo").focus();  
             return;
-        };
+        }
 
         $.ajax({
             async:true,
@@ -147,24 +147,17 @@ $(document).ready(function(){
                 opcion:"registrar_detalle"
             },success:function(response){
                 alert(response);
-                
-                listar_cabecera();
-                act_comven();
                 actualizar_cabe();
+                listar_cabecera();
                 listar_detalle_caja();
                 $('#bguardar_ca').css("display","none");
                 $('#bcancelar_ca').css("display","none");
                 $('#bnuevo_ca').css("display","block");
-
                 bloquear(true);
-                
                 $('.bloc').val('');
                 $('.bloc2').val(0);
-                
             }
         })
-
-        
     })
     $('.MAYR').on('input', function() {
         let currentValue = $(this).val();
@@ -186,17 +179,25 @@ $(document).ready(function(){
         $(this).val(newValue.toUpperCase());
     });
 
-    $('#bmodificar_ca').click(function(){
-        // if( $("#tipo_mov").val()==0){
-        //     alert("SELECCIONA UN TIPO DE MOVIMIENTO A REALIZAR");
-        //     return;
-        // }
+    $(document).on('click','#bmodificar_ca',function(){
+  
         if( $("#motivo_m").val()==""){
             alert("INGRESA MOTIVO DE MOVIMIENTO");
             return;
         }
         if( $("#total_mo").val()==0){
             alert("INGRESA MONTO DE MOVIMIENTO");
+            return;
+        }
+        
+        let compa=parseFloat($("#ttota").val() + $("#total_mo_temp").val());
+        let to=parseFloat($("#total_mo").val());
+        // console.log(compa);
+        // console.log(to);
+        if($("#tipo_mov").val() === "EGRESO" && to > compa  ){
+            alert("INGRESASTE UN VALOR MAYOR AL DISPONIBLE");
+            // $("#total_mo").val("");
+            $("#total_mo").focus();  
             return;
         }
         $.ajax({
@@ -210,16 +211,15 @@ $(document).ready(function(){
                 opcion:"modificar_caja"
             },success:function(response){
                 alert(response);
+                actualizar_cabe();
                 $('#bmodificar_ca').css("display","none");
                 $('#bcancelar_ca').css("display","none");
                 $('#bnuevo_ca').css("display","block");
-
                 $("#tipo_mov").css("display","block");
                 $("#tvoc").css("display","none");
                 bloquear(true);
                 listar_cabecera();
                 act_comven();
-                actualizar_cabe();
                 listar_detalle_caja();
                 $('.bloc').val('');
                 $('.bloc2').val(0);
@@ -259,6 +259,7 @@ $(document).ready(function(){
                    $("#nro_caja").val(respuesta[0].idcaj);
                    $("#id_perso").val(respuesta[0].nompe);
                    $("#total_mo").val(respuesta[0].total);
+                   $("#total_mo_temp").val(respuesta[0].total);
                    $("#motivo_m").val(respuesta[0].motiv);
                    if(respuesta[0].tipom=="COMPRA" || respuesta[0].tipom=="VENTA"){
         
