@@ -52,7 +52,7 @@ $(document).ready(function(){
                 // console.log(response);
                 let respuesta=response.trim();
                 let respues=JSON.parse(respuesta);
-                $('#fecha_caja').val(respues[0].fecha);
+                $('#fecha_caja').html(respues[0].fecha);
                 $('#taper').html('S/. '+respues[0].apert);
                 $('#tingr').html('S/. '+respues[0].ingre);
                 $('#tegre').html('S/. '+respues[0].egres);
