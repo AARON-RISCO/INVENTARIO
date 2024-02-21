@@ -70,6 +70,13 @@ if($_SESSION['cargo']=='VENDEDOR')
                         <tbody id="cuerpo_tabla_reve">
                             
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan=2></td>
+                                <td></td>
+                                <td><span id="textoc"></span><input type="text" id="totcomre"></td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
         </div>

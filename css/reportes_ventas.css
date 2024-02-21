@@ -277,7 +277,18 @@ td{
     /* background-color: aquamarine; */
 }
 #totvenre{
-    position: absolute;
+    /* position: absolute; */
+    right: 50px;
+    bottom: 50px;
+    pointer-events: none;
+    border: none;
+    background-color: aliceblue;
+    text-align: end;
+    padding: 5px;
+    width: 150px;
+}   
+#totcomre{
+    /* position: absolute; */
     right: 50px;
     bottom: 50px;
     pointer-events: none;

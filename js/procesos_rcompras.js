@@ -20,8 +20,9 @@ $(document).ready(function(){
                 }else{
                     var registro=JSON.parse(response);
                     var template='';
+                    let sum=0;
                     for(z in registro){
-                        
+                        sum+=registro[z].neto;
                         template+=
                         '<tr><td>'+registro[z].cod+
                         '</td><td>'+registro[z].nomp+
@@ -30,7 +31,8 @@ $(document).ready(function(){
                         '</td></tr>';
                     }
                     $('#cuerpo_tabla_reve').html(template);
-
+                    $("#textoc").val("Total Venta: S/. "); 
+                    $("#totcomre").val(sum);    
                 }
             }
         })
