@@ -331,6 +331,7 @@ llenar_categorias();
         const pre = $('#tpre').val().trim();
         const minimo =  $('#tmin').val().trim();
         const actual= 0;
+        const prec= 0;
         
         //Validaciones
         if (cat==0) {
@@ -372,6 +373,7 @@ llenar_categorias();
             pre: pre,
             minimo: minimo,
             actual: actual,
+            prec: prec,
             opcion: 'agregar'
           };
         

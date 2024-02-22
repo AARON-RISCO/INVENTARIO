@@ -69,7 +69,14 @@ if($_SESSION['cargo']=='VENDEDOR')
             <label for="">Registrar Nueva Compra</label><br>
             <input type="text" class="oculto" id="cod_com">
             <input type="text" class="cajas_com bloquear" placeholder="" id="id_cod">
-            <input type="date" class="cajas_com" id="fecha" value="" >
+            <?php
+            // Establecer la zona horaria de Perú
+            date_default_timezone_set('America/Lima');
+
+            // Obtener la fecha actual en la zona horaria especificada
+            $fecha_actual = date('Y-m-d');
+            ?>
+            <input type="date" class="cajas_com bloquear" id="fecha" value="<?php echo $fecha_actual ?>" >
             <input type="text" class="oculto" value="<?php echo $_SESSION['dni']; ?>" id="dni_per">
             <input type="text" class="cajas_com bloquear" value="<?php echo $_SESSION['nom'].' '.$_SESSION['ape'] ?>">
 
