@@ -156,6 +156,8 @@ $(document).ready(function(){
                 bloquear(true);
                 $('.bloc').val('');
                 $('.bloc2').val(0);
+                actualizar_cabe();
+                listar_cabecera();
             }
         })
     })
@@ -185,16 +187,15 @@ $(document).ready(function(){
             alert("INGRESA MOTIVO DE MOVIMIENTO");
             return;
         }
-        if( $("#total_mo").val()==0){
+        if( $("#total_mo").val()>=0 || $("#total_mo").val()==""){
             alert("INGRESA MONTO DE MOVIMIENTO");
             return;
         }
-        
         let compa=parseFloat($("#ttota").val() + $("#total_mo_temp").val());
         let to=parseFloat($("#total_mo").val());
-        // console.log(compa);
-        // console.log(to);
-        if($("#tipo_mov").val() === "EGRESO" && to > compa  ){
+        console.log(compa);
+        console.log(to);
+        if($("#tipo_mov").val() == "EGRESO" && to > compa  ){
             alert("INGRESASTE UN VALOR MAYOR AL DISPONIBLE");
             // $("#total_mo").val("");
             $("#total_mo").focus();  
@@ -212,17 +213,18 @@ $(document).ready(function(){
             },success:function(response){
                 alert(response);
                 actualizar_cabe();
+                listar_cabecera();
+                listar_detalle_caja();
                 $('#bmodificar_ca').css("display","none");
                 $('#bcancelar_ca').css("display","none");
                 $('#bnuevo_ca').css("display","block");
                 $("#tipo_mov").css("display","block");
                 $("#tvoc").css("display","none");
                 bloquear(true);
-                listar_cabecera();
-                act_comven();
-                listar_detalle_caja();
                 $('.bloc').val('');
                 $('.bloc2').val(0);
+                actualizar_cabe();
+                listar_cabecera();
             }
         })
         
