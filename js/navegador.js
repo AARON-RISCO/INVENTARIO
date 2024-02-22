@@ -59,7 +59,7 @@ $(document).ready(function(){
                 //console.log(response)
                 response = response.trim();
                 if(response=='vacio'){
-                    alert="ninguno";
+                    console.log('Nada');
                 }else{
                     var registro=JSON.parse(response);
                     var template='';
