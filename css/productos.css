@@ -169,6 +169,8 @@ display: none;
 #icon-suma{
     width: 24px;
     height: 24px;
+    margin-top: -20px;
+
 }
 .fondo{
     width: 100%;
