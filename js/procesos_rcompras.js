@@ -31,8 +31,8 @@ $(document).ready(function(){
                         '</td></tr>';
                     }
                     $('#cuerpo_tabla_reve').html(template);
-                    $("#textoc").val("Total Venta: S/. "); 
-                    $("#totcomre").val(sum);    
+                    $("#textoc").html("Total Venta: "); 
+                    $("#totcomre").val("S/. "+sum);    
                 }
             }
         })

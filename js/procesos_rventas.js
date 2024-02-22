@@ -43,8 +43,8 @@ $(document).ready(function(){
                         '</td></tr>';
                     }
                     $('#cuerpo_tabla_reve').html(template);
-                    $("#texto").val("Total Venta: S/. "); 
-                    $("#totvenre").val(tot);    
+                    $("#texto").html("Total Venta: "); 
+                    $("#totvenre").val("S/. "+tot);    
                 }
             }
         })

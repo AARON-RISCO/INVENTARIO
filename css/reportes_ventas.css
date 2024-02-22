@@ -287,9 +287,9 @@ td{
     pointer-events: none;
     border: none;
     background-color: aliceblue;
-    text-align: end;
+    text-align: center;
     padding: 5px;
-    width: 150px;
+    width: 100px;
 }   
 #totcomre{
     /* position: absolute; */
@@ -298,7 +298,7 @@ td{
     pointer-events: none;
     border: none;
     background-color: aliceblue;
-    text-align: end;
+    text-align: center;
     padding: 5px;
-    width: 150px;
+    width: 100px;
 }   

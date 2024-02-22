@@ -73,8 +73,8 @@ if($_SESSION['cargo']=='VENDEDOR')
                         <tfoot>
                             <tr>
                                 <td colspan=2></td>
-                                <td></td>
-                                <td><span id="textoc"></span><input type="text" id="totcomre"></td>
+                                <td><span id="textoc"></span></td>
+                                <td><input type="text" id="totcomre"></td>
                             </tr>
                         </tfoot>
                     </table>
