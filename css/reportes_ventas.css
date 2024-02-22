@@ -181,65 +181,7 @@ td{
     position: fixed; 
     display:none;
 }
-/* .modal{
-    position: absolute;
-    background-color: #EAEBEF;
-    height: 250px;
-    width: 380px;
-    text-align: center;
-    padding: 30px 0 0 0;
-    margin-top: -90%;
-    transition: 0.5s;
-}
-.cajas_modal{
-    margin: 15px 20px 15px 20px;
-    padding: 5px 10px 5px 10px;
-    width: 85%;
-    background-color: white;
-    border: 0;
-    text-align: center;
-    
-} */
-/* #bguardar_deudor{
-    background-color: green;
-    color: white;
-    border: 0;
-    padding: 5px 10px 5px 10px;
-    width: 40%;
-    margin-top: 10px;
-}
-.cerrar_modal{
-    position: absolute;
-    margin-left: 67%;
-    top: 5px;
-    cursor: pointer;
-}
-#bcarrito{
-    cursor: pointer;
-} */
 
-/* #bhelado{
-    background-color: rgba(0, 255, 255, 0.314); 
-} */
-/* #bhelado:hover{
-    background-color: rgb(0, 255, 255); 
-} */
-/* #bir{ 
-    background-color: rgba(255, 0, 0, 0.31);  
-}
-#bir:hover{ 
-    background-color: rgb(255, 0, 0);  
-}
-.color{
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    padding: 5px;
-    cursor: pointer;
-}
-#ttot{
-    pointer-events: none;
-} */
 
 #filtro_rpve img{
     width: 50px;
@@ -247,17 +189,15 @@ td{
 }
 
 .fec_rep{
-    width: 30%;
-    
+    width: 35%;
     display: flex;
     justify-content: flex-end;
 }
 .fec_rep input{
     border: none;
     font-size: 15px;
-    width: 250px;
+    width: 100%;
     text-align: end;
-    /* background-color: aquamarine; */
     padding-right: 5px;
 }
 .logo_repv{
@@ -265,7 +205,7 @@ td{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 70%;
+    width: 65%;
     font-size: 30px;
     padding: 5px 0px 15px 5px;
     margin-right: 20px;
