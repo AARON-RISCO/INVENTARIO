@@ -48,11 +48,11 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
  <!-- Ventana modal de caja inicial-->
 <!-- Fondo negro -->
 <div id="opacar2"></div>
- <?php
-    if ($_SESSION['nivel']==1) {
-        $_SESSION['nivel']=0;
+ <!-- <?php
+    // if ($_SESSION['nivel']==1) {
+    //     $_SESSION['nivel']=0;
     
-    ?>
+    ?> -->
 
     <!-- Fondo negro -->
     <div id="opacar"></div>
@@ -67,7 +67,7 @@ if ($_SESSION['cargo'] == "VENDEDOR") {
         <button id="continuar">Continuar</button>
     </div>
     
-    <?php } ?>
+    <?php //} ?>
 
     <!-- Menu de navegacion -->
     <nav class="nav" id="nav">
